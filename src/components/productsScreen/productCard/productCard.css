@@ -1,0 +1,19 @@
+.productCard {
+	background-color: white;
+	margin-bottom: 5px !important;
+	margin-top: 5px !important;
+	margin-right: 30px !important;
+	border-radius: 10px;
+}
+
+.buttonsRow {
+	min-height: 100% !important;
+}
+
+.textRow {
+	min-height: 100% !important;
+}
+
+.price {
+	color: #d65a31;
+}

@@ -1,0 +1,44 @@
+.searchBar {
+	padding-left: 10px;
+	background-color: #393e46;
+	border-bottom-left-radius: 25px;
+	border-top-left-radius: 25px;
+	border-left: 1px solid #393e46;
+	border-top: 1px solid #393e46;
+	border-bottom: 1px solid #393e46;
+	border-right: 0px;
+	min-height: 30px;
+}
+
+.searchButton {
+	background-color: #393e46;
+	border-bottom-right-radius: 25px;
+	border-top-right-radius: 25px;
+	border-top: 1px solid #393e46;
+	border-bottom: 1px solid #393e46;
+	border-right: 1px solid #393e46;
+	border-left: 0px;
+	min-height: 30px;
+	color: #eeeeee;
+}
+.searchBarOnFocus {
+	outline: none;
+	border-top: 2px solid #d65a31 !important;
+	border-bottom: 2px solid #d65a31 !important;
+	border-left: 2px solid #d65a31 !important;
+	border-right: 0px !important;
+	color: #eeeeee;
+}
+/* #searchBarOnFocus {
+	border-top: 1px solid #d65a31;
+	border-bottom: 1px solid #d65a31;
+	border-left: 1px solid #d65a31;
+	border-right: 0px;
+} */
+
+.searchButtonOnFocus {
+	border-top: 2px solid #d65a31;
+	border-bottom: 2px solid #d65a31;
+	border-right: 2px solid #d65a31;
+	border-left: 0px;
+}

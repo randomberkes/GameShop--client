@@ -1,0 +1,17 @@
+nav {
+	background-color: #222831;
+	margin-bottom: 5px;
+	/* #212529; */
+}
+
+.row {
+	min-height: 50px;
+}
+
+#logo {
+	background: none;
+	border: none;
+	min-height: 30px;
+	color: #d65a31;
+	text-align: center;
+}
