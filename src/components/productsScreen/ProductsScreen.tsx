@@ -34,16 +34,9 @@ function ProductsScreen() {
 		return <ProductCard key={index} productData={productData} />;
 	};
 
-	return (
-		<div className="container-fluid productsScreen">
-			<div className="row">
-				<div className="col-3"></div>
-				{products.map((product, index) => {
-					return createCard(product, index);
-				})}
-			</div>
-		</div>
-	);
+	return products.map((product, index) => {
+		return createCard(product, index);
+	});
 }
 
 export default ProductsScreen;
