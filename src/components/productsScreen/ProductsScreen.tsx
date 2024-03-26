@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./productsScreen.css";
 import ProductCard from "./productCard/ProductCard.tsx";
-import axios from "axios";
 import { Product } from "../../DTO/product.ts";
+import { ProductsContext } from "../../Context.ts";
+import axios from "axios";
 
 function ProductsScreen() {
-	const [productListData, setProductListData] = useState<Product[]>([]);
+	const { products, setProducts } = useContext(ProductsContext);
 
 	useEffect(() => {
 		axios.get("/products").then((response) => {
@@ -22,7 +23,7 @@ function ProductsScreen() {
 					price: data.price,
 				};
 			});
-			setProductListData(productListData);
+			setProducts(productListData);
 		});
 	}, []);
 
@@ -37,7 +38,7 @@ function ProductsScreen() {
 		<div className="container-fluid productsScreen">
 			<div className="row">
 				<div className="col-3"></div>
-				{productListData.map((product, index) => {
+				{products.map((product, index) => {
 					return createCard(product, index);
 				})}
 			</div>

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./searchBar.css";
+import axios from "axios";
+import { ProductsContext } from "../../../Context.ts";
 
 function SearchBar() {
+	const { setProducts } = useContext(ProductsContext);
 	const [focus, setFocus] = useState(false);
 	const [inputValue, setInputValue] = useState("");
 
@@ -25,7 +28,24 @@ function SearchBar() {
 	};
 
 	const handleClick = (event) => {
-		console.log(inputValue);
+		axios
+			.get("products/search", { params: { name: inputValue } })
+			.then((response) => {
+				const productListData = response.data.map((data) => {
+					return {
+						id: data,
+						name: data.name,
+						platform: data.platform,
+						gameDeviceCompatibility: data.game_device_compatibility,
+						gameType: data.game_type,
+						ratingPegi: data.rating_pegi,
+						numberOfPlayers: data.number_of_players,
+						descriptions: data.description,
+						price: data.price,
+					};
+				});
+				setProducts(productListData);
+			});
 		event.preventDefault();
 	};
 

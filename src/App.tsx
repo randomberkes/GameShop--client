@@ -2,22 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductsScreen from "./components/productsScreen/ProductsScreen.tsx";
 import Navbar from "./components/navbar/Navbar.tsx";
+import { ProductsContext } from "./Context.ts";
+import { Product } from "./DTO/product.ts";
 
 function App() {
-	const [backendData, setBackendData] = useState([]);
-
-	useEffect(() => {
-		axios.get("/users/api").then((response) => {
-			console.log(response.data);
-			setBackendData(response.data[0].name);
-		});
-	}, []);
+	const [products, setProducts] = useState<Product[]>([]);
 
 	return (
-		<div>
+		<ProductsContext.Provider
+			value={{ products: products, setProducts: setProducts }}
+		>
 			<Navbar />
 			<ProductsScreen />
-		</div>
+		</ProductsContext.Provider>
 	);
 }
 

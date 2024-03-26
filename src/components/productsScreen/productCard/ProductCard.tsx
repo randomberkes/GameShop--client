@@ -12,6 +12,8 @@ function ProductCard(props) {
 
 	const { productData } = props;
 
+	console.log(productData);
+
 	return (
 		<div className="col-9 container-fluid productCard">
 			<div className="row">
