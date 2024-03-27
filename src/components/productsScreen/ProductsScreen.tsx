@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import "./productsScreen.css";
 import ProductCard from "./productCard/ProductCard.tsx";
 import { Product } from "../../DTO/product.ts";
-import { ProductsContext } from "../../Context.ts";
+import { MyContext } from "../../Context.ts";
 import axios from "axios";
 
 function ProductsScreen() {
-	const { products, setProducts } = useContext(ProductsContext);
+	const { productsContext } = useContext(MyContext);
+	const { products, setProducts } = productsContext;
 
 	useEffect(() => {
 		axios.get("/products").then((response) => {

@@ -2,7 +2,7 @@ import React from "react";
 import "./filterCardButton.css";
 
 function FilterCardButton(props) {
-	const { setOpen, open } = props;
+	const { setOpen, open, categoryType } = props;
 
 	return (
 		<button
@@ -12,10 +12,8 @@ function FilterCardButton(props) {
 			aria-expanded={open}
 		>
 			<div className="container-fluid ">
-				<div className="row justify-content-between">
-					<div className="col-2">
-						<label>Kategoria</label>
-					</div>
+				<div className="row filterCardButtonRow justify-content-between">
+					<h6 className="col-10 filterCardButtonLabel">{categoryType}</h6>
 					<div className="col-1">
 						<i
 							className={`bi ${open ? "bi-caret-up" : "bi-caret-down-fill"}`}

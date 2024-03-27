@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import "./searchBar.css";
 import axios from "axios";
-import { ProductsContext } from "../../../Context.ts";
+import { MyContext } from "../../../Context.ts";
 
 function SearchBar() {
-	const { setProducts } = useContext(ProductsContext);
+	const { productsContext } = useContext(MyContext);
+	const { setProducts } = productsContext;
 	const [focus, setFocus] = useState(false);
 	const [inputValue, setInputValue] = useState("");
 

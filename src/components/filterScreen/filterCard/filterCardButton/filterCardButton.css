@@ -4,10 +4,14 @@
 	width: 100%;
 	padding-left: 0;
 	padding-right: 0;
-	height: 30px;
 	font-weight: bold;
 }
 
 .filterCardButtonRow {
 	min-height: 1px;
+	max-height: 50px;
+}
+
+.filterCardButtonLabel {
+	text-align: left;
 }
