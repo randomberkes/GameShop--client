@@ -1,32 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "./productsScreen.css";
 import ProductCard from "./productCard/ProductCard.tsx";
 import { Product } from "../../DTO/product.ts";
 import { MyContext } from "../../Context.ts";
-import axios from "axios";
+import productsApi from "../../api/productsApi.ts";
 
 function ProductsScreen() {
 	const { productsContext } = useContext(MyContext);
 	const { products, setProducts } = productsContext;
 
 	useEffect(() => {
-		axios.get("/products").then((response) => {
-			const productListData = response.data.map((data) => {
-				return {
-					id: data,
-					name: data.name,
-					platform: data.platform,
-					gameDeviceCompatibility: data.game_device_compatibility,
-					gameType: data.game_type,
-					ratingPegi: data.rating_pegi,
-					numberOfPlayers: data.number_of_players,
-					descriptions: data.description,
-					price: data.price,
-				};
-			});
-			setProducts(productListData);
-		});
+		getAllProducts();
 	}, []);
+
+	const getAllProducts = async () => {
+		const productListData = await productsApi.getAllProducts();
+		setProducts(productListData);
+	};
 
 	const createCard = (
 		productData: Product,

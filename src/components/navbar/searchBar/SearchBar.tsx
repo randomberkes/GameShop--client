@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "./searchBar.css";
 import axios from "axios";
 import { MyContext } from "../../../Context.ts";
+import productsApi from "../../../api/productsApi.ts";
 
 function SearchBar() {
 	const { productsContext } = useContext(MyContext);
@@ -29,25 +30,13 @@ function SearchBar() {
 	};
 
 	const handleClick = (event) => {
-		axios
-			.get("products/search", { params: { name: inputValue } })
-			.then((response) => {
-				const productListData = response.data.map((data) => {
-					return {
-						id: data,
-						name: data.name,
-						platform: data.platform,
-						gameDeviceCompatibility: data.game_device_compatibility,
-						gameType: data.game_type,
-						ratingPegi: data.rating_pegi,
-						numberOfPlayers: data.number_of_players,
-						descriptions: data.description,
-						price: data.price,
-					};
-				});
-				setProducts(productListData);
-			});
+		getProductsByName(inputValue);
 		event.preventDefault();
+	};
+
+	const getProductsByName = async (inputValue) => {
+		const productListData = await productsApi.getProductsByName(inputValue);
+		setProducts(productListData);
 	};
 
 	return (

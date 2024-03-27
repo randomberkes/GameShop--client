@@ -1,25 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./filterScreen.css";
 import FilterCard from "./filterCard/FilterCard.tsx";
-import axios from "axios";
 import { MyContext } from "../../Context.ts";
+import categoryTypesApi from "../../api/categoryTypesApi.ts";
 
 function FilterScreen() {
 	const { categoryTypesContext } = useContext(MyContext);
 	const { categoryTypes, setCategoryTypes } = categoryTypesContext;
 
 	useEffect(() => {
-		axios.get("/categoryTypes").then((response) => {
-			const productListData = response.data.map((data) => {
-				return {
-					id: data.id,
-					name: data.category_type_name,
-				};
-			});
-			setCategoryTypes(productListData);
-			console.log(categoryTypes);
-		});
+		// axios.get("http://127.0.0.1:5000/categoryTypes").then((response) => {
+		// 	const productListData = response.data.map((data) => {
+		// 		return {
+		// 			id: data.id,
+		// 			name: data.category_type_name,
+		// 		};
+		// 	});
+		// 	setCategoryTypes(productListData);
+		// 	console.log(categoryTypes);
+		// });
+		getAllCategoryTypes();
 	}, []);
+
+	const getAllCategoryTypes = async () => {
+		const categoriesListData = await categoryTypesApi.getAllCategoryTypes();
+		setCategoryTypes(categoriesListData);
+	};
 
 	const createFilterCard = (categoryType) => {
 		return (

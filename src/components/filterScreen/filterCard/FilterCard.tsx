@@ -3,26 +3,24 @@ import "./filterCard.css";
 import CheckBox from "./checkBox/CheckBox.tsx";
 import Collapse from "react-bootstrap/Collapse";
 import FilterCardButton from "./filterCardButton/FilterCardButton.tsx";
-import axios from "axios";
+import categoriesApi from "../../../api/categoriesApi.ts";
+import { Category } from "../../../DTO/category.ts";
 
 function FilterCard(props) {
 	const { categoryType } = props;
 	const [open, setOpen] = useState(true);
-	const [catgories, setCategories] = useState([]);
+	const [catgories, setCategories] = useState<Category[]>([]);
 
 	useEffect(() => {
-		axios
-			.get("/categories", { params: { categoryType: categoryType } })
-			.then((response) => {
-				const categoryListData = response.data.map((data) => {
-					return {
-						id: data.id,
-						name: data.category_name,
-					};
-				});
-				setCategories(categoryListData);
-			});
+		getCategoriesByType(categoryType);
 	}, []);
+
+	const getCategoriesByType = async (categoryType) => {
+		const categoriesListData = await categoriesApi.getCategoriesByType(
+			categoryType
+		);
+		setCategories(categoriesListData);
+	};
 
 	const createCheckbox = (category) => {
 		return <CheckBox key={category.id} category={category.name} />;
