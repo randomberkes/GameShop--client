@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import ProductsScreen from "./components/productsScreen/ProductsScreen.tsx";
 import Navbar from "./components/navbar/Navbar.tsx";
-import { MyContext } from "./Context.ts";
-import { Product } from "./DTO/product.ts";
+
 import FilterScreen from "./components/filterScreen/FilterScreen.tsx";
-import { CategoryType } from "./DTO/categoryType.ts";
 
 function App() {
-	const [products, setProducts] = useState<Product[]>([]);
-	const [categoryTypes, setCategoryTypes] = useState<CategoryType[]>([]);
-
 	return (
-		<MyContext.Provider
-			value={{
-				productsContext: { products: products, setProducts: setProducts },
-				categoryTypesContext: {
-					categoryTypes: categoryTypes,
-					setCategoryTypes: setCategoryTypes,
-				},
-			}}
-		>
+		<div>
 			<Navbar />
 			<div className="container-fluid productsScreen">
 				<div className="row">
@@ -36,7 +22,7 @@ function App() {
 					</div>
 				</div>
 			</div>
-		</MyContext.Provider>
+		</div>
 	);
 }
 

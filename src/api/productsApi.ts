@@ -19,6 +19,7 @@ export const getAllProducts = async (): Promise<Product[]> => {
 	let productListData: Product[] = [];
 	try {
 		const response = await API.get("/products");
+		console.log(response);
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});
@@ -46,7 +47,25 @@ export const getProductsByName = async (inputValue): Promise<Product[]> => {
 	return productListData;
 };
 
+export const getProductsByFilter = async (inputValue): Promise<Product[]> => {
+	let productListData: Product[] = [];
+	try {
+		const response = await API.get("/products/filter", {
+			params: { filter: inputValue },
+		});
+		console.log(response.data);
+		productListData = response.data.map((data) => {
+			return mapDataToProduct(data);
+		});
+	} catch (e) {
+		console.log(e);
+	}
+
+	return productListData;
+};
+
 export default {
 	getAllProducts: getAllProducts,
 	getProductsByName: getProductsByName,
+	getProductsByFilter: getProductsByFilter,
 };

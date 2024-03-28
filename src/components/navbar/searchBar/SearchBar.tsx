@@ -1,12 +1,17 @@
 import React, { useContext, useState } from "react";
 import "./searchBar.css";
-import axios from "axios";
-import { MyContext } from "../../../Context.ts";
+// import axios from "axios";
+// import { MyContext } from "../../../Context.ts";
 import productsApi from "../../../api/productsApi.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../Redux/store.ts";
+import { setProducts } from "../../../Redux/productsSlice.ts";
 
 function SearchBar() {
-	const { productsContext } = useContext(MyContext);
-	const { setProducts } = productsContext;
+	const { products } = useSelector((state: RootState) => state.products);
+	const dispatch = useDispatch();
+	// const { productsContext } = useContext(MyContext);
+	// const { setProducts } = productsContext;
 	const [focus, setFocus] = useState(false);
 	const [inputValue, setInputValue] = useState("");
 
@@ -36,7 +41,7 @@ function SearchBar() {
 
 	const getProductsByName = async (inputValue) => {
 		const productListData = await productsApi.getProductsByName(inputValue);
-		setProducts(productListData);
+		dispatch(setProducts(productListData));
 	};
 
 	return (

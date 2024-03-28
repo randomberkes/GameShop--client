@@ -2,12 +2,15 @@ import React, { useContext, useEffect } from "react";
 import "./productsScreen.css";
 import ProductCard from "./productCard/ProductCard.tsx";
 import { Product } from "../../DTO/product.ts";
-import { MyContext } from "../../Context.ts";
+// import { MyContext } from "../../Context.ts";
 import productsApi from "../../api/productsApi.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts } from "../../Redux/productsSlice.ts";
+import { RootState } from "../../Redux/store.ts";
 
 function ProductsScreen() {
-	const { productsContext } = useContext(MyContext);
-	const { products, setProducts } = productsContext;
+	const { products } = useSelector((state: RootState) => state.products);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		getAllProducts();
@@ -15,7 +18,7 @@ function ProductsScreen() {
 
 	const getAllProducts = async () => {
 		const productListData = await productsApi.getAllProducts();
-		setProducts(productListData);
+		dispatch(setProducts(productListData));
 	};
 
 	const createCard = (
