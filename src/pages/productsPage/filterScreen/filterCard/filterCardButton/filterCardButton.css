@@ -9,7 +9,11 @@
 
 .filterCardButtonRow {
 	min-height: 1px;
-	max-height: 50px;
+}
+
+.filterCardIcon {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .filterCardButtonLabel {

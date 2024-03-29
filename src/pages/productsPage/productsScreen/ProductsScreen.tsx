@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import "./productsScreen.css";
 import ProductCard from "./productCard/ProductCard.tsx";
-import { Product } from "../../DTO/product.ts";
+import { Product } from "../../../DTO/product.ts";
 // import { MyContext } from "../../Context.ts";
-import productsApi from "../../api/productsApi.ts";
+import productsApi from "../../../api/productsApi.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../../Redux/productsSlice.ts";
-import { RootState } from "../../Redux/store.ts";
+import { setProducts } from "../../../Redux/productsSlice.ts";
+import { RootState } from "../../../Redux/store.ts";
 
 function ProductsScreen() {
 	const { products } = useSelector((state: RootState) => state.products);

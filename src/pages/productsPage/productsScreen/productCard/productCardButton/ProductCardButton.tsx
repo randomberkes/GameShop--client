@@ -20,7 +20,7 @@ function ProductCardButton(props) {
 	return (
 		<button
 			style={hover ? hoverCardButtonStyle : {}}
-			className="col-4 productCardButton"
+			className=" productCardButton"
 			onMouseOver={handleMouseOver}
 			onMouseOut={handleMouseOut}
 		>

@@ -3,8 +3,8 @@ import "./filterCard.css";
 import CheckBox from "./checkBox/CheckBox.tsx";
 import Collapse from "react-bootstrap/Collapse";
 import FilterCardButton from "./filterCardButton/FilterCardButton.tsx";
-import categoriesApi from "../../../api/categoriesApi.ts";
-import { Category } from "../../../DTO/category.ts";
+import categoriesApi from "../../../../api/categoriesApi.ts";
+import { Category } from "../../../../DTO/category.ts";
 
 function FilterCard(props) {
 	const { categoryType, getFilter, filterCardId } = props;

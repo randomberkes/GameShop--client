@@ -10,8 +10,8 @@ function CheckBox(props) {
 		categoryFunc(id);
 	};
 	return (
-		<div className="row checkBox">
-			<div className="col-1">
+		<div className="row checkBox ">
+			<div className="col-1 checkBoxIcon">
 				<input
 					className=""
 					type="checkbox"
@@ -20,7 +20,7 @@ function CheckBox(props) {
 				/>
 			</div>
 			<div
-				className="col-3"
+				className="col-11 checKboxText"
 				onClick={() => {
 					console.log(checked);
 				}}

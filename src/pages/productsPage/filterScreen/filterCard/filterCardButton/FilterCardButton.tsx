@@ -13,8 +13,8 @@ function FilterCardButton(props) {
 		>
 			<div className="container-fluid ">
 				<div className="row filterCardButtonRow justify-content-between">
-					<h6 className="col-10 filterCardButtonLabel">{categoryType}</h6>
-					<div className="col-1">
+					<h6 className="col-11 filterCardButtonLabel">{categoryType}</h6>
+					<div className="col-1 filterCardIcon">
 						<i
 							className={`bi ${open ? "bi-caret-up" : "bi-caret-down-fill"}`}
 						></i>

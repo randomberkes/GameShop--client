@@ -52,7 +52,7 @@ function ProductCard(props) {
 						<ProductCardButton icon={icons[0]} />
 					</div>
 					<div className="row justify-content-end price">
-						<h4>{productData.price}ft</h4>
+						{productData.price}ft
 					</div>
 					<div className="row justify-content-end">
 						<ProductCardButton icon={icons[1]} />
