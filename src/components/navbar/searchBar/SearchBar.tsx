@@ -45,12 +45,7 @@ function SearchBar() {
 	};
 
 	return (
-		<form
-			className="col-8"
-			role="search"
-			onFocus={handleOnFocus}
-			onBlur={handleOnBlur}
-		>
+		<form role="search" onFocus={handleOnFocus} onBlur={handleOnBlur}>
 			<input
 				className={` col-11 ${focus ? "searchBarOnFocus" : ""} searchBar`}
 				value={inputValue}

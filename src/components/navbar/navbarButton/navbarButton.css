@@ -1,7 +1,11 @@
 .navbarButton {
+	display: block;
 	background-color: #222831;
 	border-radius: 25px;
 	border: none;
 	min-height: 30px;
+	min-width: 30px !important;
 	color: #d8d2d2;
+	padding-left: 30%;
+	padding-right: 30%;
 }

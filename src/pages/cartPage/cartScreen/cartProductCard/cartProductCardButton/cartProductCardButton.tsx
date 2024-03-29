@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./productCardButton.css";
+import "./cartProductCardButton.css";
 
-function ProductCardButton(props) {
+function CartProductCardButton(props) {
 	const { icon, handleClick } = props;
 	const [hover, setHover] = useState(false);
 
@@ -30,4 +30,4 @@ function ProductCardButton(props) {
 	);
 }
 
-export default ProductCardButton;
+export default CartProductCardButton;

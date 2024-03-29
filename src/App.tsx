@@ -1,8 +1,11 @@
 import React from "react";
-import ProductsScreen from "./pages/productsPage/productsScreen/ProductsScreen.tsx";
+
 import Navbar from "./components/navbar/Navbar.tsx";
-import FilterScreen from "./pages/productsPage/filterScreen/FilterScreen.tsx";
+
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import ProductsPage from "./pages/productsPage/productsPage.tsx";
+import FavoritesScreen from "./pages/favoritesPage/favoritesScreen/favoritesScreen.tsx";
+import CartScreen from "./pages/cartPage/cartScreen/CartScreen.tsx";
 
 function App() {
 	return (
@@ -13,29 +16,14 @@ function App() {
 					element={
 						<div>
 							<Navbar />
-							<div className="container-fluid productsScreen">
-								<div className="row">
-									<div className="col-11 container-fluid ">
-										<Outlet />
-									</div>
-								</div>
-							</div>
+
+							<Outlet />
 						</div>
 					}
 				>
-					<Route
-						path="products"
-						element={
-							<div className="row">
-								<div className="col-3 container-fluid ">
-									<FilterScreen />
-								</div>
-								<div className="col-9 container-fluid ">
-									<ProductsScreen />
-								</div>
-							</div>
-						}
-					/>
+					<Route path="products" element={<ProductsPage />} />
+					<Route path="favorites" element={<FavoritesScreen />} />
+					<Route path="cart" element={<CartScreen />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

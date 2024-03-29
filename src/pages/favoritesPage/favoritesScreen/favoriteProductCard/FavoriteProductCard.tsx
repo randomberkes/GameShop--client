@@ -1,35 +1,34 @@
 import React from "react";
-import ProductCardButton from "./productCardButton/ProductCardButton.tsx";
-import "./productCard.css";
-import { useDispatch, useSelector } from "react-redux";
-import { addProductToFavorites } from "../../../../Redux/favoriteProductsSlice.ts";
+import FavoriteProductCardButton from "./favoriteProductCardButton/FavoriteProductCardButton.tsx";
+import "./favoriteProductCard.css";
+import { useDispatch } from "react-redux";
+import { deleteProductFromFavorites } from "../../../../Redux/favoriteProductsSlice.ts";
 import { addProductToCart } from "../../../../Redux/cartProductsSlice.ts";
 
-function ProductCard(props) {
-	const { productData } = props;
+function FavoriteProductCard(props) {
 	const dispatch = useDispatch();
 	const icons = [
-		<i className="bi bi-heart"></i>,
 		<i className="bi bi-cart"></i>,
+		<i className="bi bi-trash3"></i>,
 	];
 
+	const { productData } = props;
+
+	const handleDeleteButtonClick = () => {
+		dispatch(deleteProductFromFavorites(productData.id));
+	};
 	const handleCartButtonClick = () => {
 		dispatch(addProductToCart(productData));
 	};
-	const handleFavoriteButtonClick = () => {
-		dispatch(addProductToFavorites(productData));
-	};
 
 	return (
-		<div className="row productCard">
+		<div className="row favoriteProductCard">
 			<div className="col-3 container-fluid">
-				<div className="row">
-					<div className="col-2"></div>
+				<div className="row  justify-content-center">
 					<img
 						className="mainImg col-8"
 						src={process.env.PUBLIC_URL + "/images/SpiderMan2PS5BoxArt.jpeg"}
 					/>
-					<div className="col-2"></div>
 				</div>
 			</div>
 
@@ -57,8 +56,8 @@ function ProductCard(props) {
 			<div className="container-fluid col-2">
 				<div className="buttonsRow row align-items-center ">
 					<div className="row  justify-content-end">
-						<ProductCardButton
-							handleClick={handleFavoriteButtonClick}
+						<FavoriteProductCardButton
+							handleClick={handleCartButtonClick}
 							icon={icons[0]}
 						/>
 					</div>
@@ -66,8 +65,8 @@ function ProductCard(props) {
 						{productData.price}ft
 					</div>
 					<div className="row justify-content-end">
-						<ProductCardButton
-							handleClick={handleCartButtonClick}
+						<FavoriteProductCardButton
+							handleClick={handleDeleteButtonClick}
 							icon={icons[1]}
 						/>
 					</div>
@@ -77,4 +76,4 @@ function ProductCard(props) {
 	);
 }
 
-export default ProductCard;
+export default FavoriteProductCard;

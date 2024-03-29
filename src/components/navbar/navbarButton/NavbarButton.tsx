@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./navbarButton.css";
+import { Link } from "react-router-dom";
 
 function NavbarButton(props) {
-	const { icon } = props;
+	const { icon, link } = props;
 	const [hover, setHover] = useState(false);
 
 	const handleMouseOver = () => {
@@ -19,14 +20,17 @@ function NavbarButton(props) {
 	};
 
 	return (
-		<button
-			style={hover ? hoverButtonStyle : {}}
-			className="col-4 navbarButton"
-			onMouseOver={handleMouseOver}
-			onMouseOut={handleMouseOut}
-		>
-			{icon}
-		</button>
+		<div className="col-2">
+			<Link
+				to={link}
+				style={hover ? hoverButtonStyle : {}}
+				className="navbarButton"
+				onMouseOver={handleMouseOver}
+				onMouseOut={handleMouseOut}
+			>
+				{icon}
+			</Link>
+		</div>
 	);
 }
 
