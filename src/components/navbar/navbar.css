@@ -1,7 +1,10 @@
 nav {
+	display: flex;
 	background-color: #222831;
 	margin-bottom: 5px;
-	/* #212529; */
+	height: 50px;
+	justify-content: center;
+	align-items: center;
 }
 
 .row {
@@ -9,9 +12,18 @@ nav {
 }
 
 #logo {
+	display: inline-block;
 	background: none;
 	border: none;
 	min-height: 30px;
+	width: 40px;
 	color: #d65a31;
 	text-align: center;
+	margin-left: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+	#logo {
+		margin-right: auto;
+	}
 }

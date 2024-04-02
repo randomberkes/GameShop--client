@@ -1,11 +1,55 @@
 .navbarButton {
-	display: block;
+	display: inline-block;
 	background-color: #222831;
-	border-radius: 25px;
-	border: none;
-	min-height: 30px;
-	min-width: 30px !important;
+	padding-left: 2px !important;
+	padding-right: 2px !important;
+	margin-left: 2px;
+	margin-right: 5px;
 	color: #d8d2d2;
 	padding-left: 30%;
 	padding-right: 30%;
+	border-width: 0px 0px 0px 0px;
+	width: 30px;
+	text-align: center;
+}
+
+.navbarButtonSelected {
+	border-style: solid;
+	border-width: 0px 0px 2px 0px;
+	border-color: #d65a31;
+}
+
+i {
+	padding-left: 2%;
+	padding-right: 2%;
+}
+.navbarButtonLabel {
+	width: 100px;
+	color: #eeeeee;
+	display: inline-block;
+}
+
+.hideButton {
+	display: none !important;
+}
+
+.navButtonContainer {
+	display: inline-block;
+}
+
+.displaySearchBarButton {
+	display: none;
+	padding: none;
+	display: none;
+}
+@media only screen and (max-width: 1350px) {
+	.navbarButtonLabel {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.displaySearchBarButton {
+		display: inline-block;
+	}
 }

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./navbarButton.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function NavbarButton(props) {
-	const { icon, link } = props;
+	let { pathname } = useLocation();
+	const { icon, link, label, customClass, showSearchBar } = props;
 	const [hover, setHover] = useState(false);
 
 	const handleMouseOver = () => {
@@ -16,20 +17,24 @@ function NavbarButton(props) {
 	};
 
 	const hoverButtonStyle = {
-		backgroundColor: "#d65a31",
+		color: "#d65a31",
 	};
+	console.log(showSearchBar);
 
 	return (
-		<div className="col-2">
+		<div className={`navButtonContainer ${showSearchBar ? "hideButton" : ""}`}>
 			<Link
 				to={link}
 				style={hover ? hoverButtonStyle : {}}
-				className="navbarButton"
+				className={`navbarButton ${
+					link == pathname ? "navbarButtonSelected" : ""
+				}`}
 				onMouseOver={handleMouseOver}
 				onMouseOut={handleMouseOut}
 			>
 				{icon}
 			</Link>
+			{label != "" ? <div className="navbarButtonLabel">{label}</div> : null}
 		</div>
 	);
 }

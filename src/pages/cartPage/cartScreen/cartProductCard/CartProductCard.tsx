@@ -24,7 +24,7 @@ function FavoriteProductCard(props) {
 
 	return (
 		<div className="row cartProductCard">
-			<div className="col-3 container-fluid">
+			<div className="col-5 col-sm-4 col-md-3 container-fluid">
 				<div className="row justify-content-center">
 					<img
 						className="mainImg col-8"
@@ -33,16 +33,16 @@ function FavoriteProductCard(props) {
 				</div>
 			</div>
 
-			<div className="col-7 container-fluid">
+			<div className="col-7 col-sm-5 col-md-7 container-fluid">
 				<div className="row textRow align-items-center ">
 					<div className="col">
 						<h5 className="card-title">{productData.name}</h5>
 						<h6 className="card-subtitle mb-2 text-body-secondary">
 							{productData.platform}
 						</h6>
-						<ul>
+						<ul className="list">
 							<li>
-								Játékeszköz kompatibilitás:{" "}
+								Játékeszköz kompatibilitás:
 								{productData.gameDeviceCompatibility}
 							</li>
 							<li>Játék típusa: {productData.gameType}</li>
@@ -54,15 +54,13 @@ function FavoriteProductCard(props) {
 					</div>
 				</div>
 			</div>
-			<div className="container-fluid col-2">
+			<div className="container-fluid text-center col-12 col-sm-3 col-md-2">
 				<div className="buttonsRow row align-items-center ">
-					<div className="row  justify-content-end">
+					<div className="col-4 col-sm-12">
 						<CartProductCardButton icon={icons[0]} />
 					</div>
-					<div className="row justify-content-end price">
-						{productData.price}ft
-					</div>
-					<div className="row justify-content-end">
+					<div className="col-4 col-sm-12 price">{productData.price}ft</div>
+					<div className="col-4 col-sm-12">
 						<CartProductCardButton
 							handleClick={handleDeleteButtonClick}
 							icon={icons[1]}

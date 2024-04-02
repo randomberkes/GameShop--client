@@ -1,32 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./searchBar.css";
-// import axios from "axios";
-// import { MyContext } from "../../../Context.ts";
 import productsApi from "../../../api/productsApi.ts";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../Redux/store.ts";
+import { useDispatch } from "react-redux";
 import { setProducts } from "../../../Redux/productsSlice.ts";
 
-function SearchBar() {
-	const { products } = useSelector((state: RootState) => state.products);
+function SearchBar(props) {
+	const { showSearchBar, setShowSearchBar, inputRef } = props;
 	const dispatch = useDispatch();
-	// const { productsContext } = useContext(MyContext);
-	// const { setProducts } = productsContext;
 	const [focus, setFocus] = useState(false);
 	const [inputValue, setInputValue] = useState("");
-
-	const searchBarOnFocus = {
-		borderTop: "1px solid #d65a31",
-		borderBottom: "1px solid #d65a31",
-		borderLeft: "1px solid #d65a31",
-		borderRight: "0px",
-	};
 
 	const handleOnFocus = () => {
 		setFocus(true);
 	};
 	const handleOnBlur = () => {
 		setFocus(false);
+
+		if (window.innerWidth < 600) setShowSearchBar(false);
 	};
 
 	const handleInput = (event) => {
@@ -45,11 +35,17 @@ function SearchBar() {
 	};
 
 	return (
-		<form role="search" onFocus={handleOnFocus} onBlur={handleOnBlur}>
+		<form
+			role="search"
+			onFocus={handleOnFocus}
+			onBlur={handleOnBlur}
+			className={`searchForm ${showSearchBar ? "show" : ""}`}
+		>
 			<input
 				className={` col-11 ${focus ? "searchBarOnFocus" : ""} searchBar`}
 				value={inputValue}
 				onChange={handleInput}
+				ref={inputRef}
 			/>
 			<button
 				className={`col-1 ${focus ? "searchButtonOnFocus" : ""} searchButton`}
