@@ -3,7 +3,10 @@ import ProductCardButton from "./productCardButton/ProductCardButton.tsx";
 import "./productCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToFavorites } from "../../../../Redux/favoriteProductsSlice.ts";
-import { addProductToCart } from "../../../../Redux/cartProductsSlice.ts";
+import {
+	addProductToCart,
+	updatePrice,
+} from "../../../../Redux/cartProductsSlice.ts";
 
 function ProductCard(props) {
 	const { productData } = props;
@@ -15,6 +18,7 @@ function ProductCard(props) {
 
 	const handleCartButtonClick = () => {
 		dispatch(addProductToCart(productData));
+		dispatch(updatePrice());
 	};
 	const handleFavoriteButtonClick = () => {
 		dispatch(addProductToFavorites(productData));

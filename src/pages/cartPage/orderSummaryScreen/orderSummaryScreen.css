@@ -1,0 +1,20 @@
+.orderSummaryScreen {
+	background-color: white;
+	border-radius: 10px;
+	margin-top: 30px;
+}
+
+.orderScreenButtonRow {
+	padding: 0px;
+}
+
+.orderScreenButton {
+	width: 100%;
+	height: 100%;
+	border: none;
+	padding: 0px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: #393e46;
+	color: #d65a31;
+}

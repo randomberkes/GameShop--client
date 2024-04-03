@@ -5,7 +5,7 @@ import Navbar from "./components/navbar/Navbar.tsx";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import ProductsPage from "./pages/productsPage/productsPage.tsx";
 import FavoritesScreen from "./pages/favoritesPage/favoritesScreen/favoritesScreen.tsx";
-import CartScreen from "./pages/cartPage/cartScreen/CartScreen.tsx";
+import CartPage from "./pages/cartPage/CartPage.tsx";
 
 function App() {
 	return (
@@ -23,7 +23,7 @@ function App() {
 				>
 					<Route path="products" element={<ProductsPage />} />
 					<Route path="favorites" element={<FavoritesScreen />} />
-					<Route path="cart" element={<CartScreen />} />
+					<Route path="cart" element={<CartPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

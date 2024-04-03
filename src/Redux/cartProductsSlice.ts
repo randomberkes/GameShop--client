@@ -8,16 +8,27 @@ export interface CartProduct extends Product {
 
 export interface cartProductsState {
 	products: CartProduct[];
+	finalPrice: number;
 }
 
 const initialState: cartProductsState = {
 	products: [],
+	finalPrice: 0,
 };
 
 export const cartProductsSlice = createSlice({
 	name: "cartProducts",
 	initialState,
 	reducers: {
+		updatePrice: (state) => {
+			state.finalPrice = 0;
+			const priceByProduct: number[] = state.products.map((product) => {
+				return product.productCount * product.price;
+			});
+			priceByProduct.forEach((productPrice) => {
+				state.finalPrice += productPrice;
+			});
+		},
 		addProductToCart: (state, action: PayloadAction<Product>) => {
 			let unique = true;
 			state.products.forEach((product) => {
@@ -54,6 +65,7 @@ export const {
 	deleteProductFromCart,
 	increaseCountOfProduct,
 	decreaseCountOfProduct,
+	updatePrice,
 } = cartProductsSlice.actions;
 
 export default cartProductsSlice.reducer;

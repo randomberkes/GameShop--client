@@ -3,7 +3,10 @@ import FavoriteProductCardButton from "./favoriteProductCardButton/FavoriteProdu
 import "./favoriteProductCard.css";
 import { useDispatch } from "react-redux";
 import { deleteProductFromFavorites } from "../../../../Redux/favoriteProductsSlice.ts";
-import { addProductToCart } from "../../../../Redux/cartProductsSlice.ts";
+import {
+	addProductToCart,
+	updatePrice,
+} from "../../../../Redux/cartProductsSlice.ts";
 
 function FavoriteProductCard(props) {
 	const dispatch = useDispatch();
@@ -19,6 +22,7 @@ function FavoriteProductCard(props) {
 	};
 	const handleCartButtonClick = () => {
 		dispatch(addProductToCart(productData));
+		dispatch(updatePrice());
 	};
 
 	return (

@@ -19,7 +19,6 @@ function NavbarButton(props) {
 	const hoverButtonStyle = {
 		color: "#d65a31",
 	};
-	console.log(showSearchBar);
 
 	return (
 		<div className={`navButtonContainer ${showSearchBar ? "hideButton" : ""}`}>

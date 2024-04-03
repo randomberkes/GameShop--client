@@ -9,11 +9,6 @@ function Navbar() {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	let [showSearchBar, setShowSearchBar] = useState(false);
-	// let [focus, setFocus] = useState(useRef<HTMLInputElement>(null));
-
-	useEffect(() => {
-		console.log("Input Ref on Mount:", inputRef.current);
-	}, []);
 
 	const navbarBUttonsData = [
 		{
@@ -42,6 +37,7 @@ function Navbar() {
 		if (index != 0) {
 			return (
 				<NavbarButton
+					key={index}
 					showSearchBar={showSearchBar}
 					label={navbarBUttonData.label}
 					link={navbarBUttonData.link}
@@ -63,7 +59,7 @@ function Navbar() {
 	return (
 		<nav>
 			<div className={`${showSearchBar ? "hideButton" : ""}`} id="logo">
-				Logo
+				GameShop
 			</div>
 
 			<SearchBar
