@@ -2,7 +2,11 @@ import React from "react";
 import CartProductCardButton from "./cartProductCardButton/cartProductCardButton.tsx";
 import "./cartProductCard.css";
 import { useDispatch } from "react-redux";
-import { deleteProductFromCart } from "../../../../Redux/cartProductsSlice.ts";
+import {
+	decreaseCountOfProduct,
+	deleteProductFromCart,
+	increaseCountOfProduct,
+} from "../../../../Redux/cartProductsSlice.ts";
 
 function FavoriteProductCard(props) {
 	const dispatch = useDispatch();
@@ -11,15 +15,16 @@ function FavoriteProductCard(props) {
 		<i className="bi bi-trash3"></i>,
 	];
 
-	const { productData } = props;
+	const { productData, productsCount, id } = props;
 
 	const handleDeleteButtonClick = () => {
-		console.log("DELETE");
 		dispatch(deleteProductFromCart(productData.id));
 	};
-	const handleCartButtonClick = () => {
-		console.log("DELETE");
-		dispatch(productData.id);
+	const handlePlusButtonClick = () => {
+		dispatch(increaseCountOfProduct(id));
+	};
+	const handleMinusButtonClick = () => {
+		dispatch(decreaseCountOfProduct(id));
 	};
 
 	return (
@@ -56,10 +61,20 @@ function FavoriteProductCard(props) {
 			</div>
 			<div className="container-fluid text-center col-12 col-sm-3 col-md-2">
 				<div className="buttonsRow row align-items-center ">
-					<div className="col-4 col-sm-12">
-						<CartProductCardButton icon={icons[0]} />
-					</div>
 					<div className="col-4 col-sm-12 price">{productData.price}ft</div>
+					<div className="col-4 col-sm-12">
+						<button
+							className="plusMinusButton"
+							disabled={productsCount == 1}
+							onClick={handleMinusButtonClick}
+						>
+							<i className="bi bi-dash plusMinusIcon"></i>
+						</button>
+						<span>{productsCount}</span>
+						<button className="plusMinusButton" onClick={handlePlusButtonClick}>
+							<i className="bi bi-plus plusMinusIcon"></i>
+						</button>
+					</div>
 					<div className="col-4 col-sm-12">
 						<CartProductCardButton
 							handleClick={handleDeleteButtonClick}
