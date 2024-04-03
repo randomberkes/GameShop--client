@@ -1,13 +1,32 @@
 import React, { useState } from "react";
 import "./checkBox.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilter, setProducts } from "../../../../../Redux/productsSlice.ts";
 
 function CheckBox(props) {
 	const [checked, setChecked] = useState(false);
-	const { category, categoryFunc, id } = props;
+	const { category, id, categoryTypeId } = props;
+	const dispatch = useDispatch();
 
-	const handleChange = () => {
+	const handleChange = async () => {
 		setChecked(!checked);
-		categoryFunc(id);
+		const currentChecked = !checked;
+		// categoryFunc(id);
+		console.log({
+			category: category,
+			categoryTypeId: categoryTypeId,
+			checkedCategory: currentChecked,
+		});
+		await dispatch(
+			setFilter({
+				category: category,
+				categoryTypeId: categoryTypeId,
+				checkedCategory: currentChecked,
+			})
+		);
+		console.log("Filter 3");
+		// console.log(filter);
+		// getProductsByFilter();
 	};
 	return (
 		<div className="row checkBox ">

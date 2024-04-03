@@ -13,6 +13,7 @@ function FilterScreen() {
 	const { categoryTypes } = useSelector(
 		(state: RootState) => state.categoryTypes
 	);
+
 	const dispatch = useDispatch();
 
 	const filter: Filter = {};
@@ -26,58 +27,13 @@ function FilterScreen() {
 		dispatch(setCategoryTypes(categoriesListData));
 	};
 
-	const getFilter = (columnfilter, id) => {
-		switch (id) {
-			case 0:
-				filter.game_device_compatibility = columnfilter;
-				if (filter.game_device_compatibility) {
-					if (filter.game_device_compatibility.length === 0)
-						delete filter.game_device_compatibility;
-				}
-				break;
-			case 1:
-				filter.game_type = columnfilter;
-				if (filter.game_type) {
-					if (filter.game_type.length === 0) delete filter.game_type;
-				}
-				break;
-			case 2:
-				filter.rating_pegi = columnfilter;
-				if (filter.rating_pegi) {
-					if (filter.rating_pegi.length === 0) delete filter.rating_pegi;
-				}
-				break;
-			case 3:
-				filter.number_of_players = columnfilter;
-				if (filter.number_of_players) {
-					if (filter.number_of_players.length === 0)
-						delete filter.number_of_players;
-				}
-				break;
-			default:
-				//
-				break;
-		}
-
-		getProductsByFilter();
-	};
-
-	const getProductsByFilter = async () => {
-		// console.log("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIi");
-		// console.log(filter);
-		const productListData = await productsApi.getProductsByFilter(filter);
-		// console.log(productListData);
-		dispatch(setProducts(productListData));
-		console.log(filter);
-	};
-
 	const createFilterCard = (categoryType, index) => {
 		return (
 			<FilterCard
 				key={index}
 				categoryType={categoryType.name}
 				filterCardId={index}
-				getFilter={getFilter}
+				// getFilter={getFilter}
 			/>
 		);
 	};

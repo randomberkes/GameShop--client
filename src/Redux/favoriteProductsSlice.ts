@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../DTO/product";
+import { Filter } from "../DTO/filter";
 
 export interface favoriteProductsState {
 	products: Product[];

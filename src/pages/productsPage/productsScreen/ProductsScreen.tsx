@@ -11,10 +11,18 @@ import { RootState } from "../../../Redux/store.ts";
 function ProductsScreen() {
 	const { products } = useSelector((state: RootState) => state.products);
 	const dispatch = useDispatch();
+	const { filter } = useSelector((state: RootState) => state.products);
+
+	const getProductsByFilter = async () => {
+		const productListData = await productsApi.getProductsByFilter(filter);
+		dispatch(setProducts(productListData));
+		console.log("Filter");
+		console.log(filter);
+	};
 
 	useEffect(() => {
-		getAllProducts();
-	}, []);
+		getProductsByFilter();
+	}, [filter]);
 
 	const getAllProducts = async () => {
 		const productListData = await productsApi.getAllProducts();

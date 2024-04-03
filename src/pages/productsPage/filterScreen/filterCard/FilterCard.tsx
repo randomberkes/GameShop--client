@@ -7,30 +7,14 @@ import categoriesApi from "../../../../api/categoriesApi.ts";
 import { Category } from "../../../../DTO/category.ts";
 
 function FilterCard(props) {
-	const { categoryType, getFilter, filterCardId } = props;
+	const { categoryType, filterCardId } = props;
 	const [open, setOpen] = useState(true);
 	const [catgories, setCategories] = useState<Category[]>([]);
-
-	const checkedCategories = catgories.map((category) => {
-		return { checked: false, category: category.name };
-	});
 
 	useEffect(() => {
 		getCategoriesByType(categoryType);
 	}, []);
 
-	const getCheckedCategory = (id) => {
-		checkedCategories[id].checked = !checkedCategories[id].checked;
-		const resultcheckedCategories = checkedCategories
-			.filter((category) => {
-				return category.checked == true;
-			})
-			.map((category) => {
-				return category.category;
-			});
-
-		getFilter(resultcheckedCategories, filterCardId);
-	};
 	const getCategoriesByType = async (categoryType) => {
 		const categoriesListData = await categoriesApi.getCategoriesByType(
 			categoryType
@@ -42,8 +26,8 @@ function FilterCard(props) {
 		return (
 			<CheckBox
 				key={index}
+				categoryTypeId={filterCardId}
 				category={category.name}
-				categoryFunc={getCheckedCategory}
 				id={index}
 			/>
 		);

@@ -1,16 +1,17 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "./navbar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import NavbarButton from "./navbarButton/NavbarButton.tsx";
 import SearchBar from "./searchBar/SearchBar.tsx";
+import SideNavbar from "./sideNavBar/SideNavbar.tsx";
 
 function Navbar() {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	let [showSearchBar, setShowSearchBar] = useState(false);
 
-	const navbarBUttonsData = [
+	const navbarButtonsData = [
 		{
 			icon: <i className="bi bi-list"></i>,
 			link: "/products",
@@ -58,6 +59,10 @@ function Navbar() {
 
 	return (
 		<nav>
+			<SideNavbar
+				showSearchBar={showSearchBar}
+				icon={navbarButtonsData[0].icon}
+			/>
 			<div className={`${showSearchBar ? "hideButton" : ""}`} id="logo">
 				GameShop
 			</div>
@@ -77,7 +82,7 @@ function Navbar() {
 				<i className="bi bi-search "></i>
 			</button>
 
-			<div>{navbarBUttonsData.map(createNavbarButton)}</div>
+			<div>{navbarButtonsData.map(createNavbarButton)}</div>
 		</nav>
 	);
 }
