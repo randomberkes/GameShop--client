@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCardButton from "./productCardButton/ProductCardButton.tsx";
 import "./productCard.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addProductToFavorites } from "../../../../Redux/favoriteProductsSlice.ts";
 import {
 	addProductToCart,
@@ -31,7 +31,7 @@ function ProductCard(props) {
 					<div className="col-2"></div>
 					<img
 						className="mainImg col-8"
-						src={process.env.PUBLIC_URL + "/images/SpiderMan2PS5BoxArt.jpeg"}
+						src={process.env.PUBLIC_URL + productData.imgPath}
 					/>
 					<div className="col-2"></div>
 				</div>

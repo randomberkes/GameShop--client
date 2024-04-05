@@ -1,4 +1,4 @@
-nav {
+.nav {
 	display: flex;
 	background-color: #222831;
 	margin-bottom: 5px;
@@ -7,11 +7,7 @@ nav {
 	align-items: center;
 }
 
-.row {
-	min-height: 50px;
-}
-
-#logo {
+.nav_logo {
 	display: inline-block;
 	background: none;
 	border: none;
@@ -22,8 +18,8 @@ nav {
 	margin-left: 30px;
 }
 
-@media only screen and (max-width: 600px) {
-	#logo {
+@media only screen and (max-width: 760px) {
+	.nav_logo {
 		margin-right: auto;
 	}
 }

@@ -31,7 +31,7 @@ function FavoriteProductCard(props) {
 				<div className="row  justify-content-center">
 					<img
 						className="mainImg col-8"
-						src={process.env.PUBLIC_URL + "/images/SpiderMan2PS5BoxArt.jpeg"}
+						src={process.env.PUBLIC_URL + productData.imgPath}
 					/>
 				</div>
 			</div>

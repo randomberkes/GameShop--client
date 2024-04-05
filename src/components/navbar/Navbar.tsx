@@ -1,4 +1,4 @@
-import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/css/bootstrap.css";
 import "./navbar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import React, { useRef, useState } from "react";
@@ -35,7 +35,7 @@ function Navbar() {
 	];
 
 	const createNavbarButton = (navbarBUttonData, index) => {
-		if (index != 0) {
+		if (index !== 0) {
 			return (
 				<NavbarButton
 					key={index}
@@ -58,12 +58,12 @@ function Navbar() {
 	};
 
 	return (
-		<nav>
+		<nav className="nav">
 			<SideNavbar
 				showSearchBar={showSearchBar}
 				icon={navbarButtonsData[0].icon}
 			/>
-			<div className={`${showSearchBar ? "hideButton" : ""}`} id="logo">
+			<div className={`nav_logo ${showSearchBar ? "hideButton" : ""}`}>
 				GameShop
 			</div>
 

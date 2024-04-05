@@ -12,6 +12,7 @@ const mapDataToProduct = (data): Product => {
 		numberOfPlayers: data.number_of_players,
 		descriptions: data.description,
 		price: data.price,
+		imgPath: data.img_path,
 	};
 };
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import "./sideNavbar.css";
 import { Collapse } from "react-bootstrap";
 import SideNavbarButton from "./sideNavbarButton/SideNavbarButton.tsx";

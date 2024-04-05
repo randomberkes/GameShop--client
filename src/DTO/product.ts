@@ -8,4 +8,5 @@ export type Product = {
 	numberOfPlayers: string;
 	descriptions: string;
 	price: number;
+	imgPath: string;
 };

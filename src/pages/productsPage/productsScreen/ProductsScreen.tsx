@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./productsScreen.css";
 import ProductCard from "./productCard/ProductCard.tsx";
 import { Product } from "../../../DTO/product.ts";
-// import { MyContext } from "../../Context.ts";
 import productsApi from "../../../api/productsApi.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../../Redux/productsSlice.ts";
@@ -23,11 +22,6 @@ function ProductsScreen() {
 	useEffect(() => {
 		getProductsByFilter();
 	}, [filter]);
-
-	const getAllProducts = async () => {
-		const productListData = await productsApi.getAllProducts();
-		dispatch(setProducts(productListData));
-	};
 
 	const createCard = (
 		productData: Product,

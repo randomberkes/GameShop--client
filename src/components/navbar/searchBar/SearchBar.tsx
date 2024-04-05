@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "./searchBar.css";
 import productsApi from "../../../api/productsApi.ts";
 import { useDispatch } from "react-redux";
@@ -42,15 +42,14 @@ function SearchBar(props) {
 			className={`searchForm ${showSearchBar ? "show" : ""}`}
 		>
 			<input
-				className={` col-11 ${focus ? "searchBarOnFocus" : ""} searchBar`}
+				className={` ${focus ? "searchBarOnFocus" : ""} searchBar`}
 				value={inputValue}
 				onChange={handleInput}
 				ref={inputRef}
 			/>
 			<button
-				className={`col-1 ${focus ? "searchButtonOnFocus" : ""} searchButton`}
+				className={` ${focus ? "searchButtonOnFocus" : ""} searchButton`}
 				type="submit"
-				id=""
 				onClick={handleClick}
 			>
 				<i className="bi bi-search"></i>
