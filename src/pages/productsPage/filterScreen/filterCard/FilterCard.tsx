@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./filterCard.css";
 import CheckBox from "./checkBox/CheckBox.tsx";
-import Collapse from "react-bootstrap/Collapse";
+// import Collapse from "react-bootstrap/Collapse";
 import FilterCardButton from "./filterCardButton/FilterCardButton.tsx";
 import categoriesApi from "../../../../api/categoriesApi.ts";
 import { Category } from "../../../../DTO/category.ts";
+import Collapse from "@mui/material/Collapse";
 
 function FilterCard(props) {
 	const { categoryType, filterCardId } = props;

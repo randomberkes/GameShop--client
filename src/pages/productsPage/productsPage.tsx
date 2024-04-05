@@ -51,23 +51,16 @@ const ProductsPage = () => {
 		console.log(platformBarStyle);
 	}, [filter]);
 	return (
-		<div className="container-md ">
-			<div
-				className={
-					"row gamePlatformIndicatorBar text-center align-items-center " +
-					patformBarContent.style
-				}
-			>
-				<div className="col">
-					{patformBarContent.name}
-					{patformBarContent.icon}
-				</div>
+		<div className="">
+			<div className={" gamePlatformIndicatorBar " + patformBarContent.style}>
+				{patformBarContent.name}
+				{patformBarContent.icon}
 			</div>
-			<div className="row">
-				<div className="col-3 container-fluid filter">
+			<div className="productsPageContainer">
+				<div className="filter">
 					<FilterScreen />
 				</div>
-				<div className="col-12 col-lg-9 container-fluid ">
+				<div className=" ">
 					<ProductsScreen />
 				</div>
 			</div>

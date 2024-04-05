@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./cartProductCardButton.css";
+import "./productCardButton.css";
 
-function CartProductCardButton(props) {
+function ProductCardButton(props) {
 	const { icon, handleClick } = props;
 	const [hover, setHover] = useState(false);
 
@@ -20,7 +20,7 @@ function CartProductCardButton(props) {
 	return (
 		<button
 			style={hover ? hoverCardButtonStyle : {}}
-			className=" productCardButton"
+			className=" productCard_Button"
 			onMouseOver={handleMouseOver}
 			onMouseOut={handleMouseOut}
 			onClick={handleClick}
@@ -30,4 +30,4 @@ function CartProductCardButton(props) {
 	);
 }
 
-export default CartProductCardButton;
+export default ProductCardButton;

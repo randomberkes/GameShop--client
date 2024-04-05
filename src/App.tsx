@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import ProductsPage from "./pages/productsPage/productsPage.tsx";
 import FavoritesScreen from "./pages/favoritesPage/favoritesScreen/favoritesScreen.tsx";
 import CartPage from "./pages/cartPage/CartPage.tsx";
+import "./App.css";
 
 function App() {
 	return (
@@ -16,8 +17,9 @@ function App() {
 					element={
 						<div>
 							<Navbar />
-
-							<Outlet />
+							<div className="mainContainer">
+								<Outlet />
+							</div>
 						</div>
 					}
 				>

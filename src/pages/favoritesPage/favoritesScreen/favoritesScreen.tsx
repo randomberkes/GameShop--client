@@ -1,9 +1,10 @@
 import React from "react";
-import FavoriteProductCard from "./favoriteProductCard/FavoriteProductCard.tsx";
 import { Product } from "../../../DTO/product";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store.ts";
 import "./favoritesScreen.css";
+import ProductCard from "../../../components/productCard/ProductCard.tsx";
+import FavoriteProductCardButtons from "../../../components/favoriteProductCardButtons/FavoriteProductCardButtons.tsx";
 
 const FavoritesScreen = () => {
 	const { products } = useSelector(
@@ -14,17 +15,21 @@ const FavoritesScreen = () => {
 		productData: Product,
 		index: number
 	): React.JSX.Element => {
-		return <FavoriteProductCard key={index} productData={productData} />;
+		return (
+			<ProductCard
+				key={index}
+				productData={productData}
+				buttons={<FavoriteProductCardButtons productData={productData} />}
+			/>
+		);
 	};
 
 	return (
-		<div className="container-md">
-			<div className="row favoritesScreenLabel align-items-center">
-				<div className="col-4">
-					<h3>Kedvencek</h3>
-				</div>
+		<div className="">
+			<div className="favoritesScreen_Header">
+				<h3 className="favoritesScreen_Header_Text">Kedvencek</h3>
 			</div>
-			{products.length == 0
+			{products.length === 0
 				? "Hmm, nincsen termék a listában."
 				: products.map((product, index) => {
 						return createCard(product, index);

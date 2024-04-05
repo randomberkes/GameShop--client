@@ -3,6 +3,9 @@
 }
 
 .gamePlatformIndicatorBar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 50px;
 	background-color: white;
 	border-radius: 10px;
@@ -10,6 +13,7 @@
 	border-style: solid;
 	border-width: 3px;
 	border-color: #d65a31;
+	margin-bottom: 10px;
 }
 
 .gamePlatformIndicatorBarXbox {
@@ -26,8 +30,16 @@
 	color: #e72929;
 }
 
+.productsPageContainer {
+	display: grid;
+	grid-template-columns: auto;
+}
+
 @media (min-width: 992px) {
 	.filter {
 		display: block !important;
+	}
+	.productsPageContainer {
+		grid-template-columns: 30% 70%;
 	}
 }

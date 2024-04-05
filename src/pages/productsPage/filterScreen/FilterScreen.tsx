@@ -1,13 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./filterScreen.css";
 import FilterCard from "./filterCard/FilterCard.tsx";
-import { CategoryTypeContext } from "../../../Context.ts";
 import categoryTypesApi from "../../../api/categoryTypesApi.ts";
-import productsApi from "../../../api/productsApi.ts";
-import { Filter } from "../../../DTO/filter.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store.ts";
-import { setProducts } from "../../../Redux/productsSlice.ts";
 import { setCategoryTypes } from "../../../Redux/categoryTypesSlice.ts";
 function FilterScreen() {
 	const { categoryTypes } = useSelector(
@@ -15,8 +11,6 @@ function FilterScreen() {
 	);
 
 	const dispatch = useDispatch();
-
-	const filter: Filter = {};
 
 	useEffect(() => {
 		getAllCategoryTypes();
@@ -33,16 +27,15 @@ function FilterScreen() {
 				key={index}
 				categoryType={categoryType.name}
 				filterCardId={index}
-				// getFilter={getFilter}
 			/>
 		);
 	};
 
 	return (
-		<div className="row container-fluid justify-content-end filterScreen">
+		<div className="filterScreenContainer">
 			{categoryTypes
 				.filter((categoryType) => {
-					return categoryType.name != "Platform";
+					return categoryType.name !== "Platform";
 				})
 				.map(createFilterCard)}
 		</div>

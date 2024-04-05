@@ -1,20 +1,18 @@
 import React from "react";
-import CartProductCard from "./cartProductCard/CartProductCard.tsx";
-import { Product } from "../../../DTO/product.ts";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../Redux/store.ts";
+import ProductCard from "../../../components/productCard/ProductCard.tsx";
 import "./cartScreen.css";
 import { CartProduct } from "../../../Redux/cartProductsSlice.ts";
+import CartProductCardButtons from "../../../components/cartProductCardButtons/CartProductCardButtons.tsx";
 
 const CartScreen = (props) => {
 	const { products } = props;
 	const createCard = (productData: CartProduct): React.JSX.Element => {
 		return (
-			<CartProductCard
+			<ProductCard
 				key={productData.id}
 				id={productData.id}
 				productData={productData}
-				productsCount={productData.productCount}
+				buttons={<CartProductCardButtons productData={productData} />}
 			/>
 		);
 	};

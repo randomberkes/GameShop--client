@@ -6,26 +6,19 @@ import { RootState } from "../../../Redux/store";
 const OrderSummatyScreen = () => {
 	const { finalPrice } = useSelector((state: RootState) => state.cartProducts);
 	return (
-		<div className="orderSummaryScreen container-fluid">
+		<div className="orderSummaryScreen_Container">
 			<div className="row ">
-				<div className="col">
-					<h3>Rendelés összegzése</h3>
-				</div>
+				<h3>Rendelés összegzése</h3>
 			</div>
 			<div className="row ">
-				<div className="col">
-					<h4>Végösszeg:</h4>
-				</div>
+				<h4>Végösszeg:</h4>
 			</div>
 			<div className="row ">
-				<div className="col">
-					<h2>{finalPrice.toFixed(3)} Ft</h2>
-				</div>
+				<h2>{finalPrice.toFixed(3)} Ft</h2>
 			</div>
-			<div className="row ">
-				<div className="col text-center orderScreenButtonRow">
-					<button className="orderScreenButton">Folytatás</button>
-				</div>
+
+			<div className="orderScreenButtonRow">
+				<button className="orderScreenButton">Folytatás</button>
 			</div>
 		</div>
 	);

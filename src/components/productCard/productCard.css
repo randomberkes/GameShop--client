@@ -1,0 +1,30 @@
+.productCard_Container {
+	border-radius: 10px;
+	background-color: white;
+	display: grid;
+	grid-template-columns: 200px calc(100% - 400px) 200px;
+	margin-bottom: 5px;
+}
+
+.productCard_ImgContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.productCard_mainImg {
+	width: 150px;
+	height: 150px;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.list {
+	display: none;
+}
+
+@media (min-width: 730px) {
+	.list {
+		display: inline-block;
+	}
+}
