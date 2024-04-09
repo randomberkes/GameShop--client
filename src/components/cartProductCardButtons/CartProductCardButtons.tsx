@@ -2,10 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import {
 	decreaseCountOfProduct,
+	deleteProductFromCart,
 	increaseCountOfProduct,
 	updatePrice,
 } from "../../Redux/cartProductsSlice.ts";
-import { deleteProductFromFavorites } from "../../Redux/favoriteProductsSlice.ts";
 import ProductCardButton from "../productCardButton/ProductCardButton.tsx";
 import "./cartProductCardButtons.css";
 
@@ -15,7 +15,7 @@ const CartProductCardButtons = (props) => {
 	const icons = [<i className="bi bi-trash3"></i>];
 
 	const handleDeleteButtonClick = () => {
-		dispatch(deleteProductFromFavorites(productData.id));
+		dispatch(deleteProductFromCart(productData.id));
 	};
 
 	const handlePlusButtonClick = () => {

@@ -11,11 +11,14 @@
 	display: inline-block;
 	background: none;
 	border: none;
-	min-height: 30px;
 	width: 100px;
 	color: #d65a31;
 	text-align: center;
 	margin-left: 30px;
+	text-decoration: none;
+	margin-left: 0;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 @media only screen and (max-width: 760px) {

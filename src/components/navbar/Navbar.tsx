@@ -1,10 +1,10 @@
-// import "bootstrap/dist/css/bootstrap.css";
 import "./navbar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import React, { useRef, useState } from "react";
 import NavbarButton from "./navbarButton/NavbarButton.tsx";
 import SearchBar from "./searchBar/SearchBar.tsx";
 import SideNavbar from "./sideNavBar/SideNavbar.tsx";
+import { Link } from "react-router-dom";
 
 function Navbar() {
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -19,7 +19,7 @@ function Navbar() {
 		},
 		{
 			icon: <i className="bi bi-person"></i>,
-			link: "/products",
+			link: "/login",
 			label: "Saját fiók",
 		},
 		{
@@ -63,9 +63,12 @@ function Navbar() {
 				showSearchBar={showSearchBar}
 				icon={navbarButtonsData[0].icon}
 			/>
-			<div className={`nav_logo ${showSearchBar ? "hideButton" : ""}`}>
+			<Link
+				to={"/products"}
+				className={`nav_logo ${showSearchBar ? "hideButton" : ""}`}
+			>
 				GameShop
-			</div>
+			</Link>
 
 			<SearchBar
 				inputRef={inputRef}
