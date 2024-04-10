@@ -7,6 +7,7 @@ import "./cartPage.css";
 
 const CartPage = () => {
 	const { products } = useSelector((state: RootState) => state.cartProducts);
+
 	const cartPage = (
 		<div className="cartPageContainer">
 			<div>

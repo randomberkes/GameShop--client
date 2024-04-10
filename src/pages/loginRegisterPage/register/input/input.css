@@ -1,0 +1,93 @@
+.input-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.register__input {
+	border-top: 1px solid #393e46 !important;
+	border-left: 1px solid #393e46 !important;
+	border-bottom: 1px solid #393e46 !important;
+	border-right: 0px;
+	height: 60px;
+	width: 400px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+
+	box-sizing: border-box;
+}
+
+.register__input_invalid {
+	outline: none;
+	border-top: 1px solid red !important;
+	border-left: 1px solid red !important;
+	border-bottom: 1px solid red !important;
+}
+
+.register__input_focus {
+	outline: none;
+	border-top: 3px solid #d65a31 !important;
+	border-left: 3px solid #d65a31 !important;
+	border-bottom: 3px solid #d65a31 !important;
+}
+
+.register__input_focus.register__input_invalid {
+	border-top: 3px solid red !important;
+	border-left: 3px solid red !important;
+	border-bottom: 3px solid red !important;
+}
+
+.register__input_icon-container {
+	color: red;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px solid #393e46 !important;
+	border-bottom: 1px solid #393e46 !important;
+	border-right: 1px solid #393e46 !important;
+	border-left: 0px;
+	height: 60px;
+	width: 50px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	box-sizing: border-box;
+}
+
+.register__input_icon-container > i {
+	display: none;
+}
+
+.register__input_icon-container_invalid > i {
+	display: inline-block;
+}
+
+.register__input_icon-container_invalid {
+	border-top: 1px solid red !important;
+	border-right: 1px solid red !important;
+	border-bottom: 1px solid red !important;
+}
+
+.register__input_icon-container_focus {
+	outline: none;
+	border-top: 3px solid #d65a31 !important;
+	border-right: 3px solid #d65a31 !important;
+	border-bottom: 3px solid #d65a31 !important;
+}
+
+.register__input_icon-container_focus.register__input_icon-container_invalid {
+	border-top: 3px solid red !important;
+	border-right: 3px solid red !important;
+	border-bottom: 3px solid red !important;
+}
+
+.register__input_p {
+	display: none;
+	height: 10px;
+	margin: 0px 0px;
+	color: red;
+	font-size: 15px;
+}
+
+.register__input_p_invalid {
+	display: inline-block;
+}

@@ -28,7 +28,7 @@ function App() {
 					<Route path="favorites" element={<FavoritesScreen />} />
 					<Route path="cart" element={<CartPage />} />
 				</Route>
-				<Route path="/login" element={<LoginRegisterPage />} />
+				<Route path="/*" element={<LoginRegisterPage />} />
 			</Routes>
 		</BrowserRouter>
 	);
