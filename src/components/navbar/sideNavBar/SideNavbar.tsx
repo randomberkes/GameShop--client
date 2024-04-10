@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import "./sideNavbar.css";
-import { Collapse } from "react-bootstrap";
+import Collapse from "@mui/material/Collapse";
 import SideNavbarButton from "./sideNavbarButton/SideNavbarButton.tsx";
 
 const SideNavbar = (props) => {
@@ -60,11 +59,13 @@ const SideNavbar = (props) => {
 					{icon}
 				</button>
 			</div>
-			<Collapse in={open}>
-				<div className="sideNavbar" id="example-collapse-text">
-					{icons.map(createSideNavbarButton)}
-				</div>
-			</Collapse>
+			<div className="absoluteContainer">
+				<Collapse in={open}>
+					<div className="sideNavbar" id="example-collapse-text">
+						{icons.map(createSideNavbarButton)}
+					</div>
+				</Collapse>
+			</div>
 		</div>
 	);
 };

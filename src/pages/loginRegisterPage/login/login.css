@@ -1,0 +1,128 @@
+.login__icon_password-input-open {
+	display: none;
+}
+
+.login__container {
+	display: grid;
+	grid-template-rows: 200px 50px 100px 60px 60px auto;
+	background-color: white;
+	width: 640px;
+	height: 640px;
+	border-radius: 40px;
+}
+
+.login__container > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login__password-and-button-container > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login__h1 {
+	color: #d65a31;
+	font-size: 50px;
+	display: block;
+}
+
+.login__h2 {
+	color: #b4b4b8;
+	font-size: 40px;
+	display: block;
+	margin: 0px;
+}
+
+.login__email-input {
+	border-top: 1px solid #222831 !important;
+	border-left: 1px solid #222831 !important;
+	border-bottom: 1px solid #222831 !important;
+	height: 60px;
+	width: 450px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-right: 0px;
+	box-sizing: border-box;
+}
+
+.login__email-input_password-input-open {
+	border-bottom-left-radius: 0px;
+	border-bottom: 0px !important;
+}
+.login__password-input {
+	border-top: 1px solid #222831 !important;
+	border-left: 1px solid #222831 !important;
+	border-bottom: 1px solid #222831 !important;
+	height: 60px;
+	width: 450px;
+	border-bottom-left-radius: 15px;
+	border-right: 0px;
+	box-sizing: border-box;
+}
+
+.login__email-input_focus {
+	outline: none;
+	border-top: 3px solid #d65a31 !important;
+	border-left: 3px solid #d65a31 !important;
+	border-bottom: 3px solid #d65a31 !important;
+}
+
+.login__password-input_focus {
+	outline: none;
+	border-top: 3px solid #d65a31 !important;
+	border-left: 3px solid #d65a31 !important;
+	border-bottom: 3px solid #d65a31 !important;
+}
+
+.login__next-button {
+	background-color: #222831;
+	color: #eeeeee;
+	width: 200px;
+	height: 50px;
+	border: 0px;
+	border-radius: 15px;
+}
+
+.login__email-check-button {
+	background: none;
+	color: #222831;
+	width: 50px;
+	height: 60px;
+	border-left: 0px;
+	border-top: 1px solid #222831;
+	border-right: 1px solid #222831;
+	border-bottom: 1px solid #222831;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.login__email-check-button_password-input-open {
+	border-bottom-right-radius: 0px;
+	border-bottom: 0px;
+}
+
+.login__password-check-button {
+	background: none;
+	color: #222831;
+	width: 50px;
+	height: 60px;
+	border-top: 1px solid #222831;
+	border-right: 1px solid #222831;
+	border-bottom: 1px solid #222831;
+	border-left: 0px;
+	border-bottom-right-radius: 15px;
+}
+
+.login__email-check-button_focus {
+	border-top: 3px solid #d65a31 !important;
+	border-right: 3px solid #d65a31 !important;
+	border-bottom: 3px solid #d65a31 !important;
+}
+
+.login__email-check-button,
+.login__password-check-button > i {
+	font-size: 30px;
+}

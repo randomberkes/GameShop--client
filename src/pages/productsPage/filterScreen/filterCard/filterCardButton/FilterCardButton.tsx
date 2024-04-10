@@ -6,20 +6,19 @@ function FilterCardButton(props) {
 
 	return (
 		<button
-			className="filterCardButton"
+			className="filterCard_Button"
 			onClick={() => setOpen(!open)}
 			aria-controls="example-collapse-text"
 			aria-expanded={open}
 		>
-			<div className="container-fluid ">
-				<div className="row filterCardButtonRow justify-content-between">
-					<h6 className="col-11 filterCardButtonLabel">{categoryType}</h6>
-					<div className="col-1 filterCardIcon">
-						<i
-							className={`bi ${open ? "bi-caret-up" : "bi-caret-down-fill"}`}
-						></i>
-					</div>
-				</div>
+			<div className="filterCardButton_textIconContainer">
+				<h4 className="filterCardButton_Label">{categoryType}</h4>
+
+				<i
+					className={`bi ${
+						open ? "bi-caret-up" : "bi-caret-down-fill"
+					} filterCardButton_Icon`}
+				></i>
 			</div>
 		</button>
 	);

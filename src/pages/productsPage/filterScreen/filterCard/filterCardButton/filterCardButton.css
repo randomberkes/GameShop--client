@@ -1,21 +1,28 @@
-.filterCardButton {
+.filterCard_Button {
+	border-radius: 10px;
 	border: none;
 	background-color: white;
 	width: 100%;
 	padding-left: 0;
 	padding-right: 0;
 	font-weight: bold;
+	max-height: fit-content;
 }
 
-.filterCardButtonRow {
-	min-height: 1px;
+.filterCardButton_textIconContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.filterCardIcon {
-	padding-left: 0;
-	padding-right: 0;
+.filterCardButton_Icon {
+	color: #222831;
 }
 
-.filterCardButtonLabel {
+.filterCardButton_Label {
+	display: inline-block;
 	text-align: left;
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }

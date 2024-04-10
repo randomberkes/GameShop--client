@@ -1,13 +1,10 @@
-.checkBox {
-	min-height: 30px;
+.checkBox_Text {
+	margin: 5px 0px;
+	font-size: 13px;
 }
 
-.checkBoxIcon {
-	padding-left: 12px;
-	padding-right: 0;
-}
-
-.checKboxText {
-	padding-left: 12px;
-	padding-right: 0;
+.checkBox_checkBoxTextContainer {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }

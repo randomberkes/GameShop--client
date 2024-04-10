@@ -1,8 +1,9 @@
 .sideNavbarButton {
 	display: inline-block;
-	background-color: #222831;
+	background-color: #222831 !important;
 	padding-left: 2px !important;
 	padding-right: 2px !important;
+	margin-bottom: 2px;
 	margin-left: 2px;
 	margin-right: 5px;
 	color: #d8d2d2;
@@ -12,13 +13,16 @@
 	width: 30px;
 	text-align: center;
 }
+.absoluteContainer {
+	position: absolute;
+	top: 40px;
+}
 
 .sideNavbar {
+	display: flex;
+	flex-wrap: wrap;
 	background: #222831;
-	position: absolute;
-	top: 50px;
 	color: #eeeeee;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	width: 300px;
 }

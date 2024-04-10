@@ -24,7 +24,6 @@ i {
 	padding-right: 2%;
 }
 .navbarButtonLabel {
-	width: 100px;
 	color: #eeeeee;
 	display: inline-block;
 }
@@ -48,7 +47,7 @@ i {
 	}
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
 	.displaySearchBarButton {
 		display: inline-block;
 	}
