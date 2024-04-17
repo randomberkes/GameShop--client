@@ -2,9 +2,11 @@ import React from "react";
 import "./orderSummaryScreen.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store";
+import { Link, useLocation } from "react-router-dom";
 
 const OrderSummatyScreen = () => {
 	const { finalPrice } = useSelector((state: RootState) => state.cartProducts);
+	const location = useLocation();
 	return (
 		<div className="orderSummaryScreen_Container">
 			<div className="row ">
@@ -17,9 +19,14 @@ const OrderSummatyScreen = () => {
 				<h2>{finalPrice.toFixed(3)} Ft</h2>
 			</div>
 
-			<div className="orderScreenButtonRow">
+			<Link
+				className="orderScreenButtonRow"
+				to="/checkout"
+				state={{ from: location }}
+				replace
+			>
 				<button className="orderScreenButton">Folytatás</button>
-			</div>
+			</Link>
 		</div>
 	);
 };

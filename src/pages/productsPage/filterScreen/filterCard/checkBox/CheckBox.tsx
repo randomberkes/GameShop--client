@@ -11,11 +11,7 @@ function CheckBox(props) {
 	const handleChange = async () => {
 		setChecked(!checked);
 		const currentChecked = !checked;
-		console.log({
-			category: category,
-			categoryTypeId: categoryTypeId,
-			checkedCategory: currentChecked,
-		});
+
 		await dispatch(
 			setFilter({
 				category: category,
@@ -33,14 +29,7 @@ function CheckBox(props) {
 				checked={checked}
 			/>
 
-			<p
-				className="checkBox_Text"
-				onClick={() => {
-					console.log(checked);
-				}}
-			>
-				{category}
-			</p>
+			<p className="checkBox_Text">{category}</p>
 		</div>
 	);
 }

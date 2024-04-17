@@ -19,8 +19,7 @@ const mapDataToProduct = (data): Product => {
 export const getAllProducts = async (): Promise<Product[]> => {
 	let productListData: Product[] = [];
 	try {
-		const response = await API.get("/products");
-		console.log(response);
+		const response = await API.axiosPublic.get("/products");
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});
@@ -34,10 +33,10 @@ export const getAllProducts = async (): Promise<Product[]> => {
 export const getProductsByName = async (inputValue): Promise<Product[]> => {
 	let productListData: Product[] = [];
 	try {
-		const response = await API.get("/products/search", {
+		const response = await API.axiosPublic.get("/products/search", {
 			params: { name: inputValue },
 		});
-		console.log(response.data);
+
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});
@@ -51,10 +50,9 @@ export const getProductsByName = async (inputValue): Promise<Product[]> => {
 export const getProductsByFilter = async (inputValue): Promise<Product[]> => {
 	let productListData: Product[] = [];
 	try {
-		const response = await API.get("/products/filter", {
+		const response = await API.axiosPublic.get("/products/filter", {
 			params: { filter: inputValue },
 		});
-		console.log(response.data);
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});

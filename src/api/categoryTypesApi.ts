@@ -4,7 +4,7 @@ import API from "./api.ts";
 export const getAllCategoryTypes = async (): Promise<CategoryType[]> => {
 	let categoryTypeListData: CategoryType[] = [];
 	try {
-		const response = await API.get("/categoryTypes");
+		const response = await API.axiosPublic.get("/categoryTypes");
 		categoryTypeListData = response.data.map((data) => {
 			return {
 				id: data.id,

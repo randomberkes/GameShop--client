@@ -1,18 +1,19 @@
 import { User } from "../DTO/user.ts";
 import API from "./api.ts";
 
-export const getUserByEmail = async (email): Promise<User | string> => {
+const getUserByEmail = async (email): Promise<User | string> => {
 	let user: User;
 	try {
-		const response = await API.get("/users/email", {
+		const response = await API.axiosPublic.get("/users/email", {
 			params: { email: email },
 		});
+
 		if (response.data.id) {
 			user = {
-				id: response.data.id,
 				name: response.data.name,
 				email: response.data.email,
 				password: response.data.password,
+				roles: response.data.roles,
 			};
 
 			return user;
@@ -23,4 +24,8 @@ export const getUserByEmail = async (email): Promise<User | string> => {
 	return "";
 };
 
-export default { getUserByEmail: getUserByEmail };
+const postUser = async (user: User) => {
+	return await API.axiosPublic.post("/auth/register", user);
+};
+
+export default { getUserByEmail, postUser };

@@ -11,6 +11,7 @@
 	border-width: 0px 0px 0px 0px;
 	width: 30px;
 	text-align: center;
+	text-decoration: none !important;
 }
 
 .navbarButtonSelected {
@@ -51,4 +52,17 @@ i {
 	.displaySearchBarButton {
 		display: inline-block;
 	}
+}
+
+.navbarButton__absoluteContainer {
+	position: absolute;
+	top: 40px;
+}
+
+.navbarButton__collapsible {
+	display: flex;
+	background: #222831;
+	color: #eeeeee;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }

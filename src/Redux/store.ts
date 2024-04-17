@@ -3,14 +3,14 @@ import productsReducer from "./productsSlice.ts";
 import categoryTypesReducer from "./categoryTypesSlice.ts";
 import favoriteProductsReducer from "./favoriteProductsSlice.ts";
 import cartProductsReducer from "./cartProductsSlice.ts";
-import userReducer from "./userSlice.ts";
+import authReducer from "./authSlice.ts";
 export const store = configureStore({
 	reducer: {
 		products: productsReducer,
 		categoryTypes: categoryTypesReducer,
 		favoriteProducts: favoriteProductsReducer,
 		cartProducts: cartProductsReducer,
-		user: userReducer,
+		auth: authReducer,
 	},
 });
 

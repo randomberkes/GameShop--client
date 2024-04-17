@@ -17,8 +17,6 @@ function ProductsScreen() {
 	const getProductsByFilter = async () => {
 		const productListData = await productsApi.getProductsByFilter(filter);
 		dispatch(setProducts(productListData));
-		console.log("Filter");
-		console.log(filter);
 	};
 
 	useEffect(() => {

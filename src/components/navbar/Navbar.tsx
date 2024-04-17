@@ -1,13 +1,15 @@
 import "./navbar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavbarButton from "./navbarButton/NavbarButton.tsx";
 import SearchBar from "./searchBar/SearchBar.tsx";
 import SideNavbar from "./sideNavBar/SideNavbar.tsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import UserButtonIcon from "./navbarButton/userButtonIcon/UserButtonIcon.tsx";
 
 function Navbar() {
 	const inputRef = useRef<HTMLInputElement>(null);
+	const location = useLocation();
 
 	let [showSearchBar, setShowSearchBar] = useState(false);
 
@@ -18,7 +20,7 @@ function Navbar() {
 			label: "",
 		},
 		{
-			icon: <i className="bi bi-person"></i>,
+			icon: <UserButtonIcon />,
 			link: "/login",
 			label: "Saját fiók",
 		},
@@ -66,6 +68,8 @@ function Navbar() {
 			<Link
 				to={"/products"}
 				className={`nav_logo ${showSearchBar ? "hideButton" : ""}`}
+				state={{ from: location }}
+				replace
 			>
 				GameShop
 			</Link>

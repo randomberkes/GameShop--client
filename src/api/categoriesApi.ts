@@ -6,7 +6,7 @@ export const getCategoriesByType = async (
 ): Promise<Category[]> => {
 	let categoryListData: Category[] = [];
 	try {
-		const response = await API.get("/categories", {
+		const response = await API.axiosPublic.get("/categories", {
 			params: { categoryType: categoryType },
 		});
 		categoryListData = response.data.map((data) => {

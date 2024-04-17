@@ -118,8 +118,6 @@ export const productsSlice = createSlice({
 					//
 					break;
 			}
-			console.log("Filter 1");
-			console.log(state.filter);
 		},
 	},
 });

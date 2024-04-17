@@ -1,20 +1,35 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./login.css";
 import Collapse from "@mui/material/Collapse";
 import usersApi from "../../../api/usersApi.ts";
 import { User } from "../../../DTO/user";
 import { useDispatch } from "react-redux";
-import { setUserEmail } from "../../../Redux/userSlice.ts";
+import {
+	setAuthUser,
+	// setAuthUserAccessToken,
+	// setAuthUserEmail,
+	// setAuthUserName,
+	// setAuthUserRole,
+} from "../../../Redux/authSlice.ts";
+import authApi from "../../../api/authApi.ts";
 
-const Login = () => {
+const Login = (props) => {
+	const { setEmail } = props;
+
 	const [open, setOpen] = useState(false);
 	const [focus, setFocus] = useState({
 		email: false,
 		password: false,
 	});
+
 	const [emailInput, setEmailInput] = useState("");
+	const [passwordInput, setPasswordInput] = useState("");
+	const [errMsg, setErrMsg] = useState("");
+
 	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from?.pathname || "/products";
 	const dispatch = useDispatch();
 
 	const handleCheckEmailButtonClick = async (event) => {
@@ -23,8 +38,35 @@ const Login = () => {
 		if (typeof user == "object") {
 			setOpen(true);
 		} else {
-			dispatch(setUserEmail(emailInput));
+			setEmail(emailInput);
 			navigate("/register");
+		}
+	};
+
+	const handleCheckPasswordButtonClick = async (event) => {
+		event.preventDefault();
+		try {
+			const auth = await authApi.login(emailInput, passwordInput);
+			const accessToken = auth.accessToken;
+			const role = auth.role;
+			const name = auth.name;
+			dispatch(
+				setAuthUser({
+					name: name,
+					email: emailInput,
+					accessToken: accessToken,
+					role: role,
+				})
+			);
+			navigate(from);
+		} catch (err) {
+			if (!err?.response) {
+				setErrMsg("No Server Response");
+			} else if (err.response?.status === 401) {
+				setErrMsg("Unauthorized");
+			} else {
+				setErrMsg("Login Failed");
+			}
 		}
 	};
 	const handleOnFocus = (event) => {
@@ -45,8 +87,11 @@ const Login = () => {
 			};
 		});
 	};
-	const handleChange = (event) => {
+	const handleEmailChange = (event) => {
 		setEmailInput(event.target.value);
+	};
+	const handlePasswordChange = (event) => {
+		setPasswordInput(event.target.value);
 	};
 
 	return (
@@ -72,7 +117,7 @@ const Login = () => {
 					value={emailInput}
 					onFocus={handleOnFocus}
 					onBlur={handleOnBlur}
-					onChange={handleChange}
+					onChange={handleEmailChange}
 					id="0"
 				></input>
 
@@ -104,6 +149,8 @@ const Login = () => {
 							placeholder="Jelszó"
 							onFocus={handleOnFocus}
 							onBlur={handleOnBlur}
+							onChange={handlePasswordChange}
+							value={passwordInput}
 							id="1"
 						></input>
 						<button
@@ -111,7 +158,7 @@ const Login = () => {
 								"login__password-check-button" +
 								(focus.password ? " login__email-check-button_focus" : "")
 							}
-							onClick={handleCheckEmailButtonClick}
+							onClick={handleCheckPasswordButtonClick}
 						>
 							<i className={"bi bi-arrow-right-circle-fill"}></i>
 						</button>

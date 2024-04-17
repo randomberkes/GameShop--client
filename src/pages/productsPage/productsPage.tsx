@@ -48,7 +48,6 @@ const ProductsPage = () => {
 
 	useEffect(() => {
 		selectPlatformBarStyle();
-		console.log(platformBarStyle);
 	}, [filter]);
 	return (
 		<div className="">

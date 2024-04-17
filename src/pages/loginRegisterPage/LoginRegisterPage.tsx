@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Login from "./login/Login.tsx";
 import "./loginRegisterPage.css";
 import { Outlet, Route, Routes } from "react-router-dom";
 import Register from "./register/Rgister.tsx";
 
 const LoginRegisterPage = () => {
+	const [email, setEmail] = useState("");
+
 	return (
 		<Routes>
 			<Route
@@ -15,8 +17,17 @@ const LoginRegisterPage = () => {
 					</div>
 				}
 			>
-				<Route path="login" element={<Login />} />
-				<Route path="register" element={<Register />} />
+				<Route
+					path="login"
+					element={
+						<Login
+							setEmail={(email: string) => {
+								setEmail(email);
+							}}
+						/>
+					}
+				/>
+				<Route path="register" element={<Register email={email} />} />
 			</Route>
 		</Routes>
 	);
