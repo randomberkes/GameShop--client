@@ -6,6 +6,7 @@ import SearchBar from "./searchBar/SearchBar.tsx";
 import SideNavbar from "./sideNavBar/SideNavbar.tsx";
 import { Link, useLocation } from "react-router-dom";
 import UserButtonIcon from "./navbarButton/userButtonIcon/UserButtonIcon.tsx";
+import UserCollapsible from "./navbarButton/userCollapsible/UserCollapsible.tsx";
 
 function Navbar() {
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -23,6 +24,7 @@ function Navbar() {
 			icon: <UserButtonIcon />,
 			link: "/login",
 			label: "Saját fiók",
+			collapsible: <UserCollapsible />,
 		},
 		{
 			icon: <i className="bi bi-heart"></i>,
@@ -45,6 +47,7 @@ function Navbar() {
 					label={navbarBUttonData.label}
 					link={navbarBUttonData.link}
 					icon={navbarBUttonData.icon}
+					collapsible={navbarBUttonData.collapsible}
 				/>
 			);
 		}

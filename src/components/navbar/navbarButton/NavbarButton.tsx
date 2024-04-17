@@ -3,18 +3,12 @@ import React, { useState } from "react";
 import "./navbarButton.css";
 import { Link, useLocation } from "react-router-dom";
 import Collapse from "@mui/material/Collapse";
-import useLogout from "../../../hooks/useLogout.ts";
 
 function NavbarButton(props) {
-	const logout = useLogout();
 	const location = useLocation();
 
-	const { icon, link, label, showSearchBar } = props;
+	const { icon, link, label, showSearchBar, collapsible } = props;
 	const [hover, setHover] = useState(false);
-
-	const signOut = () => {
-		logout();
-	};
 
 	const handleMouseOver = () => {
 		setHover(true);
@@ -51,7 +45,7 @@ function NavbarButton(props) {
 						onMouseOver={handleMouseOver}
 						onMouseOut={handleMouseOut}
 					>
-						<button onClick={signOut}>Kijelentkezés</button>
+						{collapsible}
 					</div>
 				</Collapse>
 			</div>

@@ -1,0 +1,14 @@
+.collapsible__container {
+	background: none;
+	display: grid;
+	grid-template-rows: auto, auto, auto, auto, auto;
+}
+
+.collapsible__header {
+	background: none;
+	color: #eeeeee;
+	text-align: center;
+	border-bottom: 2px solid #393e46 !important;
+	margin: 0px 0px;
+	padding: 15px 0px;
+}

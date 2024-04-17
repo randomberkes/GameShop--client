@@ -1,0 +1,17 @@
+.collapsible-button__button {
+	color: #eeeeee;
+	background: none;
+	border: none;
+	height: 30px;
+	width: 150px;
+}
+
+.collapsible-button__button_hover {
+	background-color: #393e46;
+}
+
+.collapsible-button__logout-button {
+	color: red;
+	border-top: 2px solid #393e46 !important;
+	padding-top: 10px;
+}
