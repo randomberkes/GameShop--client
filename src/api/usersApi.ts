@@ -28,4 +28,8 @@ const postUser = async (user: User) => {
 	return await API.axiosPublic.post("/auth/register", user);
 };
 
-export default { getUserByEmail, postUser };
+const getUsers = async (axiosPrivate: any) => {
+	return await axiosPrivate.get("/users/all");
+};
+
+export default { getUserByEmail, postUser, getUsers };

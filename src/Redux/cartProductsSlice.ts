@@ -46,6 +46,13 @@ export const cartProductsSlice = createSlice({
 			});
 		},
 
+		setCartProducts: (state, action: PayloadAction<Product[]>) => {
+			const cartProducts = action.payload.map((product) => {
+				return { ...product, productCount: 1 };
+			});
+			state.products = cartProducts;
+		},
+
 		increaseCountOfProduct: (state, action: PayloadAction<number>) => {
 			state.products.forEach((product) => {
 				if (product.id === action.payload) product.productCount++;
@@ -54,6 +61,15 @@ export const cartProductsSlice = createSlice({
 		decreaseCountOfProduct: (state, action: PayloadAction<number>) => {
 			state.products.forEach((product) => {
 				if (product.id === action.payload) product.productCount--;
+			});
+		},
+		setProductAmount: (
+			state,
+			action: PayloadAction<{ id: number; amount: number }>
+		) => {
+			state.products.forEach((product) => {
+				if (product.id === action.payload.id)
+					product.productCount = action.payload.amount;
 			});
 		},
 	},
@@ -66,6 +82,8 @@ export const {
 	increaseCountOfProduct,
 	decreaseCountOfProduct,
 	updatePrice,
+	setCartProducts,
+	setProductAmount,
 } = cartProductsSlice.actions;
 
 export default cartProductsSlice.reducer;

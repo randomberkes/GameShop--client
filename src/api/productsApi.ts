@@ -1,7 +1,7 @@
 import { Product } from "../DTO/product.ts";
 import API from "./api.ts";
 
-const mapDataToProduct = (data): Product => {
+export const mapDataToProduct = (data): Product => {
 	return {
 		id: data.id,
 		name: data.name,

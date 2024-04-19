@@ -1,26 +1,41 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	addProductToCart,
 	updatePrice,
 } from "../../Redux/cartProductsSlice.ts";
 import { deleteProductFromFavorites } from "../../Redux/favoriteProductsSlice.ts";
 import ProductCardButton from "../productCardButton/ProductCardButton.tsx";
+import { RootState } from "../../Redux/store.ts";
+import favoritesApi from "../../api/favoritesApi.ts";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
+import cartApi from "../../api/cartApi.ts";
 
 const FavoriteProductCardButtons = (props) => {
+	const { authUser } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
+	const axiosPrivate = useAxiosPrivate();
 	const { productData } = props;
 	const icons = [
 		<i className="bi bi-cart"></i>,
 		<i className="bi bi-trash3"></i>,
 	];
 
-	const handleDeleteButtonClick = () => {
-		dispatch(deleteProductFromFavorites(productData.id));
+	const handleDeleteButtonClick = async () => {
+		if (authUser.name === "") {
+			dispatch(deleteProductFromFavorites(productData.id));
+		} else {
+			dispatch(deleteProductFromFavorites(productData.id));
+			await favoritesApi.deleteFavoritesLink(productData.id, axiosPrivate);
+		}
 	};
-	const handleCartButtonClick = () => {
-		dispatch(addProductToCart(productData));
-		dispatch(updatePrice());
+	const handleCartButtonClick = async () => {
+		if (authUser.name === "") {
+			dispatch(addProductToCart(productData));
+			dispatch(updatePrice());
+		} else {
+			await cartApi.addCartLink(productData.id, axiosPrivate);
+		}
 	};
 
 	return (

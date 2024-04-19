@@ -1,0 +1,145 @@
+.paymentScreen__flex-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.paymentScreen__container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	width: 640px;
+	height: 640px;
+	border-radius: 40px;
+}
+
+.paymentScreen__gid-container {
+	display: grid;
+	grid-template-rows: 100px 300px 100px;
+}
+
+.paymentScreen__gid-container > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.paymentScreen__button {
+	background-color: #393e46;
+	color: #eeeeee;
+	border: none;
+	border-radius: 15px;
+	width: 300px;
+	height: 50px;
+}
+
+button:disabled {
+}
+
+.paymentScreen__button_hover {
+	background-color: #222831;
+}
+
+.cardInfoForm__container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #393e46;
+	height: 200px;
+	width: 350px;
+	border-radius: 20px;
+	background: #eeeeee;
+}
+
+.cardInfoForm__input-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: 100px 100px;
+	width: 300px;
+}
+
+.cardInfoForm__input-container > div {
+	display: flex;
+	align-items: center;
+	/* justify-content: center; */
+}
+
+.cardInfoForm__input-container > div > div > label {
+	margin-bottom: 2px;
+}
+
+.cardInfoForm__input-container > div > div > p {
+	display: none;
+	color: red;
+	margin: 0px;
+}
+
+.cardInfoForm__cardNumber-container {
+	display: grid;
+	grid-template-rows: auto auto auto;
+}
+
+.cardInfoForm__cardNumber-container.err {
+	grid-template-rows: auto auto;
+}
+.cardInfoForm__cardNumber-container.err > p {
+	display: inline-block;
+}
+
+.cardInfoForm__cardNumber-container.err > input {
+	border: 2px solid red;
+}
+
+.cardInfoForm__cardNumber-container > input {
+	width: 300px;
+	height: 30px;
+	border: 1px solid #393e46;
+	border-radius: 10px;
+}
+
+.cardInfoForm__expiry-date-container {
+	display: grid;
+	grid-template-rows: auto auto auto;
+}
+
+.cardInfoForm__expiry-date-container > input {
+	width: 100px;
+	height: 20px;
+	border: 1px solid #393e46;
+	border-radius: 7px;
+}
+
+.cardInfoForm__expiry-date-container.err {
+	grid-template-rows: auto auto;
+}
+.cardInfoForm__expiry-date-container.err > p {
+	display: inline-block;
+}
+.cardInfoForm__expiry-date-container.err > input {
+	border: 2px solid red;
+}
+
+.cardInfoForm__cvv-container {
+	display: grid;
+	grid-template-rows: auto auto auto;
+}
+
+.cardInfoForm__cvv-container > input {
+	width: 100px;
+	height: 20px;
+	border: 1px solid #393e46;
+	border-radius: 7px;
+}
+
+.cardInfoForm__cvv-container.err {
+	grid-template-rows: auto auto;
+}
+
+.cardInfoForm__cvv-container.err > input {
+	border: 2px solid red;
+}
+.cardInfoForm__cvv-container.err > p {
+	display: inline-block;
+}

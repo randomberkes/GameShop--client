@@ -15,6 +15,9 @@ export const favoriteProductsSlice = createSlice({
 	name: "favoriteProducts",
 	initialState,
 	reducers: {
+		setFavoriteProducts: (state, action: PayloadAction<Product[]>) => {
+			state.products = action.payload;
+		},
 		addProductToFavorites: (state, action: PayloadAction<Product>) => {
 			let unique = true;
 			state.products.forEach((product) => {
@@ -33,7 +36,10 @@ export const favoriteProductsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addProductToFavorites, deleteProductFromFavorites } =
-	favoriteProductsSlice.actions;
+export const {
+	addProductToFavorites,
+	deleteProductFromFavorites,
+	setFavoriteProducts,
+} = favoriteProductsSlice.actions;
 
 export default favoriteProductsSlice.reducer;

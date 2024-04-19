@@ -16,27 +16,29 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route
-					path="/"
-					element={
-						<div>
-							<Navbar />
-							<div className="mainContainer">
-								<Outlet />
+				<Route element={<PersistsLogin />}>
+					<Route
+						path="/"
+						element={
+							<div>
+								<Navbar />
+								<div className="mainContainer">
+									<Outlet />
+								</div>
 							</div>
-						</div>
-					}
-				>
-					<Route path="products" element={<ProductsPage />} />
-					<Route path="favorites" element={<FavoritesScreen />} />
-					<Route path="cart" element={<CartPage />} />
-					<Route element={<PersistsLogin />}>
-						<Route element={<RequireAuth />}>
-							<Route path="checkout" element={<CheckoutPage />}></Route>
-						</Route>
+						}
+					>
+						<Route path="products" element={<ProductsPage />} />
+
+						<Route path="favorites" element={<FavoritesScreen />} />
+
+						<Route path="cart" element={<CartPage />} />
+					</Route>
+					<Route path="/*" element={<LoginRegisterPage />} />
+					<Route element={<RequireAuth />}>
+						<Route path="checkout" element={<CheckoutPage />}></Route>
 					</Route>
 				</Route>
-				<Route path="/*" element={<LoginRegisterPage />} />
 			</Routes>
 		</BrowserRouter>
 	);
