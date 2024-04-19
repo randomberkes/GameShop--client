@@ -61,13 +61,6 @@ const CardInfoForm = (props) => {
 		areInputsValid(validCardNumber, validExpiryDate, result);
 	};
 
-	// useEffect(() => {
-	// 	const result = CVC_REGEX.test(cvc);
-	// 	console.log(result);
-	// 	console.log(cvc);
-	// 	setValidCvc(result);
-	// }, [cardNumber, expiryDate, cvc]);
-
 	return (
 		<div className="cardInfoForm__container">
 			<div className="cardInfoForm__input-container">

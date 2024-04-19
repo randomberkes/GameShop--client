@@ -1,10 +1,10 @@
 import React from "react";
-
 import "./userButtonIcon.css";
-import useLogedInUser from "../../../../hooks/useLogedInUser.ts";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../Redux/store.ts";
 
 const UserButtonIcon = () => {
-	const { authUser, isAuthenticated } = useLogedInUser();
+	const { authUser } = useSelector((state: RootState) => state.auth);
 
 	const makeUserIcon = (): string => {
 		const usernameFirstLetter = authUser.name[0];
@@ -12,7 +12,7 @@ const UserButtonIcon = () => {
 	};
 	return (
 		<>
-			{isAuthenticated ? (
+			{authUser.name !== "" ? (
 				<>{makeUserIcon()?.toUpperCase()}</>
 			) : (
 				<i className="bi bi-person"></i>

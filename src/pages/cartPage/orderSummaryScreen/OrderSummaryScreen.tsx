@@ -19,12 +19,7 @@ const OrderSummatyScreen = () => {
 				<h2>{finalPrice.toFixed(3)} Ft</h2>
 			</div>
 
-			<Link
-				className="orderScreenButtonRow"
-				to="/checkout"
-				state={{ from: location }}
-				replace
-			>
+			<Link className="orderScreenButtonRow" to="/checkout">
 				<button className="orderScreenButton">Folytatás</button>
 			</Link>
 		</div>

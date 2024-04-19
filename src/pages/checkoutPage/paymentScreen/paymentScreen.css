@@ -9,10 +9,10 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: white;
+	background-color: #107c1030;
 	width: 640px;
 	height: 640px;
-	border-radius: 40px;
+	border-radius: 5px;
 }
 
 .paymentScreen__gid-container {

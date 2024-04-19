@@ -11,6 +11,9 @@ import LoginRegisterPage from "./pages/loginRegisterPage/LoginRegisterPage.tsx";
 import RequireAuth from "./components/auth/RequireAuth.tsx";
 import CheckoutPage from "./pages/checkoutPage/CheckoutPage.tsx";
 import PersistsLogin from "./components/auth/PersistLogin.tsx";
+import OrderSUmmaryProductCard from "./components/orderSummaryProductCard/OrderSummaryProductCard.tsx";
+import OrderSummary from "./pages/checkoutPage/orderSummary/OrderSummary.tsx";
+import PaymentScreen from "./pages/checkoutPage/paymentScreen/PaymentScreen.tsx";
 
 function App() {
 	return (
@@ -36,7 +39,10 @@ function App() {
 					</Route>
 					<Route path="/*" element={<LoginRegisterPage />} />
 					<Route element={<RequireAuth />}>
-						<Route path="checkout" element={<CheckoutPage />}></Route>
+						<Route path="/" element={<CheckoutPage />}>
+							<Route path="checkout" element={<OrderSummary />}></Route>
+							<Route path="payment" element={<PaymentScreen />}></Route>
+						</Route>
 					</Route>
 				</Route>
 			</Routes>

@@ -71,8 +71,6 @@ function Navbar() {
 			<Link
 				to={"/products"}
 				className={`nav_logo ${showSearchBar ? "hideButton" : ""}`}
-				state={{ from: location }}
-				replace
 			>
 				GameShop
 			</Link>

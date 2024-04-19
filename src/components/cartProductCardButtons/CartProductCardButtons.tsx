@@ -56,7 +56,7 @@ const CartProductCardButtons = (props) => {
 				axiosPrivate
 			);
 
-			const input = { id: productData.id, amount: rows.amount };
+			const input = { id: productData.id, amount: rows?.amount };
 			dispatch(setProductAmount(input));
 		}
 	};

@@ -1,12 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./paymentScreen.css";
 import CardInfoForm from "../../../components/cardInfoForm/CardInfoForm.tsx";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../Redux/store.ts";
+import { setCartProducts } from "../../../Redux/cartProductsSlice.ts";
+import cartApi from "../../../api/cartApi.ts";
+import orderApi from "../../../api/orderApi.ts";
 
 const VISA_MASTER_CARD_REGEX = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$/;
 const EXPIRY_DATE_REGEX = /\b(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})\b/;
 const CVC_REGEX = /^[0-9]{3,4}$/;
 
 const PaymentScreen = () => {
+	const axiosPrivate = useAxiosPrivate();
+	const dispatch = useDispatch();
+	const { products, finalPrice } = useSelector(
+		(state: RootState) => state.cartProducts
+	);
 	const [hover, setHover] = useState(false);
 	const [isFormValid, setIsFormValid] = useState(false);
 
@@ -26,6 +37,16 @@ const PaymentScreen = () => {
 	const cvcRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
+		const getProducts = async () => {
+			try {
+				const products = await cartApi.getCartProducts(axiosPrivate);
+				dispatch(setCartProducts(products));
+			} catch (err) {
+				console.log(err);
+				dispatch(setCartProducts([]));
+			}
+		};
+		getProducts();
 		cardNumberRef.current!.focus();
 	}, []);
 
@@ -59,7 +80,7 @@ const PaymentScreen = () => {
 		setHover(false);
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const isValidCardNumber = VISA_MASTER_CARD_REGEX.test(cardNumber);
@@ -77,7 +98,10 @@ const PaymentScreen = () => {
 		} else if (!isValidCvc) {
 			cvcRef.current!.focus();
 		} else {
-			console.log("Form is valid, submitting data...");
+			const orderItems = products.map((product) => {
+				return { amount: product.productCount, productID: product.id };
+			});
+			await orderApi.addOrderLink(finalPrice, orderItems, axiosPrivate);
 		}
 	};
 

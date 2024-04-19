@@ -32,7 +32,6 @@ function NavbarButton(props) {
 						link === location ? "navbarButtonSelected" : ""
 					}`}
 					state={{ from: location }}
-					replace
 				>
 					{icon}
 				</Link>

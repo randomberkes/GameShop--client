@@ -1,29 +1,12 @@
-import React, { useEffect } from "react";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import "./checkoutPage.css";
-import PaymentScreen from "./paymentScreen/PaymentScreen.tsx";
+import { Outlet } from "react-router-dom";
 
 const CheckoutPage = () => {
-	const axiosPrivate = useAxiosPrivate();
-	const navigate = useNavigate();
-	const location = useLocation();
-	useEffect(() => {
-		// const getUsers = async () => {
-		// 	try {
-		// 		const response = await usersApi.getUsers(axiosPrivate);
-		// 		console.log(response);
-		// 	} catch (err) {
-		// 		console.log(err);
-		// 		navigate("/login", { state: { from: location }, replace: true });
-		// 	}
-		// };
-		// getUsers();
-	}, []);
 	return (
 		<div className="checkoutPage__container">
 			<div className="checkout-page__header-flex-container">
-				<h1 className="checkout-page__logo">GameShop</h1>
+				{/* <h1 className="checkout-page__logo">GameShop</h1> */}
 				<div className="checkout-page__header-container">
 					<div className="checkout-page__header">
 						<div className="checkout-page__step-bar-container">
@@ -40,7 +23,7 @@ const CheckoutPage = () => {
 					</div>
 				</div>
 			</div>
-			<PaymentScreen />
+			<Outlet />
 		</div>
 	);
 };

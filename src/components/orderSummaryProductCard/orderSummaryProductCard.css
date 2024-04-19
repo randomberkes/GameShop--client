@@ -1,0 +1,10 @@
+.orderSummaryProductCard__container {
+	display: grid;
+	grid-template-rows: 40px;
+	grid-template-columns: 30px 500px auto;
+}
+
+.orderSummaryProductCard__container > div {
+	border-top: 1px solid hsla(217, 10%, 25%, 0.314);
+	border-bottom: 1px solid #393e4650;
+}
