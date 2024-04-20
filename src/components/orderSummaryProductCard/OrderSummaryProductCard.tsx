@@ -23,12 +23,10 @@ const OrderSUmmaryProductCard = (props) => {
 		updateAmount();
 	}, [amount]);
 	return (
-		<div>
-			<div className="orderSummaryProductCard__container">
-				<div>{amount + "x"}</div>
-				<div>{name}</div>
-				<div>{(price * amount).toFixed(3)}</div>
-			</div>
+		<div className="orderSummaryProductCard__container">
+			<div>{amount + "x"}</div>
+			<div>{name}</div>
+			<div>{(price * amount).toFixed(3)}</div>
 		</div>
 	);
 };

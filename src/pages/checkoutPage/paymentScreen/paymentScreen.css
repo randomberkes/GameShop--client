@@ -1,28 +1,22 @@
-.paymentScreen__flex-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-}
-
 .paymentScreen__container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #107c1030;
-	width: 640px;
-	height: 640px;
+	background-color: white;
 	border-radius: 5px;
+	padding: 20px;
+	border: 3px solid #107c10;
 }
 
 .paymentScreen__gid-container {
 	display: grid;
-	grid-template-rows: 100px 300px 100px;
+	grid-template-rows: 50px auto 50px;
+	row-gap: 20px;
 }
 
 .paymentScreen__gid-container > div {
 	display: flex;
-	align-items: center;
+	align-items: end;
 	justify-content: center;
 }
 

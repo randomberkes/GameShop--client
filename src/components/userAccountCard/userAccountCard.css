@@ -1,0 +1,53 @@
+.userAccountCard__container {
+	display: grid;
+	grid-template-rows: 50px auto 50px;
+	grid-template-columns: auto auto;
+	padding: 5px;
+	border-radius: 15px;
+	background-color: white;
+}
+
+.userAccountCard__button-container {
+	grid-column: 1 / span 2;
+}
+
+.userAccountCard__header-container {
+	grid-column: 1 / span 2;
+}
+
+.userAccountCard__button {
+	width: 100%;
+	background: none;
+	border: none;
+	border-top: 1px solid #eeeeee;
+}
+
+.userAccountCard__user-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 50px;
+	width: 100px;
+	height: 100px;
+	background-color: #d65a31;
+	border-radius: 80px;
+}
+
+.userAccountCard__user-icon-container,
+.userAccountCard__user-information-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* .userAccountCard__user-information-container {
+	display: grid;
+	grid-template-columns: auto auto;
+} */
+
+/* .userAccountCard__container > div {
+	padding: 5px;
+	border-radius: 15px;
+	background-color: white;
+} */

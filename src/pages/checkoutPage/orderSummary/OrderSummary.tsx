@@ -42,39 +42,32 @@ const OrderSummary = () => {
 	};
 
 	return (
-		<div className="orderSummaryScreen__flex-container">
-			<div className="orderSummaryScreen__backgroun-container">
-				<div>
-					<div>
-						<h2>Rendelés összegzése</h2>
-					</div>
-					<div>
-						<div className="orderSummaryScreen__container">
-							<div>GameShop Rendelés</div>
-							<div>{products.map(createProductCard)}</div>
-						</div>
-					</div>
-					<div>
-						<h2>Végösszeg: {finalPrice.toFixed(3)}</h2>
-					</div>
-					<div>
-						<Link
-							to="/payment"
-							className={
-								"orderSummaryScreen__button" +
-								(hover ? " orderSummaryScreen__button_hover" : "")
-							}
-							onMouseOver={() => {
-								setHover(true);
-							}}
-							onMouseOut={() => {
-								setHover(false);
-							}}
-						>
-							Tovább
-						</Link>
-					</div>
+		<div className="orderSummaryScreen__grid-container">
+			<div>
+				<div className="orderSummaryScreen__container">
+					<div>GameShop Rendelés</div>
+					<div>{products.map(createProductCard)}</div>
 				</div>
+			</div>
+			<div>
+				<h2>Végösszeg: {finalPrice.toFixed(3)}</h2>
+			</div>
+			<div>
+				<Link
+					to="/payment"
+					className={
+						"orderSummaryScreen__button" +
+						(hover ? " orderSummaryScreen__button_hover" : "")
+					}
+					onMouseOver={() => {
+						setHover(true);
+					}}
+					onMouseOut={() => {
+						setHover(false);
+					}}
+				>
+					Tovább
+				</Link>
 			</div>
 		</div>
 	);

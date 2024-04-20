@@ -1,0 +1,16 @@
+.successScreen__flex-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.successScreen__container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #006fcd30;
+	width: 640px;
+	height: 640px;
+	border-radius: 5px;
+}

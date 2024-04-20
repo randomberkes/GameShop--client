@@ -14,6 +14,8 @@ import PersistsLogin from "./components/auth/PersistLogin.tsx";
 import OrderSUmmaryProductCard from "./components/orderSummaryProductCard/OrderSummaryProductCard.tsx";
 import OrderSummary from "./pages/checkoutPage/orderSummary/OrderSummary.tsx";
 import PaymentScreen from "./pages/checkoutPage/paymentScreen/PaymentScreen.tsx";
+import SuccessScreen from "./pages/checkoutPage/successScreen/SuccessScreen.tsx";
+import UserAccountPage from "./pages/userAccountPage/UserAccountPage.tsx";
 
 function App() {
 	return (
@@ -36,12 +38,16 @@ function App() {
 						<Route path="favorites" element={<FavoritesScreen />} />
 
 						<Route path="cart" element={<CartPage />} />
+						<Route element={<RequireAuth />}>
+							<Route path="user" element={<UserAccountPage />}></Route>
+						</Route>
 					</Route>
 					<Route path="/*" element={<LoginRegisterPage />} />
 					<Route element={<RequireAuth />}>
 						<Route path="/" element={<CheckoutPage />}>
 							<Route path="checkout" element={<OrderSummary />}></Route>
 							<Route path="payment" element={<PaymentScreen />}></Route>
+							<Route path="success" element={<SuccessScreen />}></Route>
 						</Route>
 					</Route>
 				</Route>

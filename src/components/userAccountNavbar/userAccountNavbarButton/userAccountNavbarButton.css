@@ -1,0 +1,31 @@
+.userAccountNavbarButton__button {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	width: 100%;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #eeeeee;
+}
+.noBorder {
+	border: none;
+}
+.hover {
+	opacity: 0.7;
+}
+
+.userAccountNavbarButton__icon-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+.userAccountNavbarButton__icon {
+	font-size: 20px;
+	height: 20px;
+	width: 20px;
+	margin: 5px;
+}

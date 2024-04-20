@@ -3,14 +3,21 @@ import "./userCollapsible.css";
 import useLogedInUser from "../../../../hooks/useLogedInUser.ts";
 import CollapsibleButton from "./collapsibleButton/CollapsibleButton.tsx";
 import useLogout from "../../../../hooks/useLogout.ts";
+import { useNavigate } from "react-router-dom";
 
 const UserCollapsible = () => {
+	const navigate = useNavigate();
 	const logout = useLogout();
 	const signOut = () => {
 		logout();
 	};
 	const buttons = [
-		{ text: "Saját fiók" },
+		{
+			text: "Saját fiók",
+			onClick: () => {
+				navigate("/user");
+			},
+		},
 		{ text: "Kártyáim" },
 		{ text: "Rendelések" },
 		{ text: "Kijelentkezés", onClick: signOut },

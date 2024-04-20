@@ -1,0 +1,11 @@
+.userAccountPage__container {
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+.userAccountPage__container > div {
+	display: grid;
+	grid-template-columns: 300px 700px;
+	column-gap: 15px;
+}

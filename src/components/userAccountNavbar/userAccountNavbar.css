@@ -1,0 +1,44 @@
+.userAccountNavbar__container {
+	padding: 5px;
+	border-radius: 15px;
+	background-color: white;
+}
+
+.userAccountNavbar__header {
+	display: grid;
+	grid-template-columns: 25% 55% 20%;
+	background-image: linear-gradient(
+		to bottom right,
+		#006fcd,
+		#107c10,
+		/* black, */ #e72929
+	);
+	height: 100px;
+	margin-bottom: 10px;
+	border-radius: 15px;
+	color: white;
+}
+
+.userAccountNavbar__icon-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.userAccountNavbar__name-container {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+}
+
+.userAccountNavbar__user-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 25px;
+	width: 50px;
+	height: 50px;
+	background-color: #d65a31;
+	border-radius: 50px;
+}
