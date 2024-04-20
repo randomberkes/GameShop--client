@@ -5,7 +5,28 @@
 	width: 100%;
 }
 .userAccountPage__container > div {
-	display: grid;
-	grid-template-columns: 300px 700px;
-	column-gap: 15px;
+	width: 100%;
+}
+
+.userAccountPage__user-card-container {
+	display: none;
+}
+
+@media only screen and (min-width: 768px) {
+	.userAccountPage__user-card-container {
+		display: inline-block;
+	}
+
+	.userAccountPage__container > div {
+		width: auto;
+		display: grid;
+		grid-template-columns: 300px 400px;
+		column-gap: 15px;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.userAccountPage__container > div {
+		grid-template-columns: 300px 700px;
+	}
 }

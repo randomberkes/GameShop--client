@@ -1,9 +1,10 @@
 .userAccountCard__container {
 	display: grid;
-	grid-template-rows: 50px auto 50px;
+	grid-template-rows: 50px auto;
 	grid-template-columns: auto auto;
 	padding: 5px;
-	border-radius: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
 	background-color: white;
 }
 
@@ -13,6 +14,9 @@
 
 .userAccountCard__header-container {
 	grid-column: 1 / span 2;
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
 }
 
 .userAccountCard__button {
@@ -20,6 +24,8 @@
 	background: none;
 	border: none;
 	border-top: 1px solid #eeeeee;
+	height: 100%;
+	color: #d65a31;
 }
 
 .userAccountCard__user-icon {
@@ -40,14 +46,16 @@
 	align-items: center;
 	justify-content: center;
 }
-
-/* .userAccountCard__user-information-container {
-	display: grid;
-	grid-template-columns: auto auto;
-} */
-
-/* .userAccountCard__container > div {
-	padding: 5px;
-	border-radius: 15px;
+.userAccountCard__button-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: white;
-} */
+	height: 50px;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.userAccountCard__hover {
+	background-color: #d65a3120;
+}

@@ -10,7 +10,7 @@ const UserAccountPage = () => {
 				<div>
 					<UserAccountNavbar />
 				</div>
-				<div>
+				<div className="userAccountPage__user-card-container">
 					<UserAccountCard />
 				</div>
 			</div>
