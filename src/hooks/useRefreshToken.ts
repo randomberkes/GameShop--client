@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import authApi from "../api/authApi.ts";
 import { setAuthUser } from "../Redux/authSlice.ts";
-import useLogout from "./useLogout.ts";
 import { RootState } from "../Redux/store.ts";
 import { useLocation, useNavigate } from "react-router-dom";
 

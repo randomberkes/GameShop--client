@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./userAccountCard.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
+import { useNavigate } from "react-router-dom";
 
 const UserAccountCard = () => {
+	const navigate = useNavigate();
 	const { authUser } = useSelector((state: RootState) => state.auth);
 	const [hover, setHover] = useState(false);
 	return (
@@ -38,7 +40,14 @@ const UserAccountCard = () => {
 					setHover(false);
 				}}
 			>
-				<button className="userAccountCard__button">Adatok módosítása</button>
+				<button
+					className="userAccountCard__button"
+					onClick={() => {
+						navigate("/user/edit");
+					}}
+				>
+					Adatok módosítása
+				</button>
 			</div>
 		</>
 	);

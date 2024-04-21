@@ -24,6 +24,9 @@ const getUserByEmail = async (email): Promise<User | string> => {
 	return "";
 };
 
+const updateUser = async (user: any, axiosPrivate: any) => {
+	return await API.axiosPrivate.put("/user", user);
+};
 const postUser = async (user: User) => {
 	return await API.axiosPublic.post("/auth/register", user);
 };
@@ -32,4 +35,4 @@ const getUsers = async (axiosPrivate: any) => {
 	return await axiosPrivate.get("/users/all");
 };
 
-export default { getUserByEmail, postUser, getUsers };
+export default { getUserByEmail, postUser, getUsers, updateUser };

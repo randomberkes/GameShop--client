@@ -6,13 +6,7 @@ import usersApi from "../../../api/usersApi.ts";
 import { User } from "../../../DTO/user";
 import { useDispatch } from "react-redux";
 
-import {
-	setAuthUser,
-	// setAuthUserAccessToken,
-	// setAuthUserEmail,
-	// setAuthUserName,
-	// setAuthUserRole,
-} from "../../../Redux/authSlice.ts";
+import { setAuthUser } from "../../../Redux/authSlice.ts";
 import authApi from "../../../api/authApi.ts";
 
 const Login = (props) => {

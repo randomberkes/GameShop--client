@@ -1,0 +1,91 @@
+.editUserFormData__container {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	background-color: #00000050;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.editUserFormData__container > form {
+	width: 600px;
+
+	background-color: #ffffff;
+	border-radius: 15px;
+	display: grid;
+	grid-template-columns: 40% 60%;
+	grid-template-rows: 50px auto auto auto auto auto auto auto auto 80px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.editUserFormData__label1 {
+	margin-top: 10px;
+	grid-row: 2 / span 2;
+}
+.editUserFormData__label2 {
+	margin-top: 10px;
+	grid-row: 4 / span 2;
+}
+.editUserFormData__label3 {
+	margin-top: 10px;
+	grid-row: 6 / span 2;
+}
+.editUserFormData__label4 {
+	margin-top: 10px;
+	grid-row: 8 / span 2;
+}
+
+.editUserFormData__container > form > div > div > input {
+	border: 1px solid black;
+	width: 100%;
+	height: 30px;
+	border-radius: 7px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.editUserFormData__container > form > div > p {
+	display: none;
+	color: red;
+}
+
+.editUserFormData__container > form > div.err > p {
+	display: inline-block;
+}
+
+.editUserFormData__input_focus {
+	border: 1px solid #d65a31 !important;
+	outline: none;
+}
+
+.editUserFormData__header-container {
+	grid-column: 1 / span 2;
+	padding-left: 10px;
+	border-bottom: 2px solid #eeeeee;
+}
+.editUserFormData__button-container {
+	display: flex;
+	align-items: center;
+	justify-content: center !important;
+	grid-column: 1 / span 2;
+}
+.editUserFormData__button {
+	border: none;
+	background-color: #d65a31;
+	width: 200px;
+	height: 40px;
+	border-radius: 10px;
+	color: white;
+}
+
+.editUserFormData__instructions {
+	background-color: #d65a3130;
+	color: black !important;
+	padding: 5px;
+	border-radius: 10px;
+}

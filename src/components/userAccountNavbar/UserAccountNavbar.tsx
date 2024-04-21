@@ -4,7 +4,7 @@ import UserAccountNavbarButton from "./userAccountNavbarButton/UserAccountNavbar
 import { useNavigate } from "react-router-dom";
 import useLogout from "../../hooks/useLogout.ts";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../Redux/store.ts";
+import { RootState } from "../../Redux/store.ts";
 
 const UserAccountNavbar = () => {
 	const navigate = useNavigate();
@@ -72,7 +72,12 @@ const UserAccountNavbar = () => {
 	};
 	return (
 		<>
-			<div className="userAccountNavbar__header">
+			<div
+				className="userAccountNavbar__header"
+				onClick={() => {
+					navigate("/user/edit");
+				}}
+			>
 				<div className="userAccountNavbar__icon-container">
 					<div className="userAccountNavbar__user-icon ">
 						<p>{authUser.name[0].toUpperCase()}</p>

@@ -16,6 +16,7 @@ import OrderSummary from "./pages/checkoutPage/orderSummary/OrderSummary.tsx";
 import PaymentScreen from "./pages/checkoutPage/paymentScreen/PaymentScreen.tsx";
 import SuccessScreen from "./pages/checkoutPage/successScreen/SuccessScreen.tsx";
 import UserAccountPage from "./pages/userAccountPage/UserAccountPage.tsx";
+import EditUserDataForm from "./components/editUserDataForm/EditUserDataForm.tsx";
 
 function App() {
 	return (
@@ -39,7 +40,9 @@ function App() {
 
 						<Route path="cart" element={<CartPage />} />
 						<Route element={<RequireAuth />}>
-							<Route path="user" element={<UserAccountPage />}></Route>
+							<Route path="user" element={<UserAccountPage />}>
+								<Route path="edit" element={<EditUserDataForm />}></Route>
+							</Route>
 						</Route>
 					</Route>
 					<Route path="/*" element={<LoginRegisterPage />} />
