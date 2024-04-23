@@ -4,6 +4,7 @@ import categoryTypesReducer from "./categoryTypesSlice.ts";
 import favoriteProductsReducer from "./favoriteProductsSlice.ts";
 import cartProductsReducer from "./cartProductsSlice.ts";
 import authReducer from "./authSlice.ts";
+import offersReducer from "./offerSlice.ts";
 export const store = configureStore({
 	reducer: {
 		products: productsReducer,
@@ -11,12 +12,10 @@ export const store = configureStore({
 		favoriteProducts: favoriteProductsReducer,
 		cartProducts: cartProductsReducer,
 		auth: authReducer,
+		offers: offersReducer,
 	},
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
 
-//pasport
+export type AppDispatch = typeof store.dispatch;

@@ -10,12 +10,14 @@ import { RootState } from "../../Redux/store.ts";
 import favoritesApi from "../../api/favoritesApi.ts";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
 import cartApi from "../../api/cartApi.ts";
+import "./favoriteProductCardButtons.css";
+import { deleteOfferFromFavorites } from "../../Redux/offerSlice.ts";
 
 const FavoriteProductCardButtons = (props) => {
 	const { authUser } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
 	const axiosPrivate = useAxiosPrivate();
-	const { productData } = props;
+	const { productData, price, offerID } = props;
 	const icons = [
 		<i className="bi bi-cart"></i>,
 		<i className="bi bi-trash3"></i>,
@@ -23,10 +25,10 @@ const FavoriteProductCardButtons = (props) => {
 
 	const handleDeleteButtonClick = async () => {
 		if (authUser.name === "") {
-			dispatch(deleteProductFromFavorites(productData.id));
+			dispatch(deleteOfferFromFavorites(offerID));
 		} else {
-			dispatch(deleteProductFromFavorites(productData.id));
-			await favoritesApi.deleteFavoritesLink(productData.id, axiosPrivate);
+			await favoritesApi.deleteFavoritesLink(offerID, axiosPrivate);
+			dispatch(deleteOfferFromFavorites(offerID));
 		}
 	};
 	const handleCartButtonClick = async () => {
@@ -39,7 +41,7 @@ const FavoriteProductCardButtons = (props) => {
 	};
 
 	return (
-		<div className="productCard_ButtonsContainer">
+		<div className="favoriteProductCardButtons_Container">
 			<div>
 				<ProductCardButton
 					handleClick={handleCartButtonClick}
@@ -47,7 +49,7 @@ const FavoriteProductCardButtons = (props) => {
 				/>
 			</div>
 			<div>
-				<span className="productCard_price">{productData.price}ft</span>
+				<span className="favoriteProductCardButtons_price">{price}ft</span>
 			</div>
 			<div>
 				<ProductCardButton

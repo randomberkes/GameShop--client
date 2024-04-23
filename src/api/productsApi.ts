@@ -63,8 +63,33 @@ export const getProductsByFilter = async (inputValue): Promise<Product[]> => {
 	return productListData;
 };
 
+const getProductByID = async (productID: any): Promise<Product> => {
+	try {
+		const response = await API.axiosPublic.get("/products", {
+			params: { productID: productID },
+		});
+		const product = mapDataToProduct(response.data);
+		return product;
+	} catch (e) {
+		console.log(e);
+		return {
+			id: 0,
+			name: "",
+			platform: "",
+			gameDeviceCompatibility: "",
+			gameType: "",
+			ratingPegi: "",
+			numberOfPlayers: "",
+			descriptions: "",
+			price: 0,
+			imgPath: "",
+		};
+	}
+};
+
 export default {
-	getAllProducts: getAllProducts,
-	getProductsByName: getProductsByName,
-	getProductsByFilter: getProductsByFilter,
+	getAllProducts,
+	getProductsByName,
+	getProductsByFilter,
+	getProductByID,
 };

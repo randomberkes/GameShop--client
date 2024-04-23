@@ -75,7 +75,6 @@ export const cartProductsSlice = createSlice({
 	},
 });
 
-// Action creators are generated for each case reducer function
 export const {
 	addProductToCart,
 	deleteProductFromCart,

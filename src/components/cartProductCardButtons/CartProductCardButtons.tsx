@@ -12,36 +12,21 @@ import "./cartProductCardButtons.css";
 import { RootState } from "../../Redux/store.ts";
 import cartApi from "../../api/cartApi.ts";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
+import { deleteOfferFromCart } from "../../Redux/offerSlice.ts";
 
 const CartProductCardButtons = (props) => {
 	const { authUser } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
-	const { productData } = props;
+	const { productData, price, offerID } = props;
 	const axiosPrivate = useAxiosPrivate();
 	const icons = [<i className="bi bi-trash3"></i>];
 
-	useEffect(() => {
-		const updateAmount = async () => {
-			const rows = await cartApi.getAmountOfCartProduct(
-				productData.id,
-				axiosPrivate
-			);
-
-			const input = { id: productData.id, amount: rows.amount };
-			dispatch(setProductAmount(input));
-			dispatch(updatePrice());
-		};
-		if (authUser.name !== "") updateAmount();
-	}, [productData]);
-
 	const handleDeleteButtonClick = async () => {
 		if (authUser.name === "") {
-			dispatch(deleteProductFromCart(productData.id));
-			dispatch(updatePrice());
+			dispatch(deleteOfferFromCart(offerID));
 		} else {
-			dispatch(deleteProductFromCart(productData.id));
-			await cartApi.deleteCartLink(productData.id, axiosPrivate);
-			dispatch(updatePrice());
+			await cartApi.deleteCartLink(offerID, axiosPrivate);
+			dispatch(deleteOfferFromCart(offerID));
 		}
 	};
 
@@ -77,9 +62,9 @@ const CartProductCardButtons = (props) => {
 	};
 
 	return (
-		<div className="productCard_ButtonsContainer">
+		<div className="cartProductCardButtons_Container">
 			<div>
-				<span className="productCard_price">{productData.price}ft</span>
+				<span className="cartProductCardButtons_price">{price}ft</span>
 			</div>
 			<div>
 				<button

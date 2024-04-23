@@ -1,47 +1,50 @@
 import React, { useEffect } from "react";
-import { Product } from "../../../DTO/product";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store.ts";
 import "./favoritesScreen.css";
-import ProductCard from "../../../components/productCard/ProductCard.tsx";
-import FavoriteProductCardButtons from "../../../components/favoriteProductCardButtons/FavoriteProductCardButtons.tsx";
-import useLogedInUser from "../../../hooks/useLogedInUser.ts";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
+import {
+	addProductToFavorites,
+	setFavoriteProducts,
+} from "../../../Redux/favoriteProductsSlice.ts";
+import ProductCardHeader from "../../../components/productCardHeader/ProductCardHeader.tsx";
+import { setFavoriteOffers } from "../../../Redux/offerSlice.ts";
 import favoritesApi from "../../../api/favoritesApi.ts";
-import { setFavoriteProducts } from "../../../Redux/favoriteProductsSlice.ts";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
+import productsApi from "../../../api/productsApi.ts";
 
 const FavoritesScreen = () => {
 	const { authUser } = useSelector((state: RootState) => state.auth);
-	const axiosPrivate = useAxiosPrivate();
-	const { products } = useSelector(
-		(state: RootState) => state.favoriteProducts
-	);
+
+	const offers = useSelector((state: RootState) => state.offers.favoriteOffers);
 
 	const dispatch = useDispatch();
+	const axiosPrivate = useAxiosPrivate();
 
 	useEffect(() => {
-		const getProducts = async () => {
+		console.log(offers);
+		const getOffers = async () => {
 			try {
-				const products = await favoritesApi.getFavoriteProducts(axiosPrivate);
-				console.log(products);
-				dispatch(setFavoriteProducts(products));
+				const offers = await favoritesApi.getFavoriteOffers(axiosPrivate);
+
+				dispatch(setFavoriteOffers(offers));
 			} catch (err) {
 				console.log(err);
-				dispatch(setFavoriteProducts([]));
+				dispatch(setFavoriteOffers([]));
 			}
 		};
-		if (authUser.name !== "") getProducts();
+		if (authUser.name !== "") getOffers();
 	}, []);
 
-	const createCard = (
-		productData: Product,
-		index: number
-	): React.JSX.Element => {
+	const createCard = (offer, index: number) => {
+		console.log(offer.product);
 		return (
-			<ProductCard
+			<ProductCardHeader
 				key={index}
-				productData={productData}
-				buttons={<FavoriteProductCardButtons productData={productData} />}
+				seller={offer.name}
+				product={offer.product}
+				index={index}
+				price={offer.price}
+				offerID={offer.id}
 			/>
 		);
 	};
@@ -51,11 +54,9 @@ const FavoritesScreen = () => {
 			<div className="favoritesScreen_Header">
 				<h3 className="favoritesScreen_Header_Text">Kedvencek</h3>
 			</div>
-			{products.length === 0
+			{offers.length === 0
 				? "Hmm, nincsen termék a listában."
-				: products.map((product, index) => {
-						return createCard(product, index);
-				  })}
+				: offers.map(createCard)}
 		</div>
 	);
 };

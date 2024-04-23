@@ -20,7 +20,6 @@ export const categoryTypesSlice = createSlice({
 	},
 });
 
-// Action creators are generated for each case reducer function
 export const { setCategoryTypes } = categoryTypesSlice.actions;
 
 export default categoryTypesSlice.reducer;

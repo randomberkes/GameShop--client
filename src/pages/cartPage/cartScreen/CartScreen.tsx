@@ -1,25 +1,22 @@
 import React from "react";
-import ProductCard from "../../../components/productCard/ProductCard.tsx";
 import "./cartScreen.css";
-import { CartProduct } from "../../../Redux/cartProductsSlice.ts";
-import CartProductCardButtons from "../../../components/cartProductCardButtons/CartProductCardButtons.tsx";
+import ProductCardHeader from "../../../components/productCardHeader/ProductCardHeader.tsx";
 
 const CartScreen = (props) => {
-	const { products } = props;
-	const createCard = (productData: CartProduct): React.JSX.Element => {
+	const { offers } = props;
+	const createCard = (offer, index: number): React.JSX.Element => {
 		return (
-			<ProductCard
-				key={productData.id}
-				id={productData.id}
-				productData={productData}
-				buttons={<CartProductCardButtons productData={productData} />}
+			<ProductCardHeader
+				seller={offer.name}
+				product={offer.product}
+				index={index}
+				price={offer.price}
+				offerID={offer.id}
 			/>
 		);
 	};
 
-	return products.map((product) => {
-		return createCard(product);
-	});
+	return offers.map(createCard);
 };
 
 export default CartScreen;

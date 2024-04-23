@@ -115,14 +115,12 @@ export const productsSlice = createSlice({
 					}
 					break;
 				default:
-					//
 					break;
 			}
 		},
 	},
 });
 
-// Action creators are generated for each case reducer function
 export const { setProducts, setFilter, setFilterPlatform } =
 	productsSlice.actions;
 

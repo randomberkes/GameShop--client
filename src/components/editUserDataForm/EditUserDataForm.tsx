@@ -13,7 +13,6 @@ const NAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const EditUserDataForm = () => {
-	// const login = useLogin();
 	const refresh = useRefreshToken();
 	const { authUser } = useSelector((state: RootState) => state.auth);
 	const navigate = useNavigate();
@@ -186,12 +185,8 @@ const EditUserDataForm = () => {
 				</div>
 				<div className={pwdValid ? "" : " err"}>
 					{!pwdFocus ? (
-						// pwd === "" ? (
-						// 	<p>Kötelező</p>
-						// ) : (
 						<p>Jelszó érvénytelen</p>
 					) : (
-						// )
 						<p className="editUserFormData__instructions">
 							8-24 karakter.
 							<br />

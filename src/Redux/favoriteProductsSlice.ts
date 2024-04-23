@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../DTO/product";
-import { Filter } from "../DTO/filter";
 
 export interface favoriteProductsState {
 	products: Product[];
@@ -35,7 +34,6 @@ export const favoriteProductsSlice = createSlice({
 	},
 });
 
-// Action creators are generated for each case reducer function
 export const {
 	addProductToFavorites,
 	deleteProductFromFavorites,

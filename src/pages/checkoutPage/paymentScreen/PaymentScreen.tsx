@@ -4,7 +4,10 @@ import CardInfoForm from "../../../components/cardInfoForm/CardInfoForm.tsx";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store.ts";
-import { setCartProducts } from "../../../Redux/cartProductsSlice.ts";
+import {
+	setCartProducts,
+	setProductAmount,
+} from "../../../Redux/cartProductsSlice.ts";
 import cartApi from "../../../api/cartApi.ts";
 import orderApi from "../../../api/orderApi.ts";
 import { useNavigate } from "react-router-dom";
@@ -42,6 +45,14 @@ const PaymentScreen = () => {
 			try {
 				const products = await cartApi.getCartProducts(axiosPrivate);
 				dispatch(setCartProducts(products));
+				products.forEach(async (element) => {
+					const rows = await cartApi.getAmountOfCartProduct(
+						element.id,
+						axiosPrivate
+					);
+					const input = { id: element.id, amount: rows.amount };
+					dispatch(setProductAmount(input));
+				});
 			} catch (err) {
 				console.log(err);
 				dispatch(setCartProducts([]));
@@ -102,6 +113,7 @@ const PaymentScreen = () => {
 			const orderItems = products.map((product) => {
 				return { amount: product.productCount, productID: product.id };
 			});
+			console.log(orderItems);
 			await orderApi.addOrderLink(finalPrice, orderItems, axiosPrivate);
 			navigate("/success");
 		}

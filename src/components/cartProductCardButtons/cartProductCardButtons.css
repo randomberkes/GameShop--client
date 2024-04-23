@@ -9,3 +9,21 @@
 	color: #222831;
 	font-size: 20px;
 }
+.cartProductCardButtons_Container {
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: auto auto auto;
+}
+
+.cartProductCardButtons_Container > div {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.cartProductCardButtons_price {
+	font-weight: 400;
+	font-size: 30px;
+	color: #d65a31;
+	margin-right: 10px;
+}

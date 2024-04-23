@@ -1,9 +1,9 @@
 import { mapDataToProduct } from "./productsApi.ts";
 
-const addCartLink = async (productID, axiosPrivate) => {
+const addCartLink = async (offerID, axiosPrivate) => {
 	try {
 		const response = await axiosPrivate.post("/cart", {
-			productID,
+			offerID,
 		});
 		return response.data;
 	} catch (err) {
@@ -11,10 +11,10 @@ const addCartLink = async (productID, axiosPrivate) => {
 	}
 };
 
-const deleteCartLink = async (productID, axiosPrivate) => {
+const deleteCartLink = async (offerID, axiosPrivate) => {
 	try {
 		const response = await axiosPrivate.delete("/cart", {
-			params: { productID },
+			params: { offerID },
 		});
 		return response.data;
 	} catch (err) {
@@ -54,18 +54,24 @@ const decrementCartProductAmount = async (productID, axiosPrivate) => {
 	}
 };
 
-const getCartProducts = async (axiosPrivate) => {
+const getCartOffers = async (axiosPrivate) => {
 	const response = await axiosPrivate.get("/cart");
-	const products = response.data.map((data) => {
-		return mapDataToProduct(data);
+	const offers = response.data.map((offer: any) => {
+		return {
+			product: mapDataToProduct(offer),
+			id: offer.offerid,
+			price: offer.price,
+			name: offer.username,
+		};
 	});
-	return products;
+
+	return offers;
 };
 
 export default {
 	addCartLink,
 	deleteCartLink,
-	getCartProducts,
+	getCartOffers,
 	incrementCartProductAmount,
 	decrementCartProductAmount,
 	getAmountOfCartProduct,

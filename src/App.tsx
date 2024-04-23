@@ -17,6 +17,7 @@ import PaymentScreen from "./pages/checkoutPage/paymentScreen/PaymentScreen.tsx"
 import SuccessScreen from "./pages/checkoutPage/successScreen/SuccessScreen.tsx";
 import UserAccountPage from "./pages/userAccountPage/UserAccountPage.tsx";
 import EditUserDataForm from "./components/editUserDataForm/EditUserDataForm.tsx";
+import ProductDetailPage from "./pages/productDetailPage/ProductDetailPage.tsx";
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 							</div>
 						}
 					>
+						<Route path="products/:productID" element={<ProductDetailPage />} />
 						<Route path="products" element={<ProductsPage />} />
 
 						<Route path="favorites" element={<FavoritesScreen />} />

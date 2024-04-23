@@ -1,22 +1,19 @@
-// import API from "./api.ts";
-
 import { mapDataToProduct } from "./productsApi.ts";
 
-const addFavoritesLink = async (productID, axiosPrivate) => {
+const addFavoritesLink = async (offerID, axiosPrivate) => {
 	try {
-		const response = await axiosPrivate.post("/favorite", {
-			productID,
+		await axiosPrivate.post("/favorite", {
+			offerID,
 		});
-		return response.data;
 	} catch (err) {
 		console.log(err);
 	}
 };
 
-const deleteFavoritesLink = async (productID, axiosPrivate) => {
+const deleteFavoritesLink = async (offerID, axiosPrivate) => {
 	try {
 		const response = await axiosPrivate.delete("/favorite", {
-			params: { productID },
+			params: { offerID },
 		});
 		return response.data;
 	} catch (err) {
@@ -24,12 +21,18 @@ const deleteFavoritesLink = async (productID, axiosPrivate) => {
 	}
 };
 
-const getFavoriteProducts = async (axiosPrivate) => {
+const getFavoriteOffers = async (axiosPrivate) => {
 	const response = await axiosPrivate.get("/favorite");
-	const products = response.data.map((data) => {
-		return mapDataToProduct(data);
+	const offers = response.data.map((offer: any) => {
+		return {
+			product: mapDataToProduct(offer),
+			id: offer.offerid,
+			price: offer.price,
+			name: offer.username,
+		};
 	});
-	return products;
+
+	return offers;
 };
 
-export default { addFavoritesLink, getFavoriteProducts, deleteFavoritesLink };
+export default { addFavoritesLink, getFavoriteOffers, deleteFavoritesLink };

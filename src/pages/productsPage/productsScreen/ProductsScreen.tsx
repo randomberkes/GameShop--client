@@ -6,7 +6,6 @@ import productsApi from "../../../api/productsApi.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../../Redux/productsSlice.ts";
 import { RootState } from "../../../Redux/store.ts";
-import ProductCardButton from "../../../components/productCardButton/ProductCardButton.tsx";
 import ProductCardButtons from "../../../components/productCardButtons/ProductCardButtons.tsx";
 
 function ProductsScreen() {
@@ -27,13 +26,7 @@ function ProductsScreen() {
 		productData: Product,
 		index: number
 	): React.JSX.Element => {
-		return (
-			<ProductCard
-				key={index}
-				productData={productData}
-				buttons={<ProductCardButtons productData={productData} />}
-			/>
-		);
+		return <ProductCard key={index} productData={productData} />;
 	};
 
 	return products.map((product, index) => {

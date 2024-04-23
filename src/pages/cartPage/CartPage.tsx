@@ -7,33 +7,33 @@ import "./cartPage.css";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
 import cartApi from "../../api/cartApi.ts";
 import { setCartProducts } from "../../Redux/cartProductsSlice.ts";
+import { setCartOffers } from "../../Redux/offerSlice.ts";
 
 const CartPage = () => {
-	const { products } = useSelector((state: RootState) => state.cartProducts);
-
 	const { authUser } = useSelector((state: RootState) => state.auth);
+	const offers = useSelector((state: RootState) => state.offers.cartOffers);
 	const axiosPrivate = useAxiosPrivate();
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const getProducts = async () => {
+		const getOffers = async () => {
 			try {
-				const products = await cartApi.getCartProducts(axiosPrivate);
-				console.log(products);
-				dispatch(setCartProducts(products));
+				const offers = await cartApi.getCartOffers(axiosPrivate);
+				console.log(offers);
+				dispatch(setCartOffers(offers));
 			} catch (err) {
 				console.log(err);
-				dispatch(setCartProducts([]));
+				dispatch(setCartOffers([]));
 			}
 		};
-		if (authUser.name !== "") getProducts();
+		if (authUser.name !== "") getOffers();
 	}, []);
 
 	const cartPage = (
 		<div className="cartPageContainer">
 			<div>
-				<CartScreen products={products} />
+				<CartScreen offers={offers} />
 			</div>
 			<div>
 				<OrderSummaryScreen />
@@ -46,7 +46,7 @@ const CartPage = () => {
 				<h3 className="cartScreen_Header_Text">Kosár</h3>
 			</div>
 
-			{products.length === 0
+			{offers.length === 0
 				? "A kosarad üres. Termékek hozzáadásához, kérjük lépj vissza a webáruházba."
 				: cartPage}
 		</div>
