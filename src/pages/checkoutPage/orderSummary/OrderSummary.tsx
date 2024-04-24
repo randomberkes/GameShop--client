@@ -2,42 +2,53 @@ import React, { useEffect, useState } from "react";
 import cartApi from "../../../api/cartApi.ts";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { setCartProducts } from "../../../Redux/cartProductsSlice.ts";
+// import {
+// 	setCartProducts,
+// 	updatePrice,
+// } from "../../../Redux/cartProductsSlice.ts";
 import { RootState } from "../../../Redux/store.ts";
 import "./orderSummary.css";
 import OrderSUmmaryProductCard from "../../../components/orderSummaryProductCard/OrderSummaryProductCard.tsx";
 import { Link, Navigate, useLocation } from "react-router-dom";
+import { setCartOffers, updatePrice } from "../../../Redux/offerSlice.ts";
 
 const OrderSummary = () => {
 	const axiosPrivate = useAxiosPrivate();
+	const offers = useSelector((state: RootState) => state.offers.cartOffers);
 	const dispatch = useDispatch();
-	const { products, finalPrice } = useSelector(
-		(state: RootState) => state.cartProducts
-	);
-
+	const finalPrice = useSelector((state: RootState) => state.offers.finalPrice);
 	const [hover, setHover] = useState(false);
+
 	useEffect(() => {
 		const getProducts = async () => {
 			try {
-				const products = await cartApi.getCartProducts(axiosPrivate);
-				dispatch(setCartProducts(products));
+				const offers = await cartApi.getCartOffers(axiosPrivate);
+
+				dispatch(setCartOffers(offers));
 			} catch (err) {
 				console.log(err);
-				dispatch(setCartProducts([]));
+				// dispatch(setCartProducts([]));
 			}
 		};
 		getProducts();
 	}, []);
 
-	const createProductCard = (product, index) => {
+	useEffect(() => {
+		dispatch(updatePrice());
+	}, [offers]);
+
+	const createProductCard = (offer, index) => {
 		return (
-			<OrderSUmmaryProductCard
-				name={product.name}
-				amount={product.productCount}
-				id={product.id}
-				price={product.price}
-				key={index}
-			/>
+			<>
+				<div>{offer.name}</div>
+				<OrderSUmmaryProductCard
+					name={offer.product.name}
+					amount={offer.amount}
+					id={offer.id}
+					price={offer.price}
+					key={index}
+				/>
+			</>
 		);
 	};
 
@@ -46,11 +57,11 @@ const OrderSummary = () => {
 			<div>
 				<div className="orderSummaryScreen__container">
 					<div>GameShop Rendelés</div>
-					<div>{products.map(createProductCard)}</div>
+					<div>{offers.map(createProductCard)}</div>
 				</div>
 			</div>
 			<div>
-				<h2>Végösszeg: {finalPrice.toFixed(3)}</h2>
+				<h2>Végösszeg: {finalPrice} Ft</h2>
 			</div>
 			<div>
 				<Link

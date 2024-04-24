@@ -16,7 +16,7 @@ const refresh = async () => {
 	const response = await API.axiosPublic.get("/auth/refresh", {
 		withCredentials: true,
 	});
-	console.log(response);
+
 	return response;
 };
 
@@ -24,7 +24,7 @@ const logout = async () => {
 	const response = await API.axiosPublic.get("/auth/logout", {
 		withCredentials: true,
 	});
-	console.log(response);
+
 	return response;
 };
 

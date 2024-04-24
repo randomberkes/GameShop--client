@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import CartProductCardButtons from "../cartProductCardButtons/CartProductCardButtons.tsx";
 
 const ProductCardHeader = (props) => {
-	const { seller, product, index, price, offerID } = props;
+	const { seller, product, index, price, offerID, amount } = props;
 	const location = useLocation();
 
 	return (
@@ -20,12 +20,14 @@ const ProductCardHeader = (props) => {
 							productData={product}
 							offerID={offerID}
 							price={price}
+							name={seller}
 						/>
 					) : (
 						<CartProductCardButtons
 							productData={product}
 							offerID={offerID}
 							price={price}
+							amount={amount}
 						/>
 					)
 				}

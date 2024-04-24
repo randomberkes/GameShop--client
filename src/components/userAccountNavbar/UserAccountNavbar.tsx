@@ -38,7 +38,6 @@ const UserAccountNavbar = () => {
 			color: "#107c10",
 			onClick: () => {
 				navigate("/cart");
-				console.log("HIIIIIIIIIIIIIIIIIIIIIIIIIII");
 			},
 			text: "Kosár",
 		},

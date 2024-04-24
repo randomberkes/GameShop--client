@@ -11,8 +11,8 @@ export const getAllCategoryTypes = async (): Promise<CategoryType[]> => {
 				name: data.category_type_name,
 			};
 		});
-	} catch (e) {
-		console.log(e);
+	} catch (err) {
+		console.log(err);
 	}
 
 	return categoryTypeListData;

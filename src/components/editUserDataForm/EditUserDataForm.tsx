@@ -53,27 +53,24 @@ const EditUserDataForm = () => {
 	const handleNameMouseBlur = () => {
 		setNameFocus(false);
 		const result = NAME_REGEX.test(name) || name === "";
-		console.log(result);
-		console.log(name);
+
 		setNameValid(result);
 	};
 	const handleEmailMouseBlur = () => {
 		setEmailFocus(false);
 		const result = EMAIL_REGEX.test(email) || email === "";
-		console.log(result);
-		console.log(email);
+
 		setEmailValid(result);
 	};
 	const handlePwdMouseBlur = () => {
 		setPwdFocus(false);
 		const result = PWD_REGEX.test(pwd) || pwd === "";
-		console.log(result);
-		console.log(pwd);
+
 		setPwdValid(result);
 	};
 	const handleRepeatPwdMouseBlur = () => {
 		setRepeatPwdFocus(false);
-		console.log(pwd === repeatPwd);
+
 		setRepeatPwdValid(pwd === repeatPwd);
 	};
 

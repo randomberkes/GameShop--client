@@ -12,6 +12,7 @@ const CartScreen = (props) => {
 				index={index}
 				price={offer.price}
 				offerID={offer.id}
+				amount={offer.amount}
 			/>
 		);
 	};

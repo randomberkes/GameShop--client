@@ -128,7 +128,6 @@ const Register = (props) => {
 
 	const register = async (user: User) => {
 		try {
-			console.log(user);
 			await usersApi.postUser(user);
 		} catch (err) {
 			if (!err?.response) {

@@ -5,7 +5,7 @@ import { RootState } from "../../../Redux/store";
 import { Link, useLocation } from "react-router-dom";
 
 const OrderSummatyScreen = () => {
-	const { finalPrice } = useSelector((state: RootState) => state.cartProducts);
+	const finalPrice = useSelector((state: RootState) => state.offers.finalPrice);
 	const location = useLocation();
 	return (
 		<div className="orderSummaryScreen_Container">
@@ -16,7 +16,7 @@ const OrderSummatyScreen = () => {
 				<h4>Végösszeg:</h4>
 			</div>
 			<div className="row ">
-				<h2>{finalPrice.toFixed(3)} Ft</h2>
+				<h2>{finalPrice} Ft</h2>
 			</div>
 
 			<Link className="orderScreenButtonRow" to="/checkout">

@@ -39,24 +39,21 @@ const CardInfoForm = (props) => {
 	const handleBlurCardNumber = () => {
 		setCardNumberFocus(false);
 		const result = VISA_MASTER_CARD_REGEX.test(cardNumber);
-		console.log(result);
-		console.log(cardNumber);
+
 		setValidCardNumber(result);
 		areInputsValid(result, validExpiryDate, validCvc);
 	};
 	const handleBlurExpiryDate = () => {
 		setExpiryDateFocus(false);
 		const result = EXPIRY_DATE_REGEX.test(expiryDate);
-		console.log(result);
-		console.log(expiryDate);
+
 		setValidExpiryDate(result);
 		areInputsValid(validCardNumber, result, validCvc);
 	};
 	const handleBlurCvc = () => {
 		setCvcFocus(false);
 		const result = CVC_REGEX.test(cvc);
-		console.log(result);
-		console.log(cvc);
+
 		setValidCvc(result);
 		areInputsValid(validCardNumber, validExpiryDate, result);
 	};

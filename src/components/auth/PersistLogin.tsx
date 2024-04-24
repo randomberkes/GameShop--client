@@ -20,7 +20,6 @@ const PersistsLogin = () => {
 				setIsLoading(false);
 			}
 		};
-		console.log(authUser);
 		authUser.accessToken === "" ? verifyRefreshToken() : setIsLoading(false);
 	}, [authUser]);
 

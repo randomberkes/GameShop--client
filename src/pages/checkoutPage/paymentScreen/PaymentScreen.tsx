@@ -1,28 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./paymentScreen.css";
-import CardInfoForm from "../../../components/cardInfoForm/CardInfoForm.tsx";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { updatePrice } from "../../../Redux/cartProductsSlice.ts";
+import { setCartOffers } from "../../../Redux/offerSlice.ts";
 import { RootState } from "../../../Redux/store.ts";
-import {
-	setCartProducts,
-	setProductAmount,
-} from "../../../Redux/cartProductsSlice.ts";
 import cartApi from "../../../api/cartApi.ts";
 import orderApi from "../../../api/orderApi.ts";
-import { useNavigate } from "react-router-dom";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
+import "./paymentScreen.css";
 
 const VISA_MASTER_CARD_REGEX = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$/;
 const EXPIRY_DATE_REGEX = /\b(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})\b/;
 const CVC_REGEX = /^[0-9]{3,4}$/;
 
 const PaymentScreen = () => {
+	const offers = useSelector((state: RootState) => state.offers.cartOffers);
+	const finalPrice = useSelector((state: RootState) => state.offers.finalPrice);
 	const axiosPrivate = useAxiosPrivate();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { products, finalPrice } = useSelector(
-		(state: RootState) => state.cartProducts
-	);
 	const [hover, setHover] = useState(false);
 
 	const [cardNumber, setCardNumber] = useState("");
@@ -40,47 +36,63 @@ const PaymentScreen = () => {
 	const [cvcFocus, setCvcFocus] = useState(true);
 	const cvcRef = useRef<HTMLInputElement>(null);
 
+	// useEffect(() => {
+	// const getProducts = async () => {
+	// 	try {
+	// 		const products = await cartApi.getCartProducts(axiosPrivate);
+	// 		dispatch(setCartProducts(products));
+	// 		products.forEach(async (element) => {
+	// 			const rows = await cartApi.getAmountOfCartProduct(
+	// 				element.id,
+	// 				axiosPrivate
+	// 			);
+	// 			const input = { id: element.id, amount: rows.amount };
+	// 			dispatch(setProductAmount(input));
+	// 		});
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 		dispatch(setCartProducts([]));
+	// 	}
+	// };
+	// getProducts();
+
+	// }, []);
+
 	useEffect(() => {
 		const getProducts = async () => {
 			try {
-				const products = await cartApi.getCartProducts(axiosPrivate);
-				dispatch(setCartProducts(products));
-				products.forEach(async (element) => {
-					const rows = await cartApi.getAmountOfCartProduct(
-						element.id,
-						axiosPrivate
-					);
-					const input = { id: element.id, amount: rows.amount };
-					dispatch(setProductAmount(input));
-				});
+				const offers = await cartApi.getCartOffers(axiosPrivate);
+
+				dispatch(setCartOffers(offers));
 			} catch (err) {
 				console.log(err);
-				dispatch(setCartProducts([]));
+				// dispatch(setCartProducts([]));
 			}
 		};
 		getProducts();
 		cardNumberRef.current!.focus();
 	}, []);
 
+	useEffect(() => {
+		dispatch(updatePrice());
+	}, [offers]);
+
 	const handleBlurCardNumber = () => {
 		setCardNumberFocus(false);
 		const result = VISA_MASTER_CARD_REGEX.test(cardNumber);
-		console.log(result);
-		console.log(cardNumber);
+
 		setValidCardNumber(result);
 	};
 	const handleBlurExpiryDate = () => {
 		setExpiryDateFocus(false);
 		const result = EXPIRY_DATE_REGEX.test(expiryDate);
-		console.log(result);
-		console.log(expiryDate);
+
 		setValidExpiryDate(result);
 	};
 	const handleBlurCvc = () => {
 		setCvcFocus(false);
 		const result = CVC_REGEX.test(cvc);
-		console.log(result);
-		console.log(cvc);
+
 		setValidCvc(result);
 	};
 
@@ -110,10 +122,14 @@ const PaymentScreen = () => {
 		} else if (!isValidCvc) {
 			cvcRef.current!.focus();
 		} else {
-			const orderItems = products.map((product) => {
-				return { amount: product.productCount, productID: product.id };
+			const orderItems = offers.map((offer) => {
+				return {
+					amount: offer.amount,
+					offerID: offer.id,
+					productID: offer.product.id,
+				};
 			});
-			console.log(orderItems);
+
 			await orderApi.addOrderLink(finalPrice, orderItems, axiosPrivate);
 			navigate("/success");
 		}

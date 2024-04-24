@@ -6,7 +6,7 @@ import productsApi from "../../../api/productsApi.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../../Redux/productsSlice.ts";
 import { RootState } from "../../../Redux/store.ts";
-import ProductCardButtons from "../../../components/productCardButtons/ProductCardButtons.tsx";
+// import ProductCardButtons from "../../../components/productCardButtons/ProductCardButtons.tsx";
 
 function ProductsScreen() {
 	const { products } = useSelector((state: RootState) => state.products);

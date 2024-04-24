@@ -20,7 +20,7 @@ const CartPage = () => {
 		const getOffers = async () => {
 			try {
 				const offers = await cartApi.getCartOffers(axiosPrivate);
-				console.log(offers);
+
 				dispatch(setCartOffers(offers));
 			} catch (err) {
 				console.log(err);

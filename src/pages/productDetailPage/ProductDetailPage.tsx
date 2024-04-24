@@ -1,22 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import productsApi from "../../api/productsApi.ts";
-import { Product } from "../../DTO/product.ts";
-import "./productDetailPage.css";
-import offerApi from "../../api/offerApi.ts";
-import OfferCard from "../../components/offerCard/OfferCard.tsx";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Redux/store.ts";
-import {
-	addProductToCart,
-	updatePrice,
-} from "../../Redux/cartProductsSlice.ts";
-import cartApi from "../../api/cartApi.ts";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
-import { addProductToFavorites } from "../../Redux/favoriteProductsSlice.ts";
-import favoritesApi from "../../api/favoritesApi.ts";
+import { useParams } from "react-router-dom";
+import { Product } from "../../DTO/product.ts";
 import { addOfferToCart, addOfferToFavorites } from "../../Redux/offerSlice.ts";
+import { RootState } from "../../Redux/store.ts";
+import cartApi from "../../api/cartApi.ts";
+import favoritesApi from "../../api/favoritesApi.ts";
+import offerApi from "../../api/offerApi.ts";
+import productsApi from "../../api/productsApi.ts";
+import OfferCard from "../../components/offerCard/OfferCard.tsx";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
+import "./productDetailPage.css";
 
 const ProductDetailPage = () => {
 	const { authUser } = useSelector((state: RootState) => state.auth);
@@ -39,14 +34,12 @@ const ProductDetailPage = () => {
 	useEffect(() => {
 		const getProduct = async () => {
 			const product = await productsApi.getProductByID(productID);
-			console.log(product);
+
 			if (product) setProduct(product);
-			console.log(product);
 		};
 		const getOffers = async () => {
 			const offers = await offerApi.getOffers(productID);
 			seOffers(offers);
-			console.log(offers);
 		};
 		getOffers();
 		getProduct();
@@ -60,6 +53,7 @@ const ProductDetailPage = () => {
 					name: offers[0].name,
 					price: offers[0].price,
 					product: product,
+					amount: 1,
 				})
 			);
 		} else {
@@ -69,7 +63,6 @@ const ProductDetailPage = () => {
 
 	const handleFavoriteButtonClick = async () => {
 		if (authUser.name === "") {
-			console.log(product);
 			dispatch(
 				addOfferToFavorites({
 					id: offers[0].id,

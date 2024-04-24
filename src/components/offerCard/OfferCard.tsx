@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./offerCard.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Redux/store";
 import { addOfferToCart, addOfferToFavorites } from "../../Redux/offerSlice.ts";
+import { RootState } from "../../Redux/store";
+import cartApi from "../../api/cartApi.ts";
 import favoritesApi from "../../api/favoritesApi.ts";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
-import { addProductToCart } from "../../Redux/cartProductsSlice.ts";
-import cartApi from "../../api/cartApi.ts";
+import "./offerCard.css";
 
 const OfferCard = (props) => {
 	const { id, name, price, product } = props;
@@ -16,11 +15,6 @@ const OfferCard = (props) => {
 	const { authUser } = useSelector((state: RootState) => state.auth);
 	const axiosPrivate = useAxiosPrivate();
 	const offers = useSelector((state: RootState) => state.offers.favoriteOffers);
-
-	useEffect(() => {
-		console.log(offers);
-		console.log("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIi");
-	}, [offers]);
 
 	const handleFavoriteButtonClick = async () => {
 		if (authUser.name === "") {
@@ -38,7 +32,6 @@ const OfferCard = (props) => {
 	};
 
 	const handleCartButtonClick = async () => {
-		console.log(product);
 		if (authUser.name === "") {
 			dispatch(
 				addOfferToCart({
@@ -46,6 +39,7 @@ const OfferCard = (props) => {
 					name: name,
 					price: price,
 					product: product,
+					amount: 1,
 				})
 			);
 		} else {

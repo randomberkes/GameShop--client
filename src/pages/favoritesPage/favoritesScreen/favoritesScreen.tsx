@@ -21,7 +21,6 @@ const FavoritesScreen = () => {
 	const axiosPrivate = useAxiosPrivate();
 
 	useEffect(() => {
-		console.log(offers);
 		const getOffers = async () => {
 			try {
 				const offers = await favoritesApi.getFavoriteOffers(axiosPrivate);
@@ -36,7 +35,6 @@ const FavoritesScreen = () => {
 	}, []);
 
 	const createCard = (offer, index: number) => {
-		console.log(offer.product);
 		return (
 			<ProductCardHeader
 				key={index}

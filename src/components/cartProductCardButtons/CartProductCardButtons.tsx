@@ -1,25 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	decreaseCountOfProduct,
-	deleteProductFromCart,
-	increaseCountOfProduct,
-	setProductAmount,
-	updatePrice,
-} from "../../Redux/cartProductsSlice.ts";
 import ProductCardButton from "../productCardButton/ProductCardButton.tsx";
 import "./cartProductCardButtons.css";
 import { RootState } from "../../Redux/store.ts";
 import cartApi from "../../api/cartApi.ts";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
-import { deleteOfferFromCart } from "../../Redux/offerSlice.ts";
+import offerApi from "../../api/offerApi.ts";
+import {
+	decreaseCountOfProduct,
+	deleteOfferFromCart,
+	increaseCountOfProduct,
+	updatePrice,
+} from "../../Redux/offerSlice.ts";
 
 const CartProductCardButtons = (props) => {
 	const { authUser } = useSelector((state: RootState) => state.auth);
+	const [activationKeyNumber, setActivationKeyNumber] = useState(0);
 	const dispatch = useDispatch();
-	const { productData, price, offerID } = props;
+	const { price, offerID, amount } = props;
 	const axiosPrivate = useAxiosPrivate();
 	const icons = [<i className="bi bi-trash3"></i>];
+
+	useEffect(() => {
+		const getOfferActivationKeyNumber = async () => {
+			const activationKeyNumber = await offerApi.getOfferActivationKeyNumber(
+				offerID
+			);
+			// console.log(activationKeyNumber);
+			setActivationKeyNumber(activationKeyNumber);
+		};
+		getOfferActivationKeyNumber();
+	}, []);
+
+	useEffect(() => {
+		dispatch(updatePrice());
+	}, [amount]);
+
+	useEffect(() => {});
 
 	const handleDeleteButtonClick = async () => {
 		if (authUser.name === "") {
@@ -32,32 +49,34 @@ const CartProductCardButtons = (props) => {
 
 	const handlePlusButtonClick = async () => {
 		if (authUser.name === "") {
-			dispatch(increaseCountOfProduct(productData.id));
-			dispatch(updatePrice());
+			dispatch(increaseCountOfProduct(offerID));
+			// dispatch(updatePrice());
 		} else {
-			await cartApi.incrementCartProductAmount(productData.id, axiosPrivate);
-			const rows = await cartApi.getAmountOfCartProduct(
-				productData.id,
-				axiosPrivate
-			);
+			await cartApi.incrementCartProductAmount(offerID, axiosPrivate);
+			dispatch(increaseCountOfProduct(offerID));
+			// const rows = await cartApi.getAmountOfCartProduct(
+			// 	productData.id,
+			// 	axiosPrivate
+			// );
 
-			const input = { id: productData.id, amount: rows?.amount };
-			dispatch(setProductAmount(input));
+			// const input = { id: productData.id, amount: rows?.amount };
+			// dispatch(setProductAmount(input));
 		}
 	};
 	const handleMinusButtonClick = async () => {
 		if (authUser.name === "") {
-			dispatch(decreaseCountOfProduct(productData.id));
-			dispatch(updatePrice());
+			dispatch(decreaseCountOfProduct(offerID));
+			// dispatch(updatePrice());
 		} else {
-			await cartApi.decrementCartProductAmount(productData.id, axiosPrivate);
-			const rows = await cartApi.getAmountOfCartProduct(
-				productData.id,
-				axiosPrivate
-			);
+			await cartApi.decrementCartProductAmount(offerID, axiosPrivate);
+			dispatch(decreaseCountOfProduct(offerID));
+			// const rows = await cartApi.getAmountOfCartProduct(
+			// 	productData.id,
+			// 	axiosPrivate
+			// );
 
-			const input = { id: productData.id, amount: rows.amount };
-			dispatch(setProductAmount(input));
+			// const input = { id: productData.id, amount: rows.amount };
+			// dispatch(setProductAmount(input));
 		}
 	};
 
@@ -69,13 +88,17 @@ const CartProductCardButtons = (props) => {
 			<div>
 				<button
 					className="plusMinusButton"
-					disabled={productData.productCount === 1}
+					disabled={amount === 1}
 					onClick={handleMinusButtonClick}
 				>
 					<i className="bi bi-dash plusMinusIcon"></i>
 				</button>
-				<span>{productData.productCount}</span>
-				<button className="plusMinusButton" onClick={handlePlusButtonClick}>
+				<span>{amount}</span>
+				<button
+					className="plusMinusButton"
+					onClick={handlePlusButtonClick}
+					disabled={amount == activationKeyNumber}
+				>
 					<i className="bi bi-plus plusMinusIcon"></i>
 				</button>
 			</div>

@@ -33,20 +33,20 @@ const getAmountOfCartProduct = async (productID, axiosPrivate) => {
 	}
 };
 
-const incrementCartProductAmount = async (productID, axiosPrivate) => {
+const incrementCartProductAmount = async (offerID, axiosPrivate) => {
 	try {
 		const response = await axiosPrivate.get("/cart/increment", {
-			params: { productID },
+			params: { offerID },
 		});
 		return response.data;
 	} catch (err) {
 		console.log(err);
 	}
 };
-const decrementCartProductAmount = async (productID, axiosPrivate) => {
+const decrementCartProductAmount = async (offerID, axiosPrivate) => {
 	try {
 		const response = await axiosPrivate.get("/cart/decrement", {
-			params: { productID },
+			params: { offerID },
 		});
 		return response.data;
 	} catch (err) {
@@ -62,6 +62,7 @@ const getCartOffers = async (axiosPrivate) => {
 			id: offer.offerid,
 			price: offer.price,
 			name: offer.username,
+			amount: offer.amount,
 		};
 	});
 

@@ -11,13 +11,16 @@ import favoritesApi from "../../api/favoritesApi.ts";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
 import cartApi from "../../api/cartApi.ts";
 import "./favoriteProductCardButtons.css";
-import { deleteOfferFromFavorites } from "../../Redux/offerSlice.ts";
+import {
+	addOfferToCart,
+	deleteOfferFromFavorites,
+} from "../../Redux/offerSlice.ts";
 
 const FavoriteProductCardButtons = (props) => {
 	const { authUser } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
 	const axiosPrivate = useAxiosPrivate();
-	const { productData, price, offerID } = props;
+	const { productData, price, offerID, name } = props;
 	const icons = [
 		<i className="bi bi-cart"></i>,
 		<i className="bi bi-trash3"></i>,
@@ -33,10 +36,17 @@ const FavoriteProductCardButtons = (props) => {
 	};
 	const handleCartButtonClick = async () => {
 		if (authUser.name === "") {
-			dispatch(addProductToCart(productData));
-			dispatch(updatePrice());
+			dispatch(
+				addOfferToCart({
+					id: offerID,
+					name: name,
+					price: price,
+					product: productData,
+					amount: 1,
+				})
+			);
 		} else {
-			await cartApi.addCartLink(productData.id, axiosPrivate);
+			await cartApi.addCartLink(offerID, axiosPrivate);
 		}
 	};
 

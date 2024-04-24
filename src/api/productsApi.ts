@@ -23,8 +23,8 @@ export const getAllProducts = async (): Promise<Product[]> => {
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});
-	} catch (e) {
-		console.log(e);
+	} catch (err) {
+		console.log(err);
 	}
 
 	return productListData;
@@ -40,8 +40,8 @@ export const getProductsByName = async (inputValue): Promise<Product[]> => {
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});
-	} catch (e) {
-		console.log(e);
+	} catch (err) {
+		console.log(err);
 	}
 
 	return productListData;
@@ -56,8 +56,8 @@ export const getProductsByFilter = async (inputValue): Promise<Product[]> => {
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});
-	} catch (e) {
-		console.log(e);
+	} catch (err) {
+		console.log(err);
 	}
 
 	return productListData;
@@ -70,8 +70,8 @@ const getProductByID = async (productID: any): Promise<Product> => {
 		});
 		const product = mapDataToProduct(response.data);
 		return product;
-	} catch (e) {
-		console.log(e);
+	} catch (err) {
+		console.log(err);
 		return {
 			id: 0,
 			name: "",

@@ -15,8 +15,8 @@ export const getCategoriesByType = async (
 				name: data.category_name,
 			};
 		});
-	} catch (e) {
-		console.log(e);
+	} catch (err) {
+		console.log(err);
 	}
 
 	return categoryListData;
