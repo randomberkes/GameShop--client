@@ -22,7 +22,7 @@ function Navbar() {
 		},
 		{
 			icon: <UserButtonIcon />,
-			link: "/user",
+			link: "/user/myAccount",
 			label: "Saját fiók",
 			collapsible: <UserCollapsible />,
 		},

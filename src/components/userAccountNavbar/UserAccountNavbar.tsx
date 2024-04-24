@@ -24,8 +24,10 @@ const UserAccountNavbar = () => {
 				<i className=" userAccountNavbarButton__icon bi bi-rocket-takeoff-fill"></i>
 			),
 			color: " #006fcd",
-			onClick: () => {},
-			text: "Rendeléseim",
+			onClick: () => {
+				navigate("/user/purchases");
+			},
+			text: "Vásárlások",
 		},
 		{
 			icon: <i className="userAccountNavbarButton__icon bi bi-joystick"></i>,
@@ -74,7 +76,7 @@ const UserAccountNavbar = () => {
 			<div
 				className="userAccountNavbar__header"
 				onClick={() => {
-					navigate("/user/edit");
+					navigate("/user/myAccount/edit");
 				}}
 			>
 				<div className="userAccountNavbar__icon-container">

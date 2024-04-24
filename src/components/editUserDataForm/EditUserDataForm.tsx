@@ -106,7 +106,7 @@ const EditUserDataForm = () => {
 			};
 			await usersApi.updateUser(newUser, axiosPrivate);
 			refresh();
-			navigate("/user");
+			navigate("/user/myAccount");
 		}
 	};
 

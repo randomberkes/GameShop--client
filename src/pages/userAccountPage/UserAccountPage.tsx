@@ -3,19 +3,19 @@ import "./userAccountPage.css";
 import UserAccountCard from "../../components/userAccountCard/UserAccountCard.tsx";
 import UserAccountNavbar from "../../components/userAccountNavbar/UserAccountNavbar.tsx";
 import EditUserDataForm from "../../components/editUserDataForm/EditUserDataForm.tsx";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 const UserAccountPage = () => {
+	const location = useLocation();
 	return (
 		<div className="userAccountPage__container">
 			<div>
-				<div>
+				<div className="userAccountPage__menu-container">
 					<UserAccountNavbar />
 				</div>
-				{/* <EditUserDataForm /> */}
-				<Outlet />
+
 				<div className="userAccountPage__user-card-container">
-					<UserAccountCard />
+					<Outlet />
 				</div>
 			</div>
 		</div>

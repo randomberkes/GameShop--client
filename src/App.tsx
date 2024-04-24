@@ -18,6 +18,8 @@ import SuccessScreen from "./pages/checkoutPage/successScreen/SuccessScreen.tsx"
 import UserAccountPage from "./pages/userAccountPage/UserAccountPage.tsx";
 import EditUserDataForm from "./components/editUserDataForm/EditUserDataForm.tsx";
 import ProductDetailPage from "./pages/productDetailPage/ProductDetailPage.tsx";
+import UserAccountCard from "./components/userAccountCard/UserAccountCard.tsx";
+import PuchasesScreen from "./pages/userAccountPage/purchasesScreen/PuchasesScreen.tsx";
 
 function App() {
 	return (
@@ -43,7 +45,10 @@ function App() {
 						<Route path="cart" element={<CartPage />} />
 						<Route element={<RequireAuth />}>
 							<Route path="user" element={<UserAccountPage />}>
-								<Route path="edit" element={<EditUserDataForm />}></Route>
+								<Route path="myAccount" element={<UserAccountCard />}>
+									<Route path="edit" element={<EditUserDataForm />}></Route>
+								</Route>
+								<Route path="purchases" element={<PuchasesScreen />}></Route>
 							</Route>
 						</Route>
 					</Route>

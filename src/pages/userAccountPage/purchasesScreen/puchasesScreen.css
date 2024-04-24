@@ -1,0 +1,11 @@
+.puchasesScreen__header-container {
+	display: flex;
+	align-items: center;
+	background-color: white;
+	height: 100px;
+	border-radius: 15px;
+}
+
+.puchasesScreen__header-container > h2 {
+	margin: 10px 10px;
+}

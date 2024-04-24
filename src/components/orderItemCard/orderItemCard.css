@@ -1,0 +1,32 @@
+.orderItemCard__container {
+	grid-template-rows: auto auto;
+	border-radius: 12px;
+	margin: 5px 0px;
+}
+.orderItemCard__container-order-iteminfo > div > img {
+	height: 100px;
+	width: 100px;
+	margin: 5px;
+	border-radius: 8px;
+}
+.orderItemCard__container-order-iteminfo > div {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+}
+.orderItemCard__container-order-iteminfo {
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+}
+
+.orderItemCard__container-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	color: white;
+}
+.orderItemCard__container-header > p {
+	margin: 5px 10px;
+}

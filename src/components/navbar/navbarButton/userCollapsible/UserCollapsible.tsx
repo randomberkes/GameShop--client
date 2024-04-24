@@ -15,7 +15,7 @@ const UserCollapsible = () => {
 		{
 			text: "Saját fiók",
 			onClick: () => {
-				navigate("/user");
+				navigate("/user/myAccount");
 			},
 		},
 		{ text: "Kártyáim" },

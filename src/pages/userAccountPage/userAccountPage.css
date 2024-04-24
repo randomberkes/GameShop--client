@@ -8,12 +8,12 @@
 	width: 100%;
 }
 
-.userAccountPage__user-card-container {
+.userAccountPage__menu-container {
 	display: none;
 }
 
 @media only screen and (min-width: 768px) {
-	.userAccountPage__user-card-container {
+	.userAccountPage__menu-container {
 		display: inline-block;
 	}
 
