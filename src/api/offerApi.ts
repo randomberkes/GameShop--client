@@ -12,6 +12,16 @@ const getOffers = async (productID: any) => {
 	}
 };
 
+const getOffersByUSer = async (axiosPrivate: any) => {
+	try {
+		const response = await API.axiosPrivate.get("/offer/byUser");
+		const offers = response.data;
+		return offers;
+	} catch (err) {
+		console.log(err);
+	}
+};
+
 const getOfferActivationKeyNumber = async (offerID: any) => {
 	try {
 		const response = await API.axiosPublic.get("offer/amount", {
@@ -25,4 +35,4 @@ const getOfferActivationKeyNumber = async (offerID: any) => {
 	}
 };
 
-export default { getOffers, getOfferActivationKeyNumber };
+export default { getOffers, getOfferActivationKeyNumber, getOffersByUSer };

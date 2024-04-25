@@ -20,6 +20,8 @@ import EditUserDataForm from "./components/editUserDataForm/EditUserDataForm.tsx
 import ProductDetailPage from "./pages/productDetailPage/ProductDetailPage.tsx";
 import UserAccountCard from "./components/userAccountCard/UserAccountCard.tsx";
 import PuchasesScreen from "./pages/userAccountPage/purchasesScreen/PuchasesScreen.tsx";
+import ActivationKeysScreen from "./pages/userAccountPage/activationKeysScreen/ActivationKeysScreen.tsx";
+import AdvertisementsScreen from "./pages/userAccountPage/advertisementsScreen/AdvertisementsScreen.tsx";
 
 function App() {
 	return (
@@ -49,6 +51,14 @@ function App() {
 									<Route path="edit" element={<EditUserDataForm />}></Route>
 								</Route>
 								<Route path="purchases" element={<PuchasesScreen />}></Route>
+								<Route
+									path="activationKeys"
+									element={<ActivationKeysScreen />}
+								></Route>
+								<Route
+									path="advertisements"
+									element={<AdvertisementsScreen />}
+								></Route>
 							</Route>
 						</Route>
 					</Route>

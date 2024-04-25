@@ -1,0 +1,29 @@
+.gameCard__container {
+	background-color: white;
+	border-radius: 10px;
+	margin: 10px 0px;
+}
+
+.gameCard__container > div > div > img {
+	width: 200px;
+	height: 200px;
+}
+
+.gameCard__content-container > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.gameCard__header-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	color: white;
+}
+
+.gameCard__header-container > p {
+	margin: 10px 10px;
+}

@@ -20,6 +20,14 @@ const UserAccountNavbar = () => {
 			text: "Kártyáim",
 		},
 		{
+			icon: <i className="userAccountNavbarButton__icon bi bi-cash-coin"></i>,
+			color: "#FFC100",
+			onClick: () => {
+				navigate("/user/advertisements");
+			},
+			text: "Hirdetéseim",
+		},
+		{
 			icon: (
 				<i className=" userAccountNavbarButton__icon bi bi-rocket-takeoff-fill"></i>
 			),
@@ -32,7 +40,9 @@ const UserAccountNavbar = () => {
 		{
 			icon: <i className="userAccountNavbarButton__icon bi bi-joystick"></i>,
 			color: "#107c10",
-			onClick: () => {},
+			onClick: () => {
+				navigate("/user/activationKeys");
+			},
 			text: "Játékaim",
 		},
 		{

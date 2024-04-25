@@ -47,7 +47,7 @@ const OrderItemCard = (props) => {
 			if (product) setProduct(product);
 		};
 		getProduct();
-	});
+	}, []);
 	return (
 		<div
 			className="orderItemCard__container"
