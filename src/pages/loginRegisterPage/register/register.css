@@ -1,10 +1,21 @@
 .register__container {
 	display: grid;
-	grid-template-rows: 80px 50px 40px 40px 40px 70px 40px 70px 40px 70px 70px 70px;
+	grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
 	background-color: white;
 	width: 640px;
-	height: 700px;
+	/* height: 700px; */
 	border-radius: 40px;
+	/* margin-top: 200px; */
+	box-sizing: border-box;
+	padding: 20px 100px;
+}
+
+@media only screen and (max-width: 600px) {
+	.register__container {
+		width: 100%;
+		padding: 20px 20px;
+		border-radius: 0px;
+	}
 }
 
 .register__h1 {
@@ -33,50 +44,14 @@
 	border-radius: 15px;
 	width: 300px;
 	height: 50px;
+	margin-top: 20px;
 }
 
 .register__errorMsg {
-	display: none;
-	display: none;
-	height: 10px;
-	margin: 0px 0px;
+	height: 20px;
+	/* margin: 15px 15px; */
 	color: red;
 	font-size: 15px;
-}
-
-.register__errorMsg_error {
-	display: inline-block;
-}
-
-.register__seller-button {
-	background-color: #393e46;
-	color: #eeeeee;
-	width: 100px;
-	height: 35px;
-	border: none;
-	border-top-left-radius: 15px;
-	border-bottom-left-radius: 15px;
-}
-
-.register__seller-button_clicked {
-	border-top: 3px solid #d65a31 !important;
-	border-left: 3px solid #d65a31 !important;
-	border-bottom: 3px solid #d65a31 !important;
-}
-.register__buyer-button {
-	background-color: #393e46;
-	color: #eeeeee;
-	width: 100px;
-	height: 35px;
-	border: none;
-	border-top-right-radius: 15px;
-	border-bottom-right-radius: 15px;
-}
-
-.register__buyer-button_clicked {
-	border-top: 3px solid #d65a31 !important;
-	border-right: 3px solid #d65a31 !important;
-	border-bottom: 3px solid #d65a31 !important;
 }
 
 .register__button_hover {

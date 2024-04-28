@@ -1,26 +1,33 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import "./login.css";
 import Collapse from "@mui/material/Collapse";
-import usersApi from "../../../api/usersApi.ts";
-import { User } from "../../../DTO/user";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { User } from "../../../DTO/user";
+import usersApi from "../../../api/usersApi.ts";
+import "./login.css";
 
 import { setAuthUser } from "../../../Redux/authSlice.ts";
 import authApi from "../../../api/authApi.ts";
 
+const EMAIL_REGEX =
+	/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 const Login = (props) => {
 	const { setEmail } = props;
 
-	const [open, setOpen] = useState(false);
-	const [focus, setFocus] = useState({
-		email: false,
-		password: false,
-	});
+	const emailRef = useRef<HTMLInputElement>(null);
+	const pwdRef = useRef<HTMLInputElement>(null);
+
+	const [emailFocus, setEmailFocus] = useState(false);
+	const [pwdFocus, setPwdFocus] = useState(false);
 
 	const [emailInput, setEmailInput] = useState("");
 	const [passwordInput, setPasswordInput] = useState("");
-	const [errMsg, setErrMsg] = useState("");
+
+	const [emailValid, setEmailValid] = useState(true);
+	const [pwdValid, setPwdValid] = useState(true);
+
+	const [open, setOpen] = useState(false);
 
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -55,32 +62,25 @@ const Login = (props) => {
 			);
 			navigate(from);
 		} catch (err) {
-			if (!err?.response) {
-				setErrMsg("No Server Response");
-			} else if (err.response?.status === 401) {
-				setErrMsg("Unauthorized");
-			} else {
-				setErrMsg("Login Failed");
+			if (err.response?.status === 401) {
+				setPwdValid(false);
 			}
 		}
 	};
-	const handleOnFocus = (event) => {
-		const id = event.target.id;
-		setFocus((previousFocus) => {
-			return {
-				...previousFocus,
-				[Object.keys(previousFocus)[id]]: true,
-			};
-		});
+	const handleEmailMouseFocus = () => {
+		setEmailFocus(true);
 	};
-	const handleOnBlur = (event) => {
-		const id = event.target.id;
-		setFocus((previousFocus) => {
-			return {
-				...previousFocus,
-				[Object.keys(previousFocus)[id]]: false,
-			};
-		});
+	const handlePwdMouseFocus = () => {
+		setPwdFocus(true);
+	};
+
+	const handleEmailMouseBlur = () => {
+		setEmailFocus(false);
+		const result = EMAIL_REGEX.test(emailInput);
+		setEmailValid(result);
+	};
+	const handlePwdMouseBlur = () => {
+		setPwdFocus(false);
 	};
 	const handleEmailChange = (event) => {
 		setEmailInput(event.target.value);
@@ -91,7 +91,6 @@ const Login = (props) => {
 
 	return (
 		<form className="login__container">
-			{/* <div className="login__container"> */}
 			<div>
 				<h1 className="login__h1">GameShop</h1>
 			</div>
@@ -103,15 +102,19 @@ const Login = (props) => {
 			</div>
 			<div>
 				<input
+					disabled={open}
+					ref={emailRef}
 					className={
 						"login__email-input" +
-						(focus.email ? " login__email-input_focus" : "") +
-						(open ? " login__email-input_password-input-open" : "")
+						(emailFocus ? " login__email-input_focus" : "") +
+						(open ? " login__email-input_password-input-open" : "") +
+						(!emailValid ? " login__email-input_err" : "") +
+						(!emailValid && emailFocus ? " login__email-input_err-focus" : "")
 					}
 					placeholder="Email"
 					value={emailInput}
-					onFocus={handleOnFocus}
-					onBlur={handleOnBlur}
+					onFocus={handleEmailMouseFocus}
+					onBlur={handleEmailMouseBlur}
 					onChange={handleEmailChange}
 					id="0"
 				></input>
@@ -119,10 +122,15 @@ const Login = (props) => {
 				<button
 					className={
 						"login__email-check-button" +
-						(focus.email ? " login__email-check-button_focus" : "") +
-						(open ? " login__email-check-button_password-input-open" : "")
+						(emailFocus ? " login__email-check-button_focus" : "") +
+						(open ? " login__email-check-button_password-input-open" : "") +
+						(!emailValid ? " login__email-check-button_err" : "") +
+						(!emailValid && emailFocus
+							? " login__email-check-button_err-focus"
+							: "")
 					}
 					onClick={handleCheckEmailButtonClick}
+					disabled={!emailValid || emailInput === ""}
 				>
 					<i
 						className={
@@ -133,17 +141,28 @@ const Login = (props) => {
 				</button>
 			</div>
 
+			{!emailValid ? (
+				<p className="login__err-msg">Érvénytelen email</p>
+			) : (
+				<></>
+			)}
+
 			<Collapse in={open}>
 				<div className="login__password-and-button-container">
 					<div>
 						<input
+							ref={pwdRef}
 							className={
 								"login__password-input" +
-								(focus.password ? " login__password-input_focus" : "")
+								(pwdFocus ? " login__password-input_focus" : "") +
+								(!pwdValid ? " login__password-input_err" : "") +
+								(!pwdValid && pwdFocus
+									? " login__password-input_err-focus"
+									: "")
 							}
 							placeholder="Jelszó"
-							onFocus={handleOnFocus}
-							onBlur={handleOnBlur}
+							onFocus={handlePwdMouseFocus}
+							onBlur={handlePwdMouseBlur}
 							onChange={handlePasswordChange}
 							value={passwordInput}
 							id="1"
@@ -151,7 +170,11 @@ const Login = (props) => {
 						<button
 							className={
 								"login__password-check-button" +
-								(focus.password ? " login__email-check-button_focus" : "")
+								(pwdFocus ? " login__email-check-button_focus" : "") +
+								(!pwdValid ? " login__password-check-button_err" : "") +
+								(!pwdValid && pwdFocus
+									? " login__password-check-button_err-focus"
+									: "")
 							}
 							onClick={handleCheckPasswordButtonClick}
 						>
@@ -160,9 +183,7 @@ const Login = (props) => {
 					</div>
 				</div>
 			</Collapse>
-			<div>
-				<a className="login__h2">Fiók létrehozása</a>
-			</div>
+			{!pwdValid ? <p className="login__err-msg">Helytelen jelszó</p> : <></>}
 		</form>
 	);
 };

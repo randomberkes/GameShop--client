@@ -99,12 +99,12 @@ const ProductDetailPage = () => {
 				</div>
 				<div>
 					<div>
-						<p>{product.name}</p>
-						<p>{product.platform}</p>
-						<p>{product.gameDeviceCompatibility}</p>
-						<p>{product.gameType}</p>
-						<p>{product.ratingPegi}</p>
-						<p>{product.numberOfPlayers}</p>
+						<p>Játék neve: {product.name}</p>
+						<p>Platform: {product.platform}</p>
+						<p>Játékeszköz kompatibilitás: {product.gameDeviceCompatibility}</p>
+						<p>Játék típusa: {product.gameType}</p>
+						<p>Rating PEGI (ajánlott korosztály): {product.ratingPegi}</p>
+						<p>Játékosok száma: {product.numberOfPlayers}</p>
 						{/* <p>{product.descriptions}</p> */}
 						<p>
 							Lorem Ipsum is simply dummy text of the printing and typesetting

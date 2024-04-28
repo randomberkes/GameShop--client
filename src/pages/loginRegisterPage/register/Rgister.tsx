@@ -1,168 +1,98 @@
 import React, { useRef, useState } from "react";
-import "./register.css";
-import usersApi from "../../../api/usersApi.ts";
 import { useDispatch } from "react-redux";
-import { setAuthUser } from "../../../Redux/authSlice.ts";
-import Input from "./input/input.tsx";
-import authApi from "../../../api/authApi.ts";
-import { User } from "../../../DTO/user.ts";
 import { useLocation, useNavigate } from "react-router-dom";
-import ROLES_LIST from "../../../config/roles_list.ts";
-let roles: string[] = [ROLES_LIST.Seller];
+import { User } from "../../../DTO/user.ts";
+import { setAuthUser } from "../../../Redux/authSlice.ts";
+import authApi from "../../../api/authApi.ts";
+import usersApi from "../../../api/usersApi.ts";
+import Input from "./input/input.tsx";
+import "./register.css";
+const NAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = (props) => {
 	const { email } = props;
-
-	const inputRefUserName = useRef<HTMLInputElement>(null);
-	const inputRefPassword = useRef<HTMLInputElement>(null);
-	const inputRefRepeatPassword = useRef<HTMLInputElement>(null);
-
-	const [inputs, setInputs] = useState([
-		{ id: 0, error: false, ref: inputRefUserName },
-		{ id: 1, error: false, ref: inputRefPassword },
-		{ id: 2, error: false, ref: inputRefRepeatPassword },
-	]);
-	const [name, setName] = useState("");
-	const [password, setPassword] = useState("");
-	const [repeatPassword, setRepeatPassword] = useState("");
-	const [hover1, setHover1] = useState(false);
-	const [hover2, setHover2] = useState(false);
-	const [hover3, setHover3] = useState(false);
-	const [clicked1, setClicked1] = useState(true);
-	const [clicked2, setClicked2] = useState(false);
-
-	const [errMsg, setErrMsg] = useState("");
-
 	const location = useLocation();
 	const from = location.state?.from?.pathname || "/products";
+
+	const [hover, setHover] = useState(false);
 
 	const navigate = useNavigate();
 
 	const dispatch = useDispatch();
 
-	const handleMouseOver1 = () => {
-		setHover1(true);
+	const nameRef = useRef<HTMLInputElement>(null);
+	const pwdRef = useRef<HTMLInputElement>(null);
+	const repeatPwdRef = useRef<HTMLInputElement>(null);
+
+	const [nameFocus, setNameFocus] = useState(false);
+	const [pwdFocus, setPwdFocus] = useState(false);
+	const [repeatPwdFocus, setRepeatPwdFocus] = useState(false);
+
+	const [nameValid, setNameValid] = useState(true);
+	const [pwdValid, setPwdValid] = useState(true);
+	const [repeatPwdValid, setRepeatPwdValid] = useState(true);
+
+	const [name, setName] = useState("");
+	const [pwd, setPwd] = useState("");
+	const [repeatPwd, setRepeatPwd] = useState("");
+
+	const handleNameMouseFocus = () => {
+		setNameFocus(true);
 	};
-	const handleMouseOut1 = () => {
-		setHover1(false);
+	const handlePwdMouseFocus = () => {
+		setPwdFocus(true);
+	};
+	const handleRepeatPwdMouseFocus = () => {
+		setRepeatPwdFocus(true);
 	};
 
-	const handleMouseOver2 = () => {
-		setHover2(true);
+	const handleNameMouseBlur = () => {
+		setNameFocus(false);
+		const result = NAME_REGEX.test(name);
+
+		setNameValid(result);
 	};
-	const handleMouseOut2 = () => {
-		setHover2(false);
+	const handlePwdMouseBlur = () => {
+		setPwdFocus(false);
+		const result = PWD_REGEX.test(pwd);
+
+		setPwdValid(result);
+	};
+	const handleRepeatPwdMouseBlur = () => {
+		setRepeatPwdFocus(false);
+
+		setRepeatPwdValid(pwd === repeatPwd);
 	};
 
-	const handleMouseOver3 = () => {
-		setHover3(true);
+	const handleNameChange = (e) => {
+		setName(e.target.value);
 	};
-	const handleMouseOut3 = () => {
-		setHover3(false);
+	const handlePwdChange = (e) => {
+		setPwd(e.target.value);
 	};
-
-	const handleChangeUserName = (event) => {
-		setName(event.target.value);
-	};
-	const handleChangePassword = (event) => {
-		setPassword(event.target.value);
-	};
-	const handleChangeRepeatPassword = (event) => {
-		setRepeatPassword(event.target.value);
-	};
-
-	const handleSellerButtonClick = (event?) => {
-		event?.preventDefault();
-		const newClicked = !clicked1;
-		setClicked1(newClicked);
-		if (newClicked) {
-			roles.push(ROLES_LIST.Seller);
-		} else {
-			roles = roles.filter((role) => {
-				return role !== ROLES_LIST.Seller;
-			});
-		}
-		if (!newClicked && roles.length < 1) handleBuyerButtonClick(null);
-	};
-
-	const handleBuyerButtonClick = (event?) => {
-		event?.preventDefault();
-		const newClicked = !clicked2;
-		setClicked2(newClicked);
-		if (newClicked) {
-			roles.push(ROLES_LIST.Buyer);
-		} else {
-			roles = roles.filter((role) => {
-				return role !== ROLES_LIST.Buyer;
-			});
-		}
-		if (!newClicked && roles.length < 1) handleSellerButtonClick(null);
-	};
-
-	const notEmptyValidation = (id, event) => {
-		let message = "";
-		if (event.target.value.length === 0) {
-			setError(id, true);
-			message = "Kötelező mező";
-		}
-		return message;
-	};
-	const differentPasswordsValidation = (id, event): string => {
-		let message = "";
-		if (password !== repeatPassword) {
-			setError(id, true);
-			message = "A jelszavak nem egyeznek meg.";
-		}
-		return message;
-	};
-
-	const setError = (id: number, value: boolean) => {
-		setInputs((prevInputs) => {
-			const newInputs = [...prevInputs];
-
-			newInputs[id].error = value;
-
-			return newInputs;
-		});
-	};
-
-	const register = async (user: User) => {
-		try {
-			await usersApi.postUser(user);
-		} catch (err) {
-			if (!err?.response) {
-				setErrMsg("No Server Response");
-			} else if (err.response?.status === 500) {
-				setErrMsg("Internal Server Error");
-			} else {
-				setErrMsg("Regiset Failed");
-			}
-		}
+	const handleRepeatPwdChange = (e) => {
+		setRepeatPwd(e.target.value);
 	};
 
 	const handleClick = async (event) => {
-		let formValid: boolean = true;
 		event.preventDefault();
-		inputs.forEach((element) => {
-			element.ref.current?.focus();
-		});
-		setTimeout(() => {
-			inputs.some((element) => {
-				if (element.error) {
-					formValid = false;
-					element.ref.current?.focus();
-					return element.error;
-				}
-			});
-		});
-		if (formValid) {
+		if (!NAME_REGEX.test(name)) {
+			setNameValid(false);
+			nameRef.current!.focus();
+		} else if (!PWD_REGEX.test(pwd)) {
+			setPwdValid(false);
+			pwdRef.current!.focus();
+		} else if (pwd !== repeatPwd) {
+			setRepeatPwdValid(false);
+			repeatPwdRef.current!.focus();
+		} else {
 			const newUser: User = {
 				name: name,
 				email: email,
-				password: password,
-				roles: roles,
+				password: pwd,
 			};
-			await register(newUser);
+			await usersApi.postUser(newUser);
 			const auth = await authApi.login(newUser.email, newUser.password);
 			const accessToken = auth.accessToken;
 			const role = auth.role;
@@ -176,7 +106,6 @@ const Register = (props) => {
 			);
 			navigate(from);
 		}
-		roles = [];
 	};
 
 	return (
@@ -200,84 +129,115 @@ const Register = (props) => {
 			<div>
 				<p>Vezetéknév és keresztnév</p>
 			</div>
+
 			<div>
 				<Input
-					key={inputs[0].id}
-					id={inputs[0].id}
-					inputRef={inputs[0].ref}
-					error={inputs[0].error}
-					setError={setError}
-					inputValue={name}
-					handleInputChange={handleChangeUserName}
-					validationList={[notEmptyValidation]}
+					key={0}
+					ref={nameRef}
+					onFocus={handleNameMouseFocus}
+					onBlur={handleNameMouseBlur}
+					onChange={handleNameChange}
+					value={name}
+					focus={nameFocus}
+					error={!nameValid}
 				/>
+			</div>
+			<div>
+				{!nameFocus && !nameValid ? (
+					name === "" ? (
+						<p className="register__errorMsg">Kötelező</p>
+					) : (
+						<p className="register__errorMsg">Név érvénytelen</p>
+					)
+				) : (
+					<></>
+				)}
+				{nameFocus ? (
+					<p className="editUserFormData__instructions">
+						4-24 karakter.
+						<br /> Betűvel kell kezdeni.
+						<br /> Betűk, számok, aláhúzásjelek, kötőjelek megengedettek.
+					</p>
+				) : (
+					<></>
+				)}
 			</div>
 			<div>
 				<p>Válassz egy biztonságos jelszót</p>
 			</div>
 			<div>
 				<Input
-					key={inputs[1].id}
-					id={inputs[1].id}
-					inputRef={inputs[1].ref}
-					error={inputs[1].error}
-					setError={setError}
-					inputValue={password}
-					handleInputChange={handleChangePassword}
-					validationList={[differentPasswordsValidation, notEmptyValidation]}
+					key={1}
+					ref={pwdRef}
+					onFocus={handlePwdMouseFocus}
+					onBlur={handlePwdMouseBlur}
+					onChange={handlePwdChange}
+					value={pwd}
+					focus={pwdFocus}
+					error={!pwdValid}
 				/>
+			</div>
+			<div>
+				{!pwdFocus && !pwdValid ? (
+					pwd === "" ? (
+						<p className="register__errorMsg">Kötelező</p>
+					) : (
+						<p className="register__errorMsg">Jelszó érvénytelen</p>
+					)
+				) : (
+					<></>
+				)}
+				{pwdFocus ? (
+					<p className="editUserFormData__instructions">
+						8-24 karakter.
+						<br />
+						Tartalmaznia kell kis- és nagybetűket, számot és speciális
+						karaktert.
+						<br />
+						Engedélyezett speciális karakterek: ! @ # $ %
+					</p>
+				) : (
+					<></>
+				)}
 			</div>
 			<div>
 				<p>Jelszó megerősítése</p>
 			</div>
 			<div>
 				<Input
-					key={inputs[2].id}
-					id={inputs[2].id}
-					inputRef={inputs[2].ref}
-					error={inputs[2].error}
-					setError={setError}
-					inputValue={repeatPassword}
-					handleInputChange={handleChangeRepeatPassword}
-					validationList={[notEmptyValidation]}
+					key={0}
+					ref={repeatPwdRef}
+					onFocus={handleRepeatPwdMouseFocus}
+					onBlur={handleRepeatPwdMouseBlur}
+					onChange={handleRepeatPwdChange}
+					value={repeatPwd}
+					focus={repeatPwdFocus}
+					error={!repeatPwdValid}
 				/>
 			</div>
-
 			<div>
-				<button
-					className={
-						"register__seller-button" +
-						(hover1 ? " register__button_hover" : "") +
-						(clicked1 ? " register__seller-button_clicked" : "")
-					}
-					onMouseOver={handleMouseOver1}
-					onMouseOut={handleMouseOut1}
-					onClick={handleSellerButtonClick}
-				>
-					Vásárló
-				</button>
-				<button
-					className={
-						"register__buyer-button" +
-						(hover2 ? " register__button_hover" : "") +
-						(clicked2 ? " register__buyer-button_clicked" : "")
-					}
-					onMouseOver={handleMouseOver2}
-					onMouseOut={handleMouseOut2}
-					onClick={handleBuyerButtonClick}
-				>
-					Eladó
-				</button>
+				{!repeatPwdValid ? (
+					repeatPwd === "" ? (
+						<p className="register__errorMsg">Kötelező</p>
+					) : (
+						<p className="register__errorMsg">A jelszavak nem egyeznek meg.</p>
+					)
+				) : (
+					<></>
+				)}
 			</div>
-
 			<div>
 				<button
 					className={
-						"register__button" + (hover3 ? " register__button_hover" : "")
+						"register__button" + (hover ? " register__button_hover" : "")
 					}
 					onClick={handleClick}
-					onMouseOver={handleMouseOver3}
-					onMouseOut={handleMouseOut3}
+					onMouseOver={() => {
+						setHover(true);
+					}}
+					onMouseOut={() => {
+						setHover(false);
+					}}
 				>
 					Folytasd
 				</button>

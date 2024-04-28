@@ -3,6 +3,7 @@ import "./activationKeysScreen.css";
 import activationKeyApi from "../../../api/activationKeyApi.ts";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
 import GameCard from "../../../components/gameCard/GameCard.tsx";
+import UserMenuBar from "../../../components/userMenuBar/userMenuBar.tsx";
 
 const ActivationKeysScreen = () => {
 	const [ownerLinks, setOwnerLinks] = useState([]);
@@ -24,6 +25,7 @@ const ActivationKeysScreen = () => {
 			<div className="activationKeysScreen__header-container">
 				<h2>Játékaim</h2>
 			</div>
+
 			<div>{ownerLinks.map(createGameCard)}</div>
 		</div>
 	);

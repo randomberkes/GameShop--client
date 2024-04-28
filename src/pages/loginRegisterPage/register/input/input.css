@@ -2,6 +2,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
 }
 
 .register__input {
@@ -10,9 +11,11 @@
 	border-bottom: 1px solid #393e46 !important;
 	border-right: 0px;
 	height: 60px;
-	width: 400px;
+	width: calc(100% - 50px);
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
 
 	box-sizing: border-box;
 }
@@ -22,6 +25,7 @@
 	border-top: 1px solid red !important;
 	border-left: 1px solid red !important;
 	border-bottom: 1px solid red !important;
+	background-color: #e7292930;
 }
 
 .register__input_focus {
@@ -59,6 +63,10 @@
 
 .register__input_icon-container_invalid > i {
 	display: inline-block;
+}
+
+.register__input_icon-container_invalid {
+	background-color: #e7292930;
 }
 
 .register__input_icon-container_invalid {

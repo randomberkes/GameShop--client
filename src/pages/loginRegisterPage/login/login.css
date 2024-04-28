@@ -3,12 +3,23 @@
 }
 
 .login__container {
+	box-sizing: border-box;
 	display: grid;
-	grid-template-rows: 200px 50px 100px 60px 60px auto;
+	grid-template-rows: 200px 50px 100px 60px 60px 60px 60px;
 	background-color: white;
 	width: 640px;
 	height: 640px;
 	border-radius: 40px;
+	padding: 20px 100px;
+}
+
+@media only screen and (max-width: 600px) {
+	.login__container {
+		width: 100%;
+		border-radius: 0px;
+		padding: 20px 20px;
+		height: 100%;
+	}
 }
 
 .login__container > div {
@@ -41,26 +52,19 @@
 	border-left: 1px solid #222831 !important;
 	border-bottom: 1px solid #222831 !important;
 	height: 60px;
-	width: 450px;
+	width: calc(100% - 50px);
+
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
 	border-right: 0px;
 	box-sizing: border-box;
+	border-top-right-radius: 0px !important;
+	border-bottom-right-radius: 0px !important;
 }
 
 .login__email-input_password-input-open {
 	border-bottom-left-radius: 0px;
 	border-bottom: 0px !important;
-}
-.login__password-input {
-	border-top: 1px solid #222831 !important;
-	border-left: 1px solid #222831 !important;
-	border-bottom: 1px solid #222831 !important;
-	height: 60px;
-	width: 450px;
-	border-bottom-left-radius: 15px;
-	border-right: 0px;
-	box-sizing: border-box;
 }
 
 .login__email-input_focus {
@@ -70,23 +74,24 @@
 	border-bottom: 3px solid #d65a31 !important;
 }
 
-.login__password-input_focus {
+.login__email-input_err {
 	outline: none;
-	border-top: 3px solid #d65a31 !important;
-	border-left: 3px solid #d65a31 !important;
-	border-bottom: 3px solid #d65a31 !important;
+	border-top: 1px solid #e72929 !important;
+	border-left: 1px solid #e72929 !important;
+	border-bottom: 1px solid #e72929 !important;
+	background-color: #e7292930;
 }
 
-.login__next-button {
-	background-color: #222831;
-	color: #eeeeee;
-	width: 200px;
-	height: 50px;
-	border: 0px;
-	border-radius: 15px;
+.login__email-input_err-focus {
+	border-top: 3px solid #e72929 !important;
+	border-left: 3px solid #e72929 !important;
+	border-bottom: 3px solid #e72929 !important;
 }
 
 .login__email-check-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background: none;
 	color: #222831;
 	width: 50px;
@@ -99,12 +104,71 @@
 	border-bottom-right-radius: 15px;
 }
 
+.login__email-check-button_focus {
+	border-top: 3px solid #d65a31 !important;
+	border-right: 3px solid #d65a31 !important;
+	border-bottom: 3px solid #d65a31 !important;
+}
+
+.login__email-check-button_err {
+	border-top: 1px solid #e72929 !important;
+	border-right: 1px solid #e72929 !important;
+	border-bottom: 1px solid #e72929 !important;
+	background-color: #e7292930;
+}
+
+.login__email-check-button_err-focus {
+	border-top: 3px solid #e72929 !important;
+	border-right: 3px solid #e72929 !important;
+	border-bottom: 3px solid #e72929 !important;
+}
+.login__err-msg {
+	color: red;
+}
+
 .login__email-check-button_password-input-open {
 	border-bottom-right-radius: 0px;
 	border-bottom: 0px;
 }
 
+.login__password-input {
+	border-top: 1px solid #222831 !important;
+	border-left: 1px solid #222831 !important;
+	border-bottom: 1px solid #222831 !important;
+	height: 60px;
+	box-sizing: border-box;
+	width: calc(100% - 50px);
+	border-bottom-left-radius: 15px;
+	border-right: 0px;
+	border-top-right-radius: 0px !important;
+	border-bottom-right-radius: 0px !important;
+	border-top-left-radius: 0px !important;
+}
+.login__password-input_focus {
+	outline: none;
+	border-top: 3px solid #d65a31 !important;
+	border-left: 3px solid #d65a31 !important;
+	border-bottom: 3px solid #d65a31 !important;
+}
+
+.login__password-input_err {
+	outline: none;
+	border-top: 1px solid #e72929 !important;
+	border-left: 1px solid #e72929 !important;
+	border-bottom: 1px solid #e72929 !important;
+	background-color: #e7292930;
+}
+
+.login__password-input_err-focus {
+	border-top: 3px solid #e72929 !important;
+	border-left: 3px solid #e72929 !important;
+	border-bottom: 3px solid #e72929 !important;
+}
+
 .login__password-check-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background: none;
 	color: #222831;
 	width: 50px;
@@ -116,10 +180,16 @@
 	border-bottom-right-radius: 15px;
 }
 
-.login__email-check-button_focus {
-	border-top: 3px solid #d65a31 !important;
-	border-right: 3px solid #d65a31 !important;
-	border-bottom: 3px solid #d65a31 !important;
+.login__password-check-button_err {
+	border-top: 1px solid #e72929 !important;
+	border-right: 1px solid #e72929 !important;
+	border-bottom: 1px solid #e72929 !important;
+	background-color: #e7292930;
+}
+.login__password-check-button_err-focus {
+	border-top: 3px solid #e72929 !important;
+	border-right: 3px solid #e72929 !important;
+	border-bottom: 3px solid #e72929 !important;
 }
 
 .login__email-check-button,

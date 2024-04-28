@@ -3,6 +3,7 @@ import "./advertisementsScreen.css";
 import offerApi from "../../../api/offerApi.ts";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
 import AdvertisementCard from "../../../components/advertisementCard/AdvertisementCard.tsx";
+import UserMenuBar from "../../../components/userMenuBar/userMenuBar.tsx";
 
 const AdvertisementsScreen = () => {
 	const [offers, setOffers] = useState([]);

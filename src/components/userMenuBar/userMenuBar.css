@@ -1,0 +1,23 @@
+.userMenuBar__container {
+	display: none;
+	background-color: white;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 50px;
+	background-image: linear-gradient(
+		to bottom right,
+		#006fcd,
+		#107c10,
+		/* black, */ #e72929
+	);
+
+	border-radius: 15px;
+	color: white;
+}
+@media only screen and (max-width: 600px) {
+	.userMenuBar__container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}

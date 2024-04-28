@@ -1,9 +1,8 @@
 import React from "react";
-import "./userAccountPage.css";
-import UserAccountCard from "../../components/userAccountCard/UserAccountCard.tsx";
-import UserAccountNavbar from "../../components/userAccountNavbar/UserAccountNavbar.tsx";
-import EditUserDataForm from "../../components/editUserDataForm/EditUserDataForm.tsx";
 import { Outlet, useLocation } from "react-router-dom";
+import UserAccountNavbar from "../../components/userAccountNavbar/UserAccountNavbar.tsx";
+import UserMenuBar from "../../components/userMenuBar/userMenuBar.tsx";
+import "./userAccountPage.css";
 
 const UserAccountPage = () => {
 	const location = useLocation();
@@ -15,6 +14,7 @@ const UserAccountPage = () => {
 				</div>
 
 				<div className="userAccountPage__user-card-container">
+					{location.pathname !== "/user/nav" ? <UserMenuBar /> : <></>}
 					<Outlet />
 				</div>
 			</div>

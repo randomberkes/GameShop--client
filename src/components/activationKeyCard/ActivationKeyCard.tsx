@@ -1,6 +1,5 @@
 import React from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
-import activationKeyApi from "../../api/activationKeyApi.ts";
 
 const ActivationKeyCard = (props) => {
 	const { activationKey, productID, handleClick } = props;

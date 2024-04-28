@@ -31,7 +31,7 @@ function ProductCard(props) {
 					<li>Játékosok száma: {productData.numberOfPlayers}</li>
 				</ul>
 			</div>
-			{buttons}
+			<div className="productCard_buttons-container">{buttons}</div>
 		</div>
 	);
 }

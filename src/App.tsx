@@ -22,6 +22,7 @@ import UserAccountCard from "./components/userAccountCard/UserAccountCard.tsx";
 import PuchasesScreen from "./pages/userAccountPage/purchasesScreen/PuchasesScreen.tsx";
 import ActivationKeysScreen from "./pages/userAccountPage/activationKeysScreen/ActivationKeysScreen.tsx";
 import AdvertisementsScreen from "./pages/userAccountPage/advertisementsScreen/AdvertisementsScreen.tsx";
+import UserAccountNavbar from "./components/userAccountNavbar/UserAccountNavbar.tsx";
 
 function App() {
 	return (
@@ -59,6 +60,7 @@ function App() {
 									path="advertisements"
 									element={<AdvertisementsScreen />}
 								></Route>
+								<Route path="nav" element={<UserAccountNavbar />}></Route>
 							</Route>
 						</Route>
 					</Route>
