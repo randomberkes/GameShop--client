@@ -1,0 +1,14 @@
+.navbarButtonAmountIndicator__container {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: red;
+	top: -5px;
+	right: 0px;
+	width: 15px;
+	height: 15px;
+	border-radius: 50px;
+	color: white;
+	font-size: 13px;
+}

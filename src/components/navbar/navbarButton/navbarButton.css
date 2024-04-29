@@ -1,4 +1,5 @@
 .navbarButton {
+	position: relative;
 	display: inline-block;
 	background-color: #222831;
 	padding-left: 2px !important;

@@ -7,12 +7,19 @@ import SideNavbar from "./sideNavBar/SideNavbar.tsx";
 import { Link, useLocation } from "react-router-dom";
 import UserButtonIcon from "./navbarButton/userButtonIcon/UserButtonIcon.tsx";
 import UserCollapsible from "./navbarButton/userCollapsible/UserCollapsible.tsx";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux/store.ts";
+import NavbarButtonAmountIndicator from "../navbarButtonAmountIndicator/NavbarButtonAmountIndicator.tsx";
 
 function Navbar() {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const location = useLocation();
 
 	let [showSearchBar, setShowSearchBar] = useState(false);
+	const { authUser } = useSelector((state: RootState) => state.auth);
+	const { favoriteOffers, cartOffers } = useSelector(
+		(state: RootState) => state.offers
+	);
 
 	const navbarButtonsData = [
 		{
@@ -24,17 +31,29 @@ function Navbar() {
 			icon: <UserButtonIcon />,
 			link: "/user/myAccount",
 			label: "Saját fiók",
-			collapsible: <UserCollapsible />,
+			collapsible: authUser.name !== "" ? <UserCollapsible /> : <></>,
 		},
 		{
 			icon: <i className="bi bi-heart"></i>,
 			link: "/favorites",
 			label: "Kedvencek",
+			amountIndicator:
+				favoriteOffers.length > 0 ? (
+					<NavbarButtonAmountIndicator amount={favoriteOffers.length} />
+				) : (
+					<></>
+				),
 		},
 		{
 			icon: <i className="bi bi-cart"></i>,
 			link: "/cart",
 			label: "Kosár",
+			amountIndicator:
+				cartOffers.length > 0 ? (
+					<NavbarButtonAmountIndicator amount={cartOffers.length} />
+				) : (
+					<></>
+				),
 		},
 	];
 
@@ -48,6 +67,7 @@ function Navbar() {
 					link={navbarBUttonData.link}
 					icon={navbarBUttonData.icon}
 					collapsible={navbarBUttonData.collapsible}
+					amountIndicator={navbarBUttonData.amountIndicator}
 				/>
 			);
 		}

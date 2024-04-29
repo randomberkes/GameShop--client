@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "./navbarButton.css";
 import { Link, useLocation } from "react-router-dom";
 import Collapse from "@mui/material/Collapse";
+import { useSelector } from "react-redux";
 
 function NavbarButton(props) {
 	const location = useLocation();
 
-	const { icon, link, label, showSearchBar, collapsible } = props;
+	const { icon, link, label, showSearchBar, collapsible, amountIndicator } =
+		props;
 	const [hover, setHover] = useState(false);
 
 	const handleMouseOver = () => {
@@ -33,9 +35,11 @@ function NavbarButton(props) {
 					state={{ from: location }}
 				>
 					{icon}
+					{amountIndicator}
 				</Link>
 				{label !== "" ? <div className="navbarButtonLabel">{label}</div> : null}
 			</div>
+
 			<div className="navbarButton__absoluteContainer">
 				<Collapse in={hover}>
 					<div

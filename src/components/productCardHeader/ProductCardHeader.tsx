@@ -3,14 +3,15 @@ import ProductCard from "../productCard/ProductCard.tsx";
 import FavoriteProductCardButtons from "../favoriteProductCardButtons/FavoriteProductCardButtons.tsx";
 import { useLocation } from "react-router-dom";
 import CartProductCardButtons from "../cartProductCardButtons/CartProductCardButtons.tsx";
+import "./productCardHeader.css";
 
 const ProductCardHeader = (props) => {
 	const { seller, product, index, price, offerID, amount } = props;
 	const location = useLocation();
 
 	return (
-		<div>
-			<div>{seller}</div>
+		<div className="productCardHeader__container">
+			<div className="productCardHeader__username">{seller}</div>
 			<ProductCard
 				key={index}
 				productData={product}
