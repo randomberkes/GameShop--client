@@ -23,6 +23,7 @@ import PuchasesScreen from "./pages/userAccountPage/purchasesScreen/PuchasesScre
 import ActivationKeysScreen from "./pages/userAccountPage/activationKeysScreen/ActivationKeysScreen.tsx";
 import AdvertisementsScreen from "./pages/userAccountPage/advertisementsScreen/AdvertisementsScreen.tsx";
 import UserAccountNavbar from "./components/userAccountNavbar/UserAccountNavbar.tsx";
+import FilterScreen from "./pages/productsPage/filterScreen/FilterScreen.tsx";
 
 function App() {
 	return (
@@ -41,7 +42,8 @@ function App() {
 						}
 					>
 						<Route path="products/:productID" element={<ProductDetailPage />} />
-						<Route path="products" element={<ProductsPage />} />
+						<Route path="products" element={<ProductsPage />}></Route>
+						<Route path="products/filter" element={<FilterScreen />} />
 
 						<Route path="favorites" element={<FavoritesScreen />} />
 

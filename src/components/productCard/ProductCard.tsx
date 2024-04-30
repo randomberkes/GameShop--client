@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import "./productCard.css";
 import { useNavigate } from "react-router-dom";
@@ -19,19 +20,21 @@ function ProductCard(props) {
 				/>
 			</div>
 
-			<div onClick={handleClick}>
-				<h5 className="card-title">{productData.name}</h5>
-				<h6 className="">{productData.platform}</h6>
-				<ul className="list">
-					<li>
-						Játékeszköz kompatibilitás: {productData.gameDeviceCompatibility}
-					</li>
-					<li>Játék típusa: {productData.gameType}</li>
-					<li>Rating PEGI (ajánlott korosztály): {productData.ratingPegi}</li>
-					<li>Játékosok száma: {productData.numberOfPlayers}</li>
-				</ul>
+			<div className="productCard__textContainer" onClick={handleClick}>
+				<div>
+					<h5 className="card-title">{productData.name}</h5>
+					<h6 className="">{productData.platform}</h6>
+					<ul className="list">
+						<li>
+							Játékeszköz kompatibilitás: {productData.gameDeviceCompatibility}
+						</li>
+						<li>Játék típusa: {productData.gameType}</li>
+						<li>Rating PEGI (ajánlott korosztály): {productData.ratingPegi}</li>
+						<li>Játékosok száma: {productData.numberOfPlayers}</li>
+					</ul>
+				</div>
 			</div>
-			<div className="productCard_buttons-container">{buttons}</div>
+			{buttons}
 		</div>
 	);
 }

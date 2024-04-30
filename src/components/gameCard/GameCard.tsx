@@ -32,7 +32,7 @@ const GameCard = (props) => {
 	const icons = {
 		playstationIcon: "bi-playstation",
 		xboxIcon: "bi-xbox",
-		pcIcon: "#107C10",
+		pcIcon: "bi-pc",
 	};
 	useEffect(() => {
 		const getActivationKeys = async () => {
@@ -62,8 +62,8 @@ const GameCard = (props) => {
 			setIcon(icons.xboxIcon);
 		}
 		if (product.platform === "PC") {
-			setColor(colors.xboxColor);
-			setIcon(icons.xboxIcon);
+			setColor(colors.pcColor);
+			setIcon(icons.pcIcon);
 		}
 	}, [product]);
 	const handleClick = async (productID, axtivationKeyID, axiosPrivate) => {

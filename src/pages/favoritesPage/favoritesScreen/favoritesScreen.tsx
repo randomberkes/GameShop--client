@@ -1,16 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../Redux/store.ts";
-import "./favoritesScreen.css";
-import {
-	addProductToFavorites,
-	setFavoriteProducts,
-} from "../../../Redux/favoriteProductsSlice.ts";
-import ProductCardHeader from "../../../components/productCardHeader/ProductCardHeader.tsx";
 import { setFavoriteOffers } from "../../../Redux/offerSlice.ts";
+import { RootState } from "../../../Redux/store.ts";
 import favoritesApi from "../../../api/favoritesApi.ts";
+import ProductCardHeader from "../../../components/productCardHeader/ProductCardHeader.tsx";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
-import productsApi from "../../../api/productsApi.ts";
+import "./favoritesScreen.css";
 
 const FavoritesScreen = () => {
 	const { authUser } = useSelector((state: RootState) => state.auth);

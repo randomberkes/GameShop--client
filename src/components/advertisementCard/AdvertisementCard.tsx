@@ -18,7 +18,7 @@ const AdvertisementCard = (props) => {
 	const icons = {
 		playstationIcon: "bi-playstation",
 		xboxIcon: "bi-xbox",
-		pcIcon: "#107C10",
+		pcIcon: "bi-pc",
 	};
 	useEffect(() => {
 		const getActivationKeys = async () => {
@@ -41,8 +41,8 @@ const AdvertisementCard = (props) => {
 			setIcon(icons.xboxIcon);
 		}
 		if (offer.platform === "PC") {
-			setColor(colors.xboxColor);
-			setIcon(icons.xboxIcon);
+			setColor(colors.pcColor);
+			setIcon(icons.pcIcon);
 		}
 	});
 	const handleClick = async (productID, axtivationKeyID, axiosPrivate) => {

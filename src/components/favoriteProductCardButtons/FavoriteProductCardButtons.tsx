@@ -47,6 +47,15 @@ const FavoriteProductCardButtons = (props) => {
 			);
 		} else {
 			await cartApi.addCartLink(offerID, axiosPrivate);
+			dispatch(
+				addOfferToCart({
+					id: offerID,
+					name: name,
+					price: price,
+					product: productData,
+					amount: 1,
+				})
+			);
 		}
 	};
 

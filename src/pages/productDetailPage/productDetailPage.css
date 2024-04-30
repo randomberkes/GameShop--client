@@ -1,30 +1,20 @@
 .productDetailPage__container {
 	display: grid;
-	grid-template-columns: 30% 40% 30%;
-	height: 600px;
+	grid-template-columns: 55% 45%;
+	grid-template-rows: auto auto;
+	height: auto;
 	background-color: white;
 
 	border-radius: 15px;
 	padding: 10px;
 }
 
-.productDetailPage__best-offer-container > div > button > div {
-	width: 250px;
+.productDetailPage__best-offer-row {
+	grid-column: 1 / span 2;
 }
-@media only screen and (max-width: 600px) {
-	.productDetailPage__container {
-		grid-template-columns: 100%;
-		grid-template-rows: auto auto auto;
-		height: auto;
-	}
-	.productDetailPage__container > div > div > p {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.productDetailPage__best-offer-container > div > button > div {
-		width: 200px;
-	}
+
+.productDetailPage__best-offer-container > div > button > div {
+	width: 100%;
 }
 
 .productDetailPage__container > div {
@@ -34,19 +24,22 @@
 }
 
 .productDetailPage__container > div > img {
-	width: 300px;
-	height: 300px;
+	width: 250px;
+	height: 250px;
 	border-radius: 15px;
 }
 
 .productDetailPage__best-offer-container {
 	display: grid;
+	box-sizing: border-box;
 	grid-template-rows: 25% 25% 25% 25%;
 	width: 300px;
 	height: 300px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 15px;
 	padding: 15px;
+	margin-bottom: 20px;
+	margin-top: 10px;
 }
 
 .productDetailPage__best-offer-container > div {
@@ -59,12 +52,12 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	/* width: 100%; */
 	height: 50px;
 	border: none;
 	border-radius: 10px;
 	color: white;
 	font-size: 20px;
+	width: 100%;
 }
 
 .productDetailPage__best-user-container {
@@ -102,5 +95,36 @@
 	margin: 5px;
 }
 
-.productDetailPage__offers-container {
+@media only screen and (min-width: 1200px) {
+	.productDetailPage__container {
+		grid-template-columns: 30% 40% 30%;
+		grid-template-rows: auto;
+		height: auto;
+	}
+	.productDetailPage__container > div > img {
+		width: 300px;
+		height: 300px;
+	}
+	.productDetailPage__best-offer-row {
+		grid-column: 3 / span 1;
+	}
+}
+@media only screen and (max-width: 600px) {
+	.productDetailPage__container {
+		grid-template-columns: 100%;
+		grid-template-rows: auto auto auto;
+		height: auto;
+	}
+	.productDetailPage__container > div > div > p {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.productDetailPage__container > div > img {
+		width: 300px;
+		height: 300px;
+	}
+	.productDetailPage__best-offer-row {
+		grid-column: 1 / span 1;
+	}
 }

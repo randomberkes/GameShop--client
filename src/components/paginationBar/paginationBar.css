@@ -1,0 +1,21 @@
+.paginationBar__container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	height: 50px;
+	border-radius: 10px;
+}
+
+.paginationBar__button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0px 3px;
+	background-color: white;
+	color: #d65a31;
+	border: 1px solid #d65a31;
+	border-radius: 5px;
+	width: auto;
+	height: 30px;
+}

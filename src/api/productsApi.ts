@@ -32,6 +32,7 @@ export const getAllProducts = async (): Promise<Product[]> => {
 
 export const getProductsByName = async (inputValue): Promise<Product[]> => {
 	let productListData: Product[] = [];
+
 	try {
 		const response = await API.axiosPublic.get("/products/search", {
 			params: { name: inputValue },
@@ -47,20 +48,22 @@ export const getProductsByName = async (inputValue): Promise<Product[]> => {
 	return productListData;
 };
 
-export const getProductsByFilter = async (inputValue): Promise<Product[]> => {
+export const getProductsByFilter = async (inputValue, page, limit) => {
 	let productListData: Product[] = [];
+	let totalPageNumber;
 	try {
 		const response = await API.axiosPublic.get("/products/filter", {
-			params: { filter: inputValue },
+			params: { filter: inputValue, page: page, limit: limit },
 		});
-		productListData = response.data.map((data) => {
+		totalPageNumber = response.data.totalPageNumber;
+		productListData = response.data.products.map((data) => {
 			return mapDataToProduct(data);
 		});
 	} catch (err) {
 		console.log(err);
 	}
 
-	return productListData;
+	return { totalPageNumber, productListData };
 };
 
 const getProductByID = async (productID: any): Promise<Product> => {

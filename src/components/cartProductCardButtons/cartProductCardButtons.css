@@ -21,6 +21,12 @@
 	justify-content: flex-end;
 }
 
+@media only screen and (max-width: 600px) {
+	.cartProductCardButtons_Container > div {
+		justify-content: center;
+	}
+}
+
 .cartProductCardButtons_price {
 	font-weight: 400;
 	font-size: 30px;

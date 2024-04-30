@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addOfferToCart, addOfferToFavorites } from "../../Redux/offerSlice.ts";
 import { RootState } from "../../Redux/store";
@@ -28,6 +28,14 @@ const OfferCard = (props) => {
 			);
 		} else {
 			await favoritesApi.addFavoritesLink(id, axiosPrivate);
+			dispatch(
+				addOfferToFavorites({
+					id: id,
+					name: name,
+					price: price,
+					product: product,
+				})
+			);
 		}
 	};
 
@@ -44,6 +52,15 @@ const OfferCard = (props) => {
 			);
 		} else {
 			await cartApi.addCartLink(id, axiosPrivate);
+			dispatch(
+				addOfferToCart({
+					id: id,
+					name: name,
+					price: price,
+					product: product,
+					amount: 1,
+				})
+			);
 		}
 	};
 

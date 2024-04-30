@@ -5,7 +5,7 @@ const getUserByEmail = async (email): Promise<User | string> => {
 	let user: User;
 	try {
 		const response = await API.axiosPublic.get("/users/email", {
-			params: { email: email },
+			params: { email },
 		});
 
 		if (response.data.id) {
@@ -13,7 +13,6 @@ const getUserByEmail = async (email): Promise<User | string> => {
 				name: response.data.name,
 				email: response.data.email,
 				password: response.data.password,
-				roles: response.data.roles,
 			};
 
 			return user;

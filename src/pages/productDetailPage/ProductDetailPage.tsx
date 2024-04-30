@@ -58,6 +58,15 @@ const ProductDetailPage = () => {
 			);
 		} else {
 			await cartApi.addCartLink(offers[0].id, axiosPrivate);
+			dispatch(
+				addOfferToCart({
+					id: offers[0].id,
+					name: offers[0].name,
+					price: offers[0].price,
+					product: product,
+					amount: 1,
+				})
+			);
 		}
 	};
 
@@ -73,6 +82,14 @@ const ProductDetailPage = () => {
 			);
 		} else {
 			await favoritesApi.addFavoritesLink(offers[0].id, axiosPrivate);
+			dispatch(
+				addOfferToFavorites({
+					id: offers[0].id,
+					name: offers[0].name,
+					price: offers[0].price,
+					product: product,
+				})
+			);
 		}
 	};
 
@@ -115,7 +132,7 @@ const ProductDetailPage = () => {
 						</p>
 					</div>
 				</div>
-				<div>
+				<div className="productDetailPage__best-offer-row">
 					<div className="productDetailPage__best-offer-container">
 						<div className="productDetailPage__best-user-container">
 							<div className="productDetailPage__user-icon">

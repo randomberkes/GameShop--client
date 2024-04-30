@@ -1,0 +1,18 @@
+.paginationBarButton__button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0px 3px;
+	background-color: white;
+	color: #d65a31;
+	border: 1px solid #d65a31;
+	border-radius: 5px;
+	width: 30px;
+	height: 30px;
+}
+
+.paginationBarButton__button-active {
+	background-color: #d65a31;
+	color: white;
+	border: 1px solid white;
+}
