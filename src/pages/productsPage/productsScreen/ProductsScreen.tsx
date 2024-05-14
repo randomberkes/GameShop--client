@@ -23,7 +23,7 @@ function ProductsScreen() {
 		const productListData = await productsApi.getProductsByFilter(
 			filter,
 			page,
-			3
+			2
 		);
 
 		setTotalPageNumber(productListData.totalPageNumber);

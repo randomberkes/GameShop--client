@@ -1,7 +1,7 @@
 .orderSummaryProductCard__container {
 	display: grid;
 	grid-template-rows: 40px;
-	grid-template-columns: 30px 300px auto;
+	grid-template-columns: 30px 200px auto;
 	column-gap: 10px;
 	border-top: 1px solid hsla(217, 10%, 25%, 0.314);
 	border-bottom: 1px solid #393e4650;

@@ -14,7 +14,6 @@ const OfferCard = (props) => {
 	const dispatch = useDispatch();
 	const { authUser } = useSelector((state: RootState) => state.auth);
 	const axiosPrivate = useAxiosPrivate();
-	const offers = useSelector((state: RootState) => state.offers.favoriteOffers);
 
 	const handleFavoriteButtonClick = async () => {
 		if (authUser.name === "") {

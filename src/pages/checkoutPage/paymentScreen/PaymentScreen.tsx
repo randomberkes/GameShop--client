@@ -36,28 +36,6 @@ const PaymentScreen = () => {
 	const [cvcFocus, setCvcFocus] = useState(true);
 	const cvcRef = useRef<HTMLInputElement>(null);
 
-	// useEffect(() => {
-	// const getProducts = async () => {
-	// 	try {
-	// 		const products = await cartApi.getCartProducts(axiosPrivate);
-	// 		dispatch(setCartProducts(products));
-	// 		products.forEach(async (element) => {
-	// 			const rows = await cartApi.getAmountOfCartProduct(
-	// 				element.id,
-	// 				axiosPrivate
-	// 			);
-	// 			const input = { id: element.id, amount: rows.amount };
-	// 			dispatch(setProductAmount(input));
-	// 		});
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 		dispatch(setCartProducts([]));
-	// 	}
-	// };
-	// getProducts();
-
-	// }, []);
-
 	useEffect(() => {
 		const getProducts = async () => {
 			try {
@@ -66,7 +44,6 @@ const PaymentScreen = () => {
 				dispatch(setCartOffers(offers));
 			} catch (err) {
 				console.log(err);
-				// dispatch(setCartProducts([]));
 			}
 		};
 		getProducts();
@@ -136,110 +113,113 @@ const PaymentScreen = () => {
 	};
 
 	return (
-		<div className="paymentScreen__container">
-			<form className="paymentScreen__gid-container">
-				<div className="paymentScreen__title-container">
-					<h4>Adja meg a kártya adatait</h4>
-				</div>
-				<div className="paymentScreen__card-info-form-container">
-					<div className="cardInfoForm__container">
-						<div className="cardInfoForm__input-container">
-							<div style={{ gridColumn: "span 2" }}>
-								<div
-									className={
-										"cardInfoForm__cardNumber-container" +
-										(validCardNumber ? "" : " err")
-									}
-								>
-									<label htmlFor="cardNumber">Kártyaszám</label>
-									<input
-										type="text"
-										id="cardNumber"
-										placeholder="1234 1234 1234 1234"
-										ref={cardNumberRef}
-										onChange={(e) => {
-											setCardNumber(e.target.value);
-										}}
-										onFocus={() => {
-											setCardNumberFocus(true);
-										}}
-										onBlur={handleBlurCardNumber}
-									></input>
-									{cardNumber === "" ? (
-										<p>Kötelező</p>
-									) : (
-										<p>kártyaszám érvénytelen</p>
-									)}
+		<div>
+			<h2>Fizetés</h2>
+			<div className="paymentScreen__container">
+				<form className="paymentScreen__gid-container">
+					<div className="paymentScreen__title-container">
+						<h4>Adja meg a kártya adatait</h4>
+					</div>
+					<div className="paymentScreen__card-info-form-container">
+						<div className="cardInfoForm__container">
+							<div className="cardInfoForm__input-container">
+								<div style={{ gridColumn: "span 2" }}>
+									<div
+										className={
+											"cardInfoForm__cardNumber-container" +
+											(validCardNumber ? "" : " err")
+										}
+									>
+										<label htmlFor="cardNumber">Kártyaszám</label>
+										<input
+											type="text"
+											id="cardNumber"
+											placeholder="1234 1234 1234 1234"
+											ref={cardNumberRef}
+											onChange={(e) => {
+												setCardNumber(e.target.value);
+											}}
+											onFocus={() => {
+												setCardNumberFocus(true);
+											}}
+											onBlur={handleBlurCardNumber}
+										></input>
+										{cardNumber === "" ? (
+											<p>Kötelező</p>
+										) : (
+											<p>kártyaszám érvénytelen</p>
+										)}
+									</div>
 								</div>
-							</div>
-							<div>
-								<div
-									className={
-										"cardInfoForm__expiry-date-container" +
-										(validExpiryDate ? "" : " err")
-									}
-								>
-									<label htmlFor="expiryDate">Lejárati dátum</label>
-									<input
-										type="text"
-										id="expiryDate"
-										placeholder="HH/EE"
-										ref={expiryDateRef}
-										onChange={(e) => {
-											setExpiryDate(e.target.value);
-										}}
-										onFocus={() => {
-											setExpiryDateFocus(true);
-										}}
-										onBlur={handleBlurExpiryDate}
-									></input>
-									{expiryDate === "" ? (
-										<p>Kötelező</p>
-									) : (
-										<p>Lejárati dátum érvénytelen</p>
-									)}
+								<div>
+									<div
+										className={
+											"cardInfoForm__expiry-date-container" +
+											(validExpiryDate ? "" : " err")
+										}
+									>
+										<label htmlFor="expiryDate">Lejárati dátum</label>
+										<input
+											type="text"
+											id="expiryDate"
+											placeholder="HH/EE"
+											ref={expiryDateRef}
+											onChange={(e) => {
+												setExpiryDate(e.target.value);
+											}}
+											onFocus={() => {
+												setExpiryDateFocus(true);
+											}}
+											onBlur={handleBlurExpiryDate}
+										></input>
+										{expiryDate === "" ? (
+											<p>Kötelező</p>
+										) : (
+											<p>Lejárati dátum érvénytelen</p>
+										)}
+									</div>
 								</div>
-							</div>
-							<div style={{ justifyContent: "end" }}>
-								<div
-									className={
-										"cardInfoForm__cvv-container" + (validCvc ? "" : " err")
-									}
-								>
-									<label htmlFor="cvc">CVC</label>
-									<input
-										type="text"
-										id="cvc"
-										placeholder="CVC"
-										ref={cvcRef}
-										onChange={(e) => {
-											setCvc(e.target.value);
-										}}
-										onFocus={() => {
-											setCvcFocus(true);
-										}}
-										onBlur={handleBlurCvc}
-									></input>
-									{cvc === "" ? <p>Kötelező</p> : <p>CVC érvénytelen</p>}
+								<div style={{ justifyContent: "end" }}>
+									<div
+										className={
+											"cardInfoForm__cvv-container" + (validCvc ? "" : " err")
+										}
+									>
+										<label htmlFor="cvc">CVC</label>
+										<input
+											type="text"
+											id="cvc"
+											placeholder="CVC"
+											ref={cvcRef}
+											onChange={(e) => {
+												setCvc(e.target.value);
+											}}
+											onFocus={() => {
+												setCvcFocus(true);
+											}}
+											onBlur={handleBlurCvc}
+										></input>
+										{cvc === "" ? <p>Kötelező</p> : <p>CVC érvénytelen</p>}
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="paymentScreen__card-info-form-container">
-					<button
-						className={
-							"paymentScreen__button" +
-							(hover ? " paymentScreen__button_hover" : "")
-						}
-						onMouseOver={handleMouseOver}
-						onMouseOut={handleMouseOut}
-						onClick={handleSubmit}
-					>
-						Fizetés
-					</button>
-				</div>
-			</form>
+					<div className="paymentScreen__card-info-form-container">
+						<button
+							className={
+								"paymentScreen__button" +
+								(hover ? " paymentScreen__button_hover" : "")
+							}
+							onMouseOver={handleMouseOver}
+							onMouseOut={handleMouseOut}
+							onClick={handleSubmit}
+						>
+							Fizetés
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 };

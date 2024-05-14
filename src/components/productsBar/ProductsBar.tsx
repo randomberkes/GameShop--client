@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Collapse } from "@mui/material";
 
 const ProductsBar = () => {
-	const list = [3, 5, 7];
+	const list = [2, 5, 7];
 	const navigate = useNavigate();
 
 	const handleClickFilterButton = () => {
@@ -29,7 +29,7 @@ const ProductsBar = () => {
 					setHover(false);
 				}}
 			>
-				{list} / oldal
+				{list[0]} / oldal
 			</button>
 			<div className="productsBar__collapse-container">
 				<Collapse in={hover}>

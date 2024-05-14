@@ -18,8 +18,24 @@ const UserCollapsible = () => {
 				navigate("/user/myAccount");
 			},
 		},
-		{ text: "Kártyáim" },
-		{ text: "Rendelések" },
+		{
+			text: "Hirdetéseim",
+			onClick: () => {
+				navigate("/user/advertisements");
+			},
+		},
+		{
+			text: "Vásárlások",
+			onClick: () => {
+				navigate("/user/purchases");
+			},
+		},
+		{
+			text: "Játékaim",
+			onClick: () => {
+				navigate("/user/activationKeys");
+			},
+		},
 		{ text: "Kijelentkezés", onClick: signOut },
 	];
 

@@ -1,0 +1,58 @@
+.newAdvertisementCard__header-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: white;
+	border-radius: 10px;
+}
+
+.newAdvertisementCard__header-container_open {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.newAdvertisementCard__container {
+	margin: 10px;
+}
+
+.newAdvertisementCard__header-container > img {
+	width: 40px;
+	height: 40px;
+	border-radius: 10px;
+}
+
+.newAdvertisementCard__collapsible {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: white;
+
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.newAdvertisementCard__collapsible > div > input {
+	border-radius: 10px;
+	height: 20px;
+	margin: 10px 0px;
+}
+.newAdvertisementCard__collapsible > button {
+	box-sizing: content-box;
+	border-radius: 10px;
+	height: 20px;
+	background-color: white;
+}
+
+.newAdvertisementCard_input_focus {
+	border: 2px solid #d65a31 !important;
+	outline: none;
+}
+.newAdvertisementCard_input_err {
+	border: 2px solid #e72929 !important;
+	outline: none;
+	background-color: #e7292930;
+	margin-bottom: 0px !important;
+}

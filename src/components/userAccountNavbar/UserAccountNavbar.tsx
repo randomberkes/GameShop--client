@@ -12,14 +12,6 @@ const UserAccountNavbar = () => {
 	const { authUser } = useSelector((state: RootState) => state.auth);
 	const buttons = [
 		{
-			icon: (
-				<i className="userAccountNavbarButton__icon bi bi-credit-card-2-back-fill"></i>
-			),
-			color: " #006fcd",
-			onClick: () => {},
-			text: "Kártyáim",
-		},
-		{
 			icon: <i className="userAccountNavbarButton__icon bi bi-cash-coin"></i>,
 			color: "#FFC100",
 			onClick: () => {
@@ -47,7 +39,7 @@ const UserAccountNavbar = () => {
 		},
 		{
 			icon: <i className="userAccountNavbarButton__icon bi-cart-dash-fill"></i>,
-			color: "#107c10",
+			color: "#5b2872",
 			onClick: () => {
 				navigate("/cart");
 			},

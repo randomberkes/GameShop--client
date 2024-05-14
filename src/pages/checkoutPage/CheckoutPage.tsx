@@ -7,7 +7,6 @@ const CheckoutPage = () => {
 	return (
 		<div className="checkoutPage__container">
 			<div className="checkout-page__header-flex-container">
-				{/* <h1 className="checkout-page__logo">GameShop</h1> */}
 				<div className="checkout-page__header-container">
 					<div className="checkout-page__header">
 						<div className="checkout-page__step-bar-container">
@@ -55,7 +54,7 @@ const CheckoutPage = () => {
 										: ""
 								}
 							>
-								Rendelés részletei
+								Rendelés összegzése
 							</h6>
 							<h6
 								className={
@@ -65,7 +64,7 @@ const CheckoutPage = () => {
 										: ""
 								}
 							>
-								Rendelés összegzése
+								Fizetés
 							</h6>
 							<h6
 								className={
@@ -82,9 +81,6 @@ const CheckoutPage = () => {
 			</div>
 			<div className="checkoutScreen__flex-container">
 				<div>
-					<div>
-						<h2>Rendelés összegzése</h2>
-					</div>
 					<div
 						className={
 							"checkoutScreen__backgroun-container" +

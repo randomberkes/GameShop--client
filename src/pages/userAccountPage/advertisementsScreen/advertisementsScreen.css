@@ -6,6 +6,49 @@
 	border-radius: 15px;
 }
 
+.advertisementsScreen__menu-container {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	background-color: white;
+	height: 50px;
+	border-radius: 15px;
+}
+
+.advertisementsScreen__menu-container_open {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.advertisementsScreen__add-advertisement-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	border: 2px solid #393e46;
+	margin: 15px;
+	width: 30px;
+	height: 30px;
+	border-radius: 10px;
+	color: #393e46;
+	font-size: 25px;
+}
+
+.advertisementsScreen__add-advertisement-button_hover {
+	background-color: #eeeeee;
+}
+
+.advertisementsScreen__header-container {
+}
+
 .advertisementsScreen__header-container > h2 {
 	margin: 10px 10px;
+}
+.advertisementsScreen__collapsible-container {
+	background-color: white;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }

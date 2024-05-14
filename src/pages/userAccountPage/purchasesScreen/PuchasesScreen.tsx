@@ -23,7 +23,7 @@ const PuchasesScreen = () => {
 	return (
 		<>
 			<div className="puchasesScreen__header-container">
-				<h2>Rendelések</h2>
+				<h2>Vásárlások</h2>
 			</div>
 
 			{orderIDs.map(createOrderCard)}

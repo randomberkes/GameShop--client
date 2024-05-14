@@ -72,6 +72,7 @@ const GameCard = (props) => {
 			axtivationKeyID,
 			axiosPrivate
 		);
+		window.location.reload();
 	};
 
 	const createActivationKeyCard = (activationKey) => {
@@ -79,7 +80,11 @@ const GameCard = (props) => {
 			<ActivationKeyCard
 				activationKey={activationKey}
 				productID={product.id}
+				text={"meghírdet"}
+				icon={<i className="bi bi-currency-dollar"></i>}
+				color={"#ffc100"}
 				handleClick={handleClick}
+				borderColor={color}
 			/>
 		);
 	};

@@ -19,7 +19,25 @@ export const mapDataToProduct = (data): Product => {
 export const getAllProducts = async (): Promise<Product[]> => {
 	let productListData: Product[] = [];
 	try {
-		const response = await API.axiosPublic.get("/products");
+		const response = await API.axiosPublic.get("/products/all");
+		console.log(response);
+		productListData = response.data.map((data) => {
+			return mapDataToProduct(data);
+		});
+	} catch (err) {
+		console.log(err);
+	}
+
+	return productListData;
+};
+
+export const getProductsForNewOffer = async (
+	axiosPrivate
+): Promise<Product[]> => {
+	let productListData: Product[] = [];
+	try {
+		const response = await axiosPrivate.get("/products/productsForNewOffer");
+		console.log(response);
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});
@@ -95,4 +113,5 @@ export default {
 	getProductsByName,
 	getProductsByFilter,
 	getProductByID,
+	getProductsForNewOffer,
 };

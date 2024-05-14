@@ -1,0 +1,21 @@
+.activationKeyCard__container > button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	margin: 5px;
+	height: 25px;
+}
+
+.activationKeyCard__container {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border-radius: 10px;
+	margin: 5px;
+}
+.activationKeyCard__activation-key-container {
+	margin: 5px;
+}

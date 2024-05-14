@@ -31,6 +31,8 @@ const ProductDetailPage = () => {
 	});
 	const [offers, seOffers] = useState([{ name: "", price: 0, id: 0 }]);
 	const { productID } = useParams();
+	const [favoritesButtonHover, setFavoritesButtonHover] = useState(false);
+	const [cartButtonHover, setCartButtonHover] = useState(false);
 	useEffect(() => {
 		const getProduct = async () => {
 			const product = await productsApi.getProductByID(productID);
@@ -122,14 +124,7 @@ const ProductDetailPage = () => {
 						<p>Játék típusa: {product.gameType}</p>
 						<p>Rating PEGI (ajánlott korosztály): {product.ratingPegi}</p>
 						<p>Játékosok száma: {product.numberOfPlayers}</p>
-						{/* <p>{product.descriptions}</p> */}
-						<p>
-							Lorem Ipsum is simply dummy text of the printing and typesetting
-							industry. Lorem Ipsum has been the industry's standard dummy text
-							ever since the 1500s, when an unknown printer took a galley of
-							type and scrambled it to make a type specimen book. It has
-							survived not
-						</p>
+						<p>Leírás: {product.descriptions}</p>
 					</div>
 				</div>
 				<div className="productDetailPage__best-offer-row">
@@ -149,8 +144,19 @@ const ProductDetailPage = () => {
 						</div>
 						<div>
 							<button
-								className="productDetailPage__cart-button"
+								className={
+									"productDetailPage__cart-button" +
+									(cartButtonHover
+										? " productDetailPage__cart-button_hover"
+										: "")
+								}
 								onClick={handleCartButtonClick}
+								onMouseOver={() => {
+									setCartButtonHover(true);
+								}}
+								onMouseOut={() => {
+									setCartButtonHover(false);
+								}}
 							>
 								<i className="bi bi-cart-fill"></i>
 								<div>Kosárba</div>
@@ -158,8 +164,19 @@ const ProductDetailPage = () => {
 						</div>
 						<div>
 							<button
-								className="productDetailPage__favorites-button"
+								className={
+									"productDetailPage__favorites-button" +
+									(favoritesButtonHover
+										? " productDetailPage__favorites-button_hover"
+										: "")
+								}
 								onClick={handleFavoriteButtonClick}
+								onMouseOver={() => {
+									setFavoritesButtonHover(true);
+								}}
+								onMouseOut={() => {
+									setFavoritesButtonHover(false);
+								}}
 							>
 								<i className="bi bi-heart-pulse-fill"></i>
 								<div>Kedvencekhez ad</div>

@@ -14,9 +14,21 @@ const getOffers = async (productID: any) => {
 
 const getOffersByUSer = async (axiosPrivate: any) => {
 	try {
-		const response = await API.axiosPrivate.get("/offer/byUser");
+		const response = await axiosPrivate.get("/offer/byUser");
 		const offers = response.data;
 		return offers;
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+const updateOfferPrice = async (
+	axiosPrivate: any,
+	offerID: any,
+	newPrice: any
+) => {
+	try {
+		await axiosPrivate.patch("/offer", { offerID, newPrice });
 	} catch (err) {
 		console.log(err);
 	}
@@ -35,4 +47,9 @@ const getOfferActivationKeyNumber = async (offerID: any) => {
 	}
 };
 
-export default { getOffers, getOfferActivationKeyNumber, getOffersByUSer };
+export default {
+	getOffers,
+	getOfferActivationKeyNumber,
+	getOffersByUSer,
+	updateOfferPrice,
+};

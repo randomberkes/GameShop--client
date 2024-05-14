@@ -81,6 +81,13 @@
 .productDetailPage__favorites-button {
 	background-color: #e72929;
 }
+.productDetailPage__cart-button_hover {
+	background-color: #006fcd99;
+}
+
+.productDetailPage__favorites-button_hover {
+	background-color: #e7292999;
+}
 
 .productDetailPage__user-icon {
 	display: flex;

@@ -70,10 +70,29 @@ const addActivationKeyToOwner = async (
 	}
 };
 
+const addNewActivationKeyToOffer = async (
+	productID,
+	activationKey,
+	axiosPrivate
+) => {
+	try {
+		console.log(productID);
+		const response = await axiosPrivate.post("/activationKey/addNewToOffer", {
+			productID,
+			activationKey,
+		});
+		const activationKeys = response.data;
+		return activationKeys;
+	} catch (err) {
+		console.log(err);
+	}
+};
+
 export default {
 	getOwnerLinks,
 	getActivationKeys,
 	getActivationKeysByUser,
 	addActivationKeyToOffer,
 	addActivationKeyToOwner,
+	addNewActivationKeyToOffer,
 };

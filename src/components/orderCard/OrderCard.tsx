@@ -30,7 +30,7 @@ const OrderCard = (props) => {
 	return (
 		<div className="orderCard-container">
 			<div className="orderCard-container-header">
-				<p>Megrendelés száma: {orderID}</p>
+				<p>Vásárlás száma: {orderID}</p>
 				<p>Végösszeg: {price} Ft</p>
 			</div>
 			<div>{orderItems.map(createOrderItemCard)}</div>
