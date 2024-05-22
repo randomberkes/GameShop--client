@@ -4,7 +4,7 @@ import API from "./api.ts";
 const getUserByEmail = async (email): Promise<User | string> => {
 	let user: User;
 	try {
-		const response = await API.axiosPublic.get("/users/email", {
+		const response = await API.axiosPublic.get("/user/email", {
 			params: { email },
 		});
 
@@ -30,8 +30,4 @@ const postUser = async (user: User) => {
 	return await API.axiosPublic.post("/auth/register", user);
 };
 
-const getUsers = async (axiosPrivate: any) => {
-	return await axiosPrivate.get("/users/all");
-};
-
-export default { getUserByEmail, postUser, getUsers, updateUser };
+export default { getUserByEmail, postUser, updateUser };

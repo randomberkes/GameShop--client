@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import "./userCollapsible.css";
-import useLogedInUser from "../../../../hooks/useLogedInUser.ts";
-import CollapsibleButton from "./collapsibleButton/CollapsibleButton.tsx";
-import useLogout from "../../../../hooks/useLogout.ts";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../../../Redux/store.ts';
+import useLogout from '../../../../hooks/useLogout.ts';
+import CollapsibleButton from './collapsibleButton/CollapsibleButton.tsx';
+import './userCollapsible.css';
 
 const UserCollapsible = () => {
 	const navigate = useNavigate();
@@ -13,39 +14,39 @@ const UserCollapsible = () => {
 	};
 	const buttons = [
 		{
-			text: "Saját fiók",
+			text: 'Saját fiók',
 			onClick: () => {
-				navigate("/user/myAccount");
+				navigate('/user/myAccount');
 			},
 		},
 		{
-			text: "Hirdetéseim",
+			text: 'Hirdetéseim',
 			onClick: () => {
-				navigate("/user/advertisements");
+				navigate('/user/advertisements');
 			},
 		},
 		{
-			text: "Vásárlások",
+			text: 'Vásárlások',
 			onClick: () => {
-				navigate("/user/purchases");
+				navigate('/user/purchases');
 			},
 		},
 		{
-			text: "Játékaim",
+			text: 'Játékaim',
 			onClick: () => {
-				navigate("/user/activationKeys");
+				navigate('/user/activationKeys');
 			},
 		},
-		{ text: "Kijelentkezés", onClick: signOut },
+		{ text: 'Kijelentkezés', onClick: signOut },
 	];
 
 	const createButton = (button) => {
 		return <CollapsibleButton text={button.text} onClick={button.onClick} />;
 	};
 
-	const { authUser, isAuthenticated } = useLogedInUser();
+	const { authUser } = useSelector((state: RootState) => state.auth);
 
-	return isAuthenticated ? (
+	return authUser.name !== '' ? (
 		<div className="collapsible__container">
 			<h5 className="collapsible__header">{`Hello ${authUser.name}`}</h5>
 			{buttons.map(createButton)}
