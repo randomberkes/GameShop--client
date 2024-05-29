@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import "./advertisementsScreen.css";
-import offerApi from "../../../api/offerApi.ts";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
-import AdvertisementCard from "../../../components/advertisementCard/AdvertisementCard.tsx";
-import UserMenuBar from "../../../components/userMenuBar/userMenuBar.tsx";
-import { Collapse } from "@mui/material";
-import productsApi from "../../../api/productsApi.ts";
-import { Product } from "../../../DTO/product.ts";
-import NewAdvertisementCard from "../../../components/newAdvertisementCard/NewAdvertisementCard.tsx";
+import { Collapse } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Product } from '../../../DTO/product.ts';
+import offerApi from '../../../api/offerApi.ts';
+import productsApi from '../../../api/productsApi.ts';
+import AdvertisementCard from '../../../components/advertisementCard/AdvertisementCard.tsx';
+import NewAdvertisementCard from '../../../components/newAdvertisementCard/NewAdvertisementCard.tsx';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate.ts';
+import './advertisementsScreen.css';
 
 const AdvertisementsScreen = () => {
 	const [offers, setOffers] = useState([]);
@@ -19,7 +18,6 @@ const AdvertisementsScreen = () => {
 	useEffect(() => {
 		const getOwnerLinks = async () => {
 			const offers = await offerApi.getOffersByUSer(axiosPrivate);
-			console.log(offers);
 			setOffers(offers);
 		};
 		getOwnerLinks();
@@ -55,16 +53,16 @@ const AdvertisementsScreen = () => {
 			</div>
 			<div
 				className={
-					"advertisementsScreen__menu-container" +
-					(open ? " advertisementsScreen__menu-container_open" : "")
+					'advertisementsScreen__menu-container' +
+					(open ? ' advertisementsScreen__menu-container_open' : '')
 				}
 			>
 				<button
 					className={
-						"advertisementsScreen__add-advertisement-button" +
+						'advertisementsScreen__add-advertisement-button' +
 						(hover
-							? " advertisementsScreen__add-advertisement-button_hover"
-							: "")
+							? ' advertisementsScreen__add-advertisement-button_hover'
+							: '')
 					}
 					onMouseOver={() => {
 						setHover(true);

@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
-import activationKeyApi from "../../api/activationKeyApi.ts";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
-import ActivationKeyCard from "../activationKeyCard/ActivationKeyCard.tsx";
-import "./advertisementCard.css";
-import offerApi from "../../api/offerApi.ts";
+import React, { useEffect, useState } from 'react';
+import activationKeyApi from '../../api/activationKeyApi.ts';
+import offerApi from '../../api/offerApi.ts';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate.ts';
+import ActivationKeyCard from '../activationKeyCard/ActivationKeyCard.tsx';
+import './advertisementCard.css';
 
 const AdvertisementCard = (props) => {
 	const { offer } = props;
-	const [color, setColor] = useState("");
-	const [icon, setIcon] = useState("");
+	const [color, setColor] = useState('');
+	const [icon, setIcon] = useState('');
 	const axiosPrivate = useAxiosPrivate();
 	const [activationKeys, setActivationKeys] = useState([]);
 	const [hover, setHover] = useState(false);
-	const [price, setPrice] = useState("");
+	const [price, setPrice] = useState('');
 	const [disabled, setDisabled] = useState(true);
 	const colors = {
-		playstationColor: "#006fcd",
-		xboxColor: "#107c10",
-		pcColor: "#e72929",
+		playstationColor: '#006fcd',
+		xboxColor: '#107c10',
+		pcColor: '#e72929',
 	};
 	const icons = {
-		playstationIcon: "bi-playstation",
-		xboxIcon: "bi-xbox",
-		pcIcon: "bi-pc",
+		playstationIcon: 'bi-playstation',
+		xboxIcon: 'bi-xbox',
+		pcIcon: 'bi-pc',
 	};
 	useEffect(() => {
 		const getActivationKeys = async () => {
@@ -30,21 +30,20 @@ const AdvertisementCard = (props) => {
 				offer.offerID,
 				axiosPrivate
 			);
-			console.log(activationKeys);
 			setActivationKeys(activationKeys);
 		};
 		getActivationKeys();
 	}, []);
 	useEffect(() => {
-		if (offer.platform === "PlayStation") {
+		if (offer.platform === 'PlayStation') {
 			setColor(colors.playstationColor);
 			setIcon(icons.playstationIcon);
 		}
-		if (offer.platform === "Xbox") {
+		if (offer.platform === 'Xbox') {
 			setColor(colors.xboxColor);
 			setIcon(icons.xboxIcon);
 		}
-		if (offer.platform === "PC") {
+		if (offer.platform === 'PC') {
 			setColor(colors.pcColor);
 			setIcon(icons.pcIcon);
 		}
@@ -63,9 +62,9 @@ const AdvertisementCard = (props) => {
 			<ActivationKeyCard
 				activationKey={activationKey}
 				productID={offer.id}
-				text={"eltávolít"}
+				text={'eltávolít'}
 				icon={<i className="bi bi-trash3-fill"></i>}
-				color={"#ff0000"}
+				color={'#ff0000'}
 				handleClick={handleClick}
 				borderColor={color}
 			/>
@@ -87,11 +86,11 @@ const AdvertisementCard = (props) => {
 				<div
 					className={
 						offer.price == 0
-							? "advertiesementCard__status-container_inactive"
-							: "advertiesementCard__status-container_active"
+							? 'advertiesementCard__status-container_inactive'
+							: 'advertiesementCard__status-container_active'
 					}
 				>
-					<p>{offer.price == 0 ? "Inaktív" : "Aktív"}</p>
+					<p>{offer.price == 0 ? 'Inaktív' : 'Aktív'}</p>
 				</div>
 				<div>
 					<img src={offer.imgPath}></img>

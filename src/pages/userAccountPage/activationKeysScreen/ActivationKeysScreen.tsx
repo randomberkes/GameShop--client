@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./activationKeysScreen.css";
-import activationKeyApi from "../../../api/activationKeyApi.ts";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
-import GameCard from "../../../components/gameCard/GameCard.tsx";
-import UserMenuBar from "../../../components/userMenuBar/userMenuBar.tsx";
+import React, { useEffect, useState } from 'react';
+import activationKeyApi from '../../../api/activationKeyApi.ts';
+import GameCard from '../../../components/gameCard/GameCard.tsx';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate.ts';
+import './activationKeysScreen.css';
 
 const ActivationKeysScreen = () => {
 	const [ownerLinks, setOwnerLinks] = useState([]);
@@ -11,7 +10,6 @@ const ActivationKeysScreen = () => {
 	useEffect(() => {
 		const getOwnerLinks = async () => {
 			const ownerLinks = await activationKeyApi.getOwnerLinks(axiosPrivate);
-			console.log(ownerLinks);
 			setOwnerLinks(ownerLinks);
 		};
 		getOwnerLinks();

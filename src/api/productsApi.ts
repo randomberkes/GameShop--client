@@ -1,5 +1,5 @@
-import { Product } from "../DTO/product.ts";
-import API from "./api.ts";
+import { Product } from '../DTO/product.ts';
+import API from './api.ts';
 
 export const mapDataToProduct = (data): Product => {
 	return {
@@ -19,8 +19,7 @@ export const mapDataToProduct = (data): Product => {
 export const getAllProducts = async (): Promise<Product[]> => {
 	let productListData: Product[] = [];
 	try {
-		const response = await API.axiosPublic.get("/products/all");
-		console.log(response);
+		const response = await API.axiosPublic.get('/products/all');
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});
@@ -36,8 +35,7 @@ export const getProductsForNewOffer = async (
 ): Promise<Product[]> => {
 	let productListData: Product[] = [];
 	try {
-		const response = await axiosPrivate.get("/products/productsForNewOffer");
-		console.log(response);
+		const response = await axiosPrivate.get('/products/productsForNewOffer');
 		productListData = response.data.map((data) => {
 			return mapDataToProduct(data);
 		});
@@ -52,7 +50,7 @@ export const getProductsByName = async (inputValue): Promise<Product[]> => {
 	let productListData: Product[] = [];
 
 	try {
-		const response = await API.axiosPublic.get("/products/search", {
+		const response = await API.axiosPublic.get('/products/search', {
 			params: { name: inputValue },
 		});
 
@@ -70,7 +68,7 @@ export const getProductsByFilter = async (inputValue, page, limit) => {
 	let productListData: Product[] = [];
 	let totalPageNumber;
 	try {
-		const response = await API.axiosPublic.get("/products/filter", {
+		const response = await API.axiosPublic.get('/products/filter', {
 			params: { filter: inputValue, page: page, limit: limit },
 		});
 		totalPageNumber = response.data.totalPageNumber;
@@ -86,7 +84,7 @@ export const getProductsByFilter = async (inputValue, page, limit) => {
 
 const getProductByID = async (productID: any): Promise<Product> => {
 	try {
-		const response = await API.axiosPublic.get("/products", {
+		const response = await API.axiosPublic.get('/products', {
 			params: { productID: productID },
 		});
 		const product = mapDataToProduct(response.data);
@@ -95,15 +93,15 @@ const getProductByID = async (productID: any): Promise<Product> => {
 		console.log(err);
 		return {
 			id: 0,
-			name: "",
-			platform: "",
-			gameDeviceCompatibility: "",
-			gameType: "",
-			ratingPegi: "",
-			numberOfPlayers: "",
-			descriptions: "",
+			name: '',
+			platform: '',
+			gameDeviceCompatibility: '',
+			gameType: '',
+			ratingPegi: '',
+			numberOfPlayers: '',
+			descriptions: '',
 			price: 0,
-			imgPath: "",
+			imgPath: '',
 		};
 	}
 };

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
-import "./activationKeyCard.css";
+import React, { useState } from 'react';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate.ts';
+import './activationKeyCard.css';
 
 const ActivationKeyCard = (props) => {
 	const {
@@ -15,7 +15,6 @@ const ActivationKeyCard = (props) => {
 	const [hover, setHover] = useState(false);
 
 	const axiosPrivate = useAxiosPrivate();
-	console.log(productID);
 	const click = () => {
 		handleClick(productID, activationKey.id, axiosPrivate);
 	};

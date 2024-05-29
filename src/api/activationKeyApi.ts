@@ -1,6 +1,6 @@
 const getOwnerLinks = async (axiosPrivate) => {
 	try {
-		const response = await axiosPrivate.get("/activationKey/OwnerLinnk", {});
+		const response = await axiosPrivate.get('/activationKey/OwnerLinnk', {});
 		const ownerLinks = response.data;
 		return ownerLinks;
 	} catch (err) {
@@ -10,11 +10,10 @@ const getOwnerLinks = async (axiosPrivate) => {
 
 const getActivationKeys = async (ownerID: number, axiosPrivate) => {
 	try {
-		const response = await axiosPrivate.get("/activationKey", {
+		const response = await axiosPrivate.get('/activationKey/byOwner', {
 			params: { ownerID },
 		});
 		const activationKeys = response.data;
-		console.log(activationKeys);
 		return activationKeys;
 	} catch (err) {
 		console.log(err);
@@ -23,7 +22,7 @@ const getActivationKeys = async (ownerID: number, axiosPrivate) => {
 
 const getActivationKeysByUser = async (offerID, axiosPrivate) => {
 	try {
-		const response = await axiosPrivate.get("/activationKey/byUser", {
+		const response = await axiosPrivate.get('/activationKey/byOffer', {
 			params: { offerID },
 		});
 		const activationKeys = response.data;
@@ -40,8 +39,7 @@ const addActivationKeyToOffer = async (
 	axiosPrivate
 ) => {
 	try {
-		console.log(productID);
-		const response = await axiosPrivate.post("/activationKey/addToOffer", {
+		const response = await axiosPrivate.post('/activationKey/addToOffer', {
 			productID,
 			activationKeyID,
 		});
@@ -58,8 +56,7 @@ const addActivationKeyToOwner = async (
 	axiosPrivate
 ) => {
 	try {
-		console.log(productID);
-		const response = await axiosPrivate.post("/activationKey/addToOwner", {
+		const response = await axiosPrivate.post('/activationKey/addToOwner', {
 			productID,
 			activationKeyID,
 		});
@@ -76,8 +73,7 @@ const addNewActivationKeyToOffer = async (
 	axiosPrivate
 ) => {
 	try {
-		console.log(productID);
-		const response = await axiosPrivate.post("/activationKey/addNewToOffer", {
+		const response = await axiosPrivate.post('/activationKey/addNewToOffer', {
 			productID,
 			activationKey,
 		});

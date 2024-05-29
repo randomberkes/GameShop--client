@@ -1,8 +1,8 @@
-import API from "./api.ts";
+import API from './api.ts';
 
 const getOffers = async (productID: any) => {
 	try {
-		const response = await API.axiosPublic.get("/offer", {
+		const response = await API.axiosPublic.get('/offer', {
 			params: { productID },
 		});
 		const offers = response.data;
@@ -14,7 +14,7 @@ const getOffers = async (productID: any) => {
 
 const getOffersByUSer = async (axiosPrivate: any) => {
 	try {
-		const response = await axiosPrivate.get("/offer/byUser");
+		const response = await axiosPrivate.get('/offer/byUser');
 		const offers = response.data;
 		return offers;
 	} catch (err) {
@@ -28,7 +28,7 @@ const updateOfferPrice = async (
 	newPrice: any
 ) => {
 	try {
-		await axiosPrivate.patch("/offer", { offerID, newPrice });
+		await axiosPrivate.patch('/offer', { offerID, newPrice });
 	} catch (err) {
 		console.log(err);
 	}
@@ -36,11 +36,10 @@ const updateOfferPrice = async (
 
 const getOfferActivationKeyNumber = async (offerID: any) => {
 	try {
-		const response = await API.axiosPublic.get("offer/amount", {
+		const response = await API.axiosPublic.get('offer/amount', {
 			params: { offerID },
 		});
 		const activationKeyNumber = response.data.count;
-		console.log(activationKeyNumber);
 		return activationKeyNumber;
 	} catch (err) {
 		console.log(err);

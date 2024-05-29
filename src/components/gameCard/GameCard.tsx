@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react";
-import "./gameCard.css";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
-import activationKeyApi from "../../api/activationKeyApi.ts";
-import ActivationKeyCard from "../activationKeyCard/ActivationKeyCard.tsx";
-import productsApi from "../../api/productsApi.ts";
-import { Product } from "../../DTO/product.ts";
+import React, { useEffect, useState } from 'react';
+import { Product } from '../../DTO/product.ts';
+import activationKeyApi from '../../api/activationKeyApi.ts';
+import productsApi from '../../api/productsApi.ts';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate.ts';
+import ActivationKeyCard from '../activationKeyCard/ActivationKeyCard.tsx';
+import './gameCard.css';
 
 const GameCard = (props) => {
 	const { ownerID, productID } = props;
-	const [color, setColor] = useState("");
-	const [icon, setIcon] = useState("");
+	const [color, setColor] = useState('');
+	const [icon, setIcon] = useState('');
 	const [activationKeys, setActivationKeys] = useState([]);
 	const axiosPrivate = useAxiosPrivate();
 	const [product, setProduct] = useState<Product>({
 		id: 0,
-		name: "",
-		platform: "",
-		gameDeviceCompatibility: "",
-		gameType: "",
-		ratingPegi: "",
-		numberOfPlayers: "",
-		descriptions: "",
+		name: '',
+		platform: '',
+		gameDeviceCompatibility: '',
+		gameType: '',
+		ratingPegi: '',
+		numberOfPlayers: '',
+		descriptions: '',
 		price: 0,
-		imgPath: "",
+		imgPath: '',
 	});
 	const colors = {
-		playstationColor: "#006fcd",
-		xboxColor: "#107c10",
-		pcColor: "#e72929",
+		playstationColor: '#006fcd',
+		xboxColor: '#107c10',
+		pcColor: '#e72929',
 	};
 	const icons = {
-		playstationIcon: "bi-playstation",
-		xboxIcon: "bi-xbox",
-		pcIcon: "bi-pc",
+		playstationIcon: 'bi-playstation',
+		xboxIcon: 'bi-xbox',
+		pcIcon: 'bi-pc',
 	};
 	useEffect(() => {
 		const getActivationKeys = async () => {
@@ -45,7 +45,6 @@ const GameCard = (props) => {
 
 		const getProduct = async () => {
 			const product = await productsApi.getProductByID(productID);
-			console.log(product);
 			setProduct(product);
 		};
 		getProduct();
@@ -53,15 +52,15 @@ const GameCard = (props) => {
 	}, []);
 
 	useEffect(() => {
-		if (product.platform === "PlayStation") {
+		if (product.platform === 'PlayStation') {
 			setColor(colors.playstationColor);
 			setIcon(icons.playstationIcon);
 		}
-		if (product.platform === "Xbox") {
+		if (product.platform === 'Xbox') {
 			setColor(colors.xboxColor);
 			setIcon(icons.xboxIcon);
 		}
-		if (product.platform === "PC") {
+		if (product.platform === 'PC') {
 			setColor(colors.pcColor);
 			setIcon(icons.pcIcon);
 		}
@@ -80,9 +79,9 @@ const GameCard = (props) => {
 			<ActivationKeyCard
 				activationKey={activationKey}
 				productID={product.id}
-				text={"meghírdet"}
+				text={'meghírdet'}
 				icon={<i className="bi bi-currency-dollar"></i>}
-				color={"#ffc100"}
+				color={'#ffc100'}
 				handleClick={handleClick}
 				borderColor={color}
 			/>

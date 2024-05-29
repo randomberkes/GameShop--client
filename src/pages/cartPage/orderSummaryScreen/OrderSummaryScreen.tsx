@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import "./orderSummaryScreen.css";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../Redux/store";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { RootState } from '../../../Redux/store';
+import './orderSummaryScreen.css';
 
 const OrderSummatyScreen = () => {
 	const finalPrice = useSelector((state: RootState) => state.offers.finalPrice);
-	// const location = useLocation();
 	const [hover, setHover] = useState(false);
 	return (
 		<div className="orderSummaryScreen_Container">
@@ -23,8 +22,8 @@ const OrderSummatyScreen = () => {
 			<Link className="orderScreenButtonRow" to="/checkout">
 				<button
 					className={
-						"orderScreenButton" +
-						(hover ? " orderSummaryScreen__button-hover" : "")
+						'orderScreenButton' +
+						(hover ? ' orderSummaryScreen__button-hover' : '')
 					}
 					onMouseOver={() => {
 						setHover(true);

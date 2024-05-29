@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ProductCardButton from "../productCardButton/ProductCardButton.tsx";
-import "./cartProductCardButtons.css";
-import { RootState } from "../../Redux/store.ts";
-import cartApi from "../../api/cartApi.ts";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate.ts";
-import offerApi from "../../api/offerApi.ts";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	decreaseCountOfProduct,
 	deleteOfferFromCart,
 	increaseCountOfProduct,
 	updatePrice,
-} from "../../Redux/offerSlice.ts";
+} from '../../Redux/offerSlice.ts';
+import { RootState } from '../../Redux/store.ts';
+import cartApi from '../../api/cartApi.ts';
+import offerApi from '../../api/offerApi.ts';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate.ts';
+import ProductCardButton from '../productCardButton/ProductCardButton.tsx';
+import './cartProductCardButtons.css';
 
 const CartProductCardButtons = (props) => {
 	const { authUser } = useSelector((state: RootState) => state.auth);
@@ -26,7 +26,6 @@ const CartProductCardButtons = (props) => {
 			const activationKeyNumber = await offerApi.getOfferActivationKeyNumber(
 				offerID
 			);
-			// console.log(activationKeyNumber);
 			setActivationKeyNumber(activationKeyNumber);
 		};
 		getOfferActivationKeyNumber();
@@ -39,7 +38,7 @@ const CartProductCardButtons = (props) => {
 	useEffect(() => {});
 
 	const handleDeleteButtonClick = async () => {
-		if (authUser.name === "") {
+		if (authUser.name === '') {
 			dispatch(deleteOfferFromCart(offerID));
 		} else {
 			await cartApi.deleteCartLink(offerID, axiosPrivate);
@@ -48,35 +47,19 @@ const CartProductCardButtons = (props) => {
 	};
 
 	const handlePlusButtonClick = async () => {
-		if (authUser.name === "") {
+		if (authUser.name === '') {
 			dispatch(increaseCountOfProduct(offerID));
-			// dispatch(updatePrice());
 		} else {
 			await cartApi.incrementCartProductAmount(offerID, axiosPrivate);
 			dispatch(increaseCountOfProduct(offerID));
-			// const rows = await cartApi.getAmountOfCartProduct(
-			// 	productData.id,
-			// 	axiosPrivate
-			// );
-
-			// const input = { id: productData.id, amount: rows?.amount };
-			// dispatch(setProductAmount(input));
 		}
 	};
 	const handleMinusButtonClick = async () => {
-		if (authUser.name === "") {
+		if (authUser.name === '') {
 			dispatch(decreaseCountOfProduct(offerID));
-			// dispatch(updatePrice());
 		} else {
 			await cartApi.decrementCartProductAmount(offerID, axiosPrivate);
 			dispatch(decreaseCountOfProduct(offerID));
-			// const rows = await cartApi.getAmountOfCartProduct(
-			// 	productData.id,
-			// 	axiosPrivate
-			// );
-
-			// const input = { id: productData.id, amount: rows.amount };
-			// dispatch(setProductAmount(input));
 		}
 	};
 

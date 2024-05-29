@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./puchasesScreen.css";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate.ts";
-import orderApi from "../../../api/orderApi.ts";
-import OrderCard from "../../../components/orderCard/OrderCard.tsx";
-import UserMenuBar from "../../../components/userMenuBar/userMenuBar.tsx";
+import React, { useEffect, useState } from 'react';
+import orderApi from '../../../api/orderApi.ts';
+import OrderCard from '../../../components/orderCard/OrderCard.tsx';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate.ts';
+import './puchasesScreen.css';
 
 const PuchasesScreen = () => {
 	const [orderIDs, setOrderIDs] = useState([]);
@@ -11,7 +10,6 @@ const PuchasesScreen = () => {
 	useEffect(() => {
 		const getUserIDs = async () => {
 			const orderIDs = await orderApi.getOrdersIDs(axiosPrivate);
-			console.log(orderIDs);
 			setOrderIDs(orderIDs);
 		};
 		getUserIDs();

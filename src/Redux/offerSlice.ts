@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { Offer } from "../DTO/offer";
-import { CartOffer } from "../DTO/cartOffer";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { CartOffer } from '../DTO/cartOffer';
+import { Offer } from '../DTO/offer';
 
 export interface offersState {
 	favoriteOffers: Offer[];
@@ -16,7 +16,7 @@ const initialState: offersState = {
 };
 
 export const offersSlice = createSlice({
-	name: "offers",
+	name: 'offers',
 	initialState,
 	reducers: {
 		updatePrice: (state) => {
@@ -38,15 +38,6 @@ export const offersSlice = createSlice({
 				if (offer.id === action.payload) offer.amount--;
 			});
 		},
-		// setProductAmount: (
-		// 	state,
-		// 	action: PayloadAction<{ id: number; amount: number }>
-		// ) => {
-		// 	state.products.forEach((product) => {
-		// 		if (product.id === action.payload.id)
-		// 			product.productCount = action.payload.amount;
-		// 	});
-		// },
 		setFavoriteOffers: (state, action: PayloadAction<Offer[]>) => {
 			state.favoriteOffers = action.payload;
 		},
@@ -87,7 +78,6 @@ export const offersSlice = createSlice({
 	},
 });
 
-// Action creators are generated for each case reducer function
 export const {
 	addOfferToFavorites,
 	deleteOfferFromFavorites,
